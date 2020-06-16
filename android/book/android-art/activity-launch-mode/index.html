@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <script type="text/javascript" src="/js/dark.js"></script>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+
+
+<meta name="keywords" content="Android,JavaScript,Java,Database">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>ActivityLaunchMode - Thomas Woo</title>
+
+
+    <meta name="description" content="在默认情况下的我们多次打开同一个Activity时，系统会创建多个实例并把它们一一放入任务栈中，当我们单击back键，会发现这些Activity会一一回退。任务栈是一种”后进先出“的栈结构，这个比较好理解，每按一下back键就会有一个Activity出栈，直到栈空为止，当栈中无任何Activity的时候，系统就会回收这个任务栈。知道了Android默认的启动模式后我们就会发现一个问题：多次启动同一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ActivityLaunchMode">
+<meta property="og:url" content="http://smileorigin.site/android/book/android-art/activity-launch-mode/index.html">
+<meta property="og:site_name" content="Thomas Woo">
+<meta property="og:description" content="在默认情况下的我们多次打开同一个Activity时，系统会创建多个实例并把它们一一放入任务栈中，当我们单击back键，会发现这些Activity会一一回退。任务栈是一种”后进先出“的栈结构，这个比较好理解，每按一下back键就会有一个Activity出栈，直到栈空为止，当栈中无任何Activity的时候，系统就会回收这个任务栈。知道了Android默认的启动模式后我们就会发现一个问题：多次启动同一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://smileorigin.site/images/og_image.png">
+<meta property="article:published_time" content="2017-07-09T17:18:00.000Z">
+<meta property="article:modified_time" content="2020-06-13T11:57:00.178Z">
+<meta property="article:author" content="Thomas Woo">
+<meta property="article:tag" content="Notes">
+<meta property="article:tag" content="Android Art">
+<meta property="article:tag" content="ApplicationComponents">
+<meta property="article:tag" content="Activity">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://smileorigin.site/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110922455-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110922455-1');
+</script>
+
+    
+    <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?33cec7dfd968d9ffd9ff2a5da2be77d0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img class="logo-img" src="/images/logo.svg" alt="ActivityLaunchMode" height="28" />
+                <img class="logo-img-dark" src="/images/logo-dark.svg" alt="ActivityLaunchMode" height="28" />
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/album">Album</a>
+                
+                <a class="navbar-item"
+                href="/bbs">BBS</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                <a class="navbar-item" id="dark-switch" title="Dark Mode" href="javascript:;">
+                    <i class="fas fa-moon" id="dark-icon"></i>
+                </a>
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns columns-center">
+                <div class="column is-9-widescreen is-12 has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-07-09T17:18:00.000Z">2017-07-10</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    15 分钟 读完 (大约 2221 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                ActivityLaunchMode
+            
+        </h1>
+        <div class="content">
+            <p>在默认情况下的我们多次打开同一个Activity时，系统会创建多个实例并把它们一一放入任务栈中，当我们单击back键，会发现这些Activity会一一回退。任务栈是一种”后进先出“的栈结构，这个比较好理解，每按一下back键就会有一个Activity出栈，直到栈空为止，当栈中无任何Activity的时候，系统就会回收这个任务栈。知道了Android默认的启动模式后我们就会发现一个问题：<strong>多次启动同一个Activity，系统重复创建多个实例，这样不是很傻吗？</strong>这样做的确有点傻，Android在设计的时候不可能不考虑这个问题，所以它提供了启动模式来修改系统的默认行为。目前有四种启动模式：standard、singleTop、singleTask和singleInstance</p>
+<a id="more"></a>
+
+<h2 id="启动模式"><a href="#启动模式" class="headerlink" title="启动模式"></a>启动模式</h2><h3 id="standard"><a href="#standard" class="headerlink" title="standard"></a>standard</h3><p>标准模式，系统默认的模式。每次启动一个Activity都会重新建立一个新的实例，不管这个实例是否已经存在。被创建的实例的生命周期符合典型情况下Activity的生命周期，如上节描述，它的onCreate()、onStart()、onResume()都会被调用。这是一种典型的多实例实现，一个任务栈中可以有多个实例，每个实例也可以属于不同的任务栈。在这种模式下，谁启动了这个Activity，那么这个Activity就运行在启动它的那个Activity所在的栈中，</p>
+<h3 id="singleTop"><a href="#singleTop" class="headerlink" title="singleTop"></a>singleTop</h3><p>栈顶复用模式。在这种模式下，如果新Activity已经位于任务栈的栈顶，那么此Activity不会被重新创建，同时它的onNewIntent方法会被回调，通过此方法的参数我们可以取出当前请求的信息。需要注意的是，这个Activity的onCreate()、onStart()不会被系统调用，因为他并没有发生改变。如果新Activity的实例已经存在但不是位于栈顶，那么新Activity仍然会重新建立。举个例子，假设目前栈内的情况为ABCD，其中ABCD为四个Activity，A位于栈底，D位于栈顶，这个时候假设要再次启动D，如果D的启动模式为singleTop，那么栈内的情况就为ABCD；如果D的启动模式为standard，那么由于D被重新创建，导致栈内的情况就变为ABCDD</p>
+<h3 id="singleTask"><a href="#singleTask" class="headerlink" title="singleTask"></a>singleTask</h3><p>栈内复用模式。这是一种单实例模式，在这种模式下，只要Activity在一个栈中存在，那么多次启动此Activity都不会被重新创建实例，和singleTop模式一样，系统也会回调其onNewIntent。具体一点，当一个具有singleTask模式的Activity请求启动后，比如Activity A，系统首先会寻找是否存在A想要的任务栈，如果不存在，就重新创建一个任务栈，然后创建A的实例后把A放入栈中。如果存在A所需要的任务栈，这时要看A是否在栈中有实例存在，如果有实例存在，那么系统就会把A调到栈顶并调用它的onNewIntent方法，如果实例不存在，就创建A的实例并把A压入栈中</p>
+<ol>
+<li>比如当前任务栈S1中的情况为ABC，这个时候ActivityD以singleTask模式请求启动，其所需要的任务栈为S2，由于S2和D的实例均不存在，所以系统会先创建任务栈S2，然后再创建D的实例并将其入栈到S2</li>
+<li>另一种情况是，假设D所需要的任务栈是S1，其他情况如上面例子1所示，那么由于S1已经存在，所以系统会直接创建D的实例并将其入栈到S1</li>
+<li>如果所需要的任务栈为S1，并且当前任务栈S1的情况为ADBS，根据任务栈内复用原则，此时D不会重新创建，系统会把D切换到栈顶并调用其onNewIntent方法，且会导致栈内所有在D上面的Activity全部出栈，于是最终S1中的情况为AD</li>
+</ol>
+<h3 id="singleInstance"><a href="#singleInstance" class="headerlink" title="singleInstance"></a>singleInstance</h3><p>单实例模式。这是一种加强的singleTask模式，它除了具有singleTask模式的所有特性外，还加强了一点，那就是具有此模式的Activity只能单独的位于一个任务栈中，换句话说，比如Activity A是singleInstance模式，当A启动后，系统会为它创建一个新的任务栈，然后A独自在这个新的任务栈中，由于栈内复用的特性，后续的请求均不会创建新的Activity，除非这个独特的任务栈被系统销毁了</p>
+<p>无论 Activity 是在新任务中启动，还是在与启动 Activity 相同的任务中启动，用户按“返回”按钮始终会转到前一个 Activity。 但是，如果启动指定 singleTask 启动模式的 Activity，则当某后台任务中存在该 Activity 的实例时，整个任务都会转移到前台。此时，返回栈包括上移到堆栈顶部的任务中的所有 Activity</p>
+<h2 id="如何给Activity指定启动模式"><a href="#如何给Activity指定启动模式" class="headerlink" title="如何给Activity指定启动模式"></a>如何给Activity指定启动模式</h2><ol>
+<li>通过AndroidMenifest为Activity指定启动模式，如下所示 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">acticity</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">"com.test.activity"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:launchMode</span>=<span class="string">"singleTask"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:label</span>=<span class="string">"@string/app_name"</span>/&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>通过在Intent中设置标志位来为Activity指定启动模式，例如： <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Intent i = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, OtherActivity<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);</span><br><span class="line">startActivity(i);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>这来两种方式都可以为Activity指定启动模式，但是二者还是有区别的。首先优先级上第二种方式的优先级要高于第一种，当两种同时存在时，以第二种方式为准；其次，上述两种方式在限定范围上有所不同，比如，第一种方式无法直接为Activit设定FLAG_ACTIVITY_CLEAR_TOP标识，而第二种方式无法为Activity指定singleInstance模式</p>
+<h2 id="通过adb命令获取Activity栈"><a href="#通过adb命令获取Activity栈" class="headerlink" title="通过adb命令获取Activity栈"></a>通过adb命令获取Activity栈</h2><ul>
+<li>配置adb环境<ol>
+<li>找到SDK安装目录，并找到platform-tools和tools两个文件夹</li>
+<li>将找到的两个文件夹的路径配置到环境变量中，如下图所示，最后在Path环境变量参数中加入<code>%adb%</code><br> <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204162603.png" alt=""><br> <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204162615.png" alt=""></li>
+</ol>
+</li>
+<li>打开cmd窗口，执行<code>adb shell dumpsys activity</code>即可显示现在的Activity栈的情况<br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204162627.png" alt=""></li>
+</ul>
+<h2 id="内容补充"><a href="#内容补充" class="headerlink" title="内容补充"></a>内容补充</h2><p>如果有两个Activity B、C是singleTask启动模式，此时从A Activity启动B，再从B启动C，此时的栈中情况为ABC，最后再从C启动B，那么此时的Activity栈中的情况是什么呢？答案是AB，因为此时栈中已经有B了，在不新建B的情况下要把B移动到栈顶唯一的办法只有将C移出栈了，验证如下图所示：<br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204162634.png" alt=""><br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204162706.png" alt=""></p>
+<h2 id="Activity的Flags"><a href="#Activity的Flags" class="headerlink" title="Activity的Flags"></a>Activity的Flags</h2><ul>
+<li>FLAG_ACTIVITY_NEW_TASK<br>  这个标记位的作用是为Activity指定”singleTask”启动模式，其效果和在XML中指定该启动模式相同</li>
+<li>FLAG_ACTIVITY_SINGLE_TOP<br>  这个标记位的作用是为Activity指定”singleTop”启动模式，其效果和在XML中指定该启动模式相同</li>
+<li>FLAG_ACTIVITY_CLEAR_TOP<br>  具有此标记位的Activity，当他活动时，在同一个任务栈中所有位于它上面的Activity都要出栈。这个标记位一般会和singleTask启动模式一起出现，在这种情况下，被启动的Activity的实例如果已经存在，那么系统就会调用它的onNewIntent()。如果被启动的Activity采用standard模式启动，那么它连同它之上的Activity都要出栈，系统会创建新的Activity实例并放入栈顶，通过前面的补充内容，我们已经能知道了singleTask模式默认就具有此标记位的效果</li>
+<li>FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS<br>  具有此标记位的Activity不会出现在历史Activity的列表中，当某些情况下我们不希望用户通过历史列表回到我们的Activity的时候这个标记比较有用。它等同于在XML中指定Activity的属性<code>android:excludeFromRecents=&quot;true&quot;</code></li>
+</ul>
+<h2 id="one-more-thing"><a href="#one-more-thing" class="headerlink" title="one more thing"></a>one more thing</h2><p>本文测试代码地址：<a href="https://github.com/SMILEORIGIN/ActivityStartModel">https://github.com/SMILEORIGIN/ActivityStartModel</a></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Activity/" rel="tag">Activity</a>, <a class="has-link-grey -link" href="/tags/Android-Art/" rel="tag">Android Art</a>, <a class="has-link-grey -link" href="/tags/ApplicationComponents/" rel="tag">ApplicationComponents</a>, <a class="has-link-grey -link" href="/tags/Notes/" rel="tag">Notes</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Wechatpay.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/android/book/android-art/activity-life-cycle/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Activity 的生命周期(读书笔记)</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/tools/share/">
+                <span class="level-item">资源（你懂的）</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '8fb0efbb7d2496c108f3',
+        clientSecret: '376c8cd0ff2283ef21dcf9bd1f8348014402bd24',
+        id: 'b316fefde848436bc5bbf934d8bc5787',
+        repo: 'gittalk',
+        owner: 'smileorigin',
+        admin: "smileorigin",
+        createIssueManually: true,
+        distractionFreeMode: false
+    })
+    gitalk.render('comment-container')
+</script>
+
+
+    </div>
+</div>
+
+
+</div>
+                
+                
+                    <div class="column is-3-tablet is-3-desktop is-3-widescreen has-order-3 is-hidden-touch is-hidden-desktop-only column-right is-sticky">
+                        
+
+    <div class="widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#启动模式">
+        <span class="has-mr-6">1</span>
+        <span>启动模式</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#standard">
+        <span class="has-mr-6">1.1</span>
+        <span>standard</span>
+        </a></li><li>
+        <a class="is-flex" href="#singleTop">
+        <span class="has-mr-6">1.2</span>
+        <span>singleTop</span>
+        </a></li><li>
+        <a class="is-flex" href="#singleTask">
+        <span class="has-mr-6">1.3</span>
+        <span>singleTask</span>
+        </a></li><li>
+        <a class="is-flex" href="#singleInstance">
+        <span class="has-mr-6">1.4</span>
+        <span>singleInstance</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#如何给Activity指定启动模式">
+        <span class="has-mr-6">2</span>
+        <span>如何给Activity指定启动模式</span>
+        </a></li><li>
+        <a class="is-flex" href="#通过adb命令获取Activity栈">
+        <span class="has-mr-6">3</span>
+        <span>通过adb命令获取Activity栈</span>
+        </a></li><li>
+        <a class="is-flex" href="#内容补充">
+        <span class="has-mr-6">4</span>
+        <span>内容补充</span>
+        </a></li><li>
+        <a class="is-flex" href="#Activity的Flags">
+        <span class="has-mr-6">5</span>
+        <span>Activity的Flags</span>
+        </a></li><li>
+        <a class="is-flex" href="#one-more-thing">
+        <span class="has-mr-6">6</span>
+        <span>one more thing</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img class="logo-img" src="/images/logo.svg" alt="ActivityLaunchMode" height="28" />
+                    <img class="logo-img-dark" src="/images/logo-dark.svg" alt="ActivityLaunchMode" height="28" />
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Thomas Woo&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://smileorigin.site',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

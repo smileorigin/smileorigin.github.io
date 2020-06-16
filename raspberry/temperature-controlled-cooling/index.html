@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <script type="text/javascript" src="/js/dark.js"></script>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+
+
+<meta name="keywords" content="Android,JavaScript,Java,Database">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>温控散热 - Thomas Woo</title>
+
+
+    <meta name="description" content="记录树莓派配置温控散热风扇">
+<meta property="og:type" content="article">
+<meta property="og:title" content="温控散热">
+<meta property="og:url" content="http://smileorigin.site/raspberry/temperature-controlled-cooling/index.html">
+<meta property="og:site_name" content="Thomas Woo">
+<meta property="og:description" content="记录树莓派配置温控散热风扇">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://smileorigin.site/images/og_image.png">
+<meta property="article:published_time" content="2017-09-17T05:50:00.000Z">
+<meta property="article:modified_time" content="2020-06-13T11:57:00.185Z">
+<meta property="article:author" content="Thomas Woo">
+<meta property="article:tag" content="Single-Chip Microcomputer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://smileorigin.site/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110922455-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110922455-1');
+</script>
+
+    
+    <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?33cec7dfd968d9ffd9ff2a5da2be77d0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img class="logo-img" src="/images/logo.svg" alt="温控散热" height="28" />
+                <img class="logo-img-dark" src="/images/logo-dark.svg" alt="温控散热" height="28" />
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/album">Album</a>
+                
+                <a class="navbar-item"
+                href="/bbs">BBS</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                <a class="navbar-item" id="dark-switch" title="Dark Mode" href="javascript:;">
+                    <i class="fas fa-moon" id="dark-icon"></i>
+                </a>
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns columns-center">
+                <div class="column is-9-widescreen is-12 has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-09-17T05:50:00.000Z">2017-09-17</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Raspberry/">Raspberry</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 分钟 读完 (大约 802 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                温控散热
+            
+        </h1>
+        <div class="content">
+            <p>记录树莓派配置温控散热风扇</p>
+<a id="more"></a>
+
+<h2 id="接线"><a href="#接线" class="headerlink" title="接线"></a>接线</h2><p>风扇红线 接 树莓派5V，比如4号引脚<br>风扇黑线 接 三极管C<br>三极管E极 接 树莓派0V，比如6号引脚<br>三极管B极 接 GPIO， 我用的8号引脚GPIO14</p>
+<p><strong>Raspberry Pi3 Model B GPIO针脚定义</strong><br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204005124.png" alt=""><br>三极管顾名思义，它有3个极。分别是E发射机、B基极、C集极。<br>可以理解为E极是正极、C极是负极、B极是信号极控制是否通电。<br>和二极管一样，正极接电源正极，负极接电源的负极。S8050的引<br>脚示意图如下：<br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204005143.png" alt="">  </p>
+<h2 id="网上的温控代码"><a href="#网上的温控代码" class="headerlink" title="网上的温控代码"></a>网上的温控代码</h2><p><a href="http://tieba.baidu.com/p/4238265567?red_tag=c2496007152">地址</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># encoding: utf-8</span></span><br><span class="line"><span class="keyword">import</span> RPi.GPIO</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">RPi.GPIO.setwarnings(<span class="literal">False</span>)</span><br><span class="line">RPi.GPIO.setmode(RPi.GPIO.BCM)</span><br><span class="line">gpio=<span class="number">14</span></span><br><span class="line">RPi.GPIO.setup(gpio, RPi.GPIO.OUT)</span><br><span class="line">pwm = RPi.GPIO.PWM(gpio, <span class="number">440</span>)</span><br><span class="line">RPi.GPIO.setwarnings(<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#风扇能保持旋转的最低速度，需要自己尝试</span></span><br><span class="line">min_speed=<span class="number">20.0</span></span><br><span class="line"><span class="comment">#希望cpu温度稳定在多少</span></span><br><span class="line">temperature=<span class="number">39400</span></span><br><span class="line">prv_speed = <span class="number">0.0</span></span><br><span class="line">speed_fin=<span class="number">50.0</span></span><br><span class="line">max_step=<span class="number">3.0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sigmoid</span><span class="params">(x)</span>:</span></span><br><span class="line">    x=x/<span class="number">4000.0</span></span><br><span class="line">    result= <span class="number">2.0</span>*max_step/(<span class="number">1</span>+math.exp(-x))-max_step</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">    </span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    pwm.start(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        tmpFile = open( <span class="string">'/sys/devices/platform/sunxi-i2c.0/i2c-0/0-0034/temp1_input'</span> )</span><br><span class="line">        cpu_temp = int(tmpFile.read())</span><br><span class="line">        tmpFile.close()</span><br><span class="line">        speed_fin=speed_fin+sigmoid(cpu_temp-temperature)</span><br><span class="line">        speed_fin = min( speed_fin, <span class="number">100.0</span> )</span><br><span class="line">        speed_fin = max( speed_fin, min_speed<span class="number">-0.5</span> )</span><br><span class="line">        <span class="keyword">if</span> speed_fin &lt; min_speed:</span><br><span class="line">            speed=<span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            speed=speed_fin</span><br><span class="line">        <span class="keyword">if</span> prv_speed == <span class="number">0.0</span> :</span><br><span class="line">            <span class="keyword">if</span> speed!=<span class="number">0.0</span> :</span><br><span class="line">                pwm.ChangeDutyCycle(<span class="number">100</span>)</span><br><span class="line">                time.sleep(<span class="number">0.3</span>)</span><br><span class="line">                <span class="keyword">print</span> <span class="string">"start"</span></span><br><span class="line">        prv_speed = speed</span><br><span class="line">        pwm.ChangeDutyCycle(speed)</span><br><span class="line">        time.sleep(<span class="number">2</span>)</span><br><span class="line"><span class="keyword">except</span> KeyboardInterrupt:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line">pwm.stop()</span><br></pre></td></tr></table></figure>
+
+<h2 id="我自己修改后的温控代码"><a href="#我自己修改后的温控代码" class="headerlink" title="我自己修改后的温控代码"></a>我自己修改后的温控代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># encoding: utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> RPi.GPIO</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">RPi.GPIO.setwarnings(<span class="literal">False</span>)</span><br><span class="line">RPi.GPIO.setmode(RPi.GPIO.BCM)</span><br><span class="line"><span class="comment">#这里根据自己接法修改</span></span><br><span class="line">gpio=<span class="number">14</span></span><br><span class="line">RPi.GPIO.setup(gpio, RPi.GPIO.OUT)</span><br><span class="line">pwm = RPi.GPIO.PWM(gpio, <span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">speed = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#风扇最小能保持旋转的速度，低于这个速度可能停转，需要拿自己的风扇测试然后修改</span></span><br><span class="line">speed_min=<span class="number">20.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#启动风扇的温度35000~60000</span></span><br><span class="line">temperature_start=<span class="number">35000</span></span><br><span class="line">max_speed_temperature = <span class="number">46000</span></span><br><span class="line"></span><br><span class="line">temperature_cpu_last = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getSpeed</span><span class="params">(temperature)</span>:</span></span><br><span class="line">    speed = min((temperature/max_speed_temperature) * (<span class="number">100</span> - speed_min) + speed_min,<span class="number">100</span>)</span><br><span class="line">    <span class="keyword">return</span> speed</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    pwm.start(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        temperatureFile = open(<span class="string">'/sys/class/thermal/thermal_zone0/temp'</span>)</span><br><span class="line">        temperature_cpu = int(temperatureFile.read())</span><br><span class="line">        temperatureFile.close()</span><br><span class="line">        print(<span class="string">'now cpu temperature is: &#123;&#125;'</span>.format(temperature_cpu))</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> temperature_cpu &gt;=  temperature_start:</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> temperature_cpu_last &lt; temperature_start:</span><br><span class="line">                <span class="comment"># print('---------------first start fan--------------')</span></span><br><span class="line">                pwm.ChangeDutyCycle(<span class="number">100</span>)</span><br><span class="line">                time.sleep(<span class="number">.1</span>)</span><br><span class="line">                </span><br><span class="line">            speed = getSpeed(temperature_cpu)</span><br><span class="line">            print(<span class="string">'fan speed is: &#123;&#125;'</span>.format(speed))</span><br><span class="line">            pwm.ChangeDutyCycle(speed)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            pwm.stop()</span><br><span class="line">        </span><br><span class="line">        temperature_cpu_last = temperature_cpu</span><br><span class="line">        time.sleep(<span class="number">3</span>)</span><br><span class="line">        </span><br><span class="line"><span class="keyword">except</span> KeyboardInterrupt:</span><br><span class="line">    <span class="comment"># print('interrupt')</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line">pwm.stop()</span><br></pre></td></tr></table></figure>
+<h2 id="设置开机自启动"><a href="#设置开机自启动" class="headerlink" title="设置开机自启动"></a>设置开机自启动</h2><ul>
+<li>给Python脚本设置权限<br>  <code>chmod +x</code> + python脚本位置 + 名称,example:<code>chmod +x /home/Python/Fan.py</code></li>
+<li>新建开机启动脚本<br>在<code>/etc/init.d</code>目录下新建一个文件，如<code>sudo nano /etc/init.d/fan</code>，然后粘贴下列内容,并将对应的自己的路径替换：  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/bin/sh</span></span><br><span class="line"><span class="comment">#/etc/init.d/fan</span></span><br><span class="line"><span class="comment">### BEGIN INIT INFO</span></span><br><span class="line"><span class="comment"># Provides:          fan</span></span><br><span class="line"><span class="comment"># Required-Start:    $remote_fs $syslog</span></span><br><span class="line"><span class="comment"># Required-Stop:     $remote_fs $syslog</span></span><br><span class="line"><span class="comment"># Default-Start:     2 3 4 5</span></span><br><span class="line"><span class="comment"># Default-Stop:      0 1 6</span></span><br><span class="line"><span class="comment"># Short-Description: fan</span></span><br><span class="line"><span class="comment"># Description: This service is used to start fan control</span></span><br><span class="line"><span class="comment">### END INIT INFO</span></span><br><span class="line"></span><br><span class="line">case <span class="string">"$1"</span> <span class="keyword">in</span></span><br><span class="line">    start)</span><br><span class="line">        echo <span class="string">"Starting app"</span></span><br><span class="line">        python /home/pi/Python/fan.py</span><br><span class="line">        ;;</span><br><span class="line">    stop)</span><br><span class="line">        echo <span class="string">"Stop"</span></span><br><span class="line">        <span class="comment">#kill $( ps aux | grep -m 1 'python /home/pi/Python/fan.py' | awk '&#123; print $2 &#125;')</span></span><br><span class="line">        ;;</span><br><span class="line"></span><br><span class="line">    *)</span><br><span class="line">        echo <span class="string">"Usage: service fan start|stop"</span></span><br><span class="line">        exit <span class="number">1</span></span><br><span class="line">        ;;</span><br><span class="line">esac</span><br><span class="line">exit <span class="number">0</span></span><br></pre></td></tr></table></figure></li>
+<li>设置启动脚本权限<br>  <code>sudo chmod +777 /etc/init.d/fan</code></li>
+<li>设置开机自启<br>  <code>sudo update-rc.d fan defaults</code></li>
+<li>启动脚本以后可以使用service命令<br>  <code>sudo service fan start</code></li>
+<li>关闭脚本service命令<br>  <code>sudo service fan stop</code></li>
+</ul>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Single-Chip-Microcomputer/" rel="tag">Single-Chip Microcomputer</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Wechatpay.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/raspberry/oled/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">SSD1306连接Raspberry和驱动安装</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/raspberry/respberry-config/">
+                <span class="level-item">Raspbian配置</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '8fb0efbb7d2496c108f3',
+        clientSecret: '376c8cd0ff2283ef21dcf9bd1f8348014402bd24',
+        id: '9ce927342d15cd84e5623f7845fb273d',
+        repo: 'gittalk',
+        owner: 'smileorigin',
+        admin: "smileorigin",
+        createIssueManually: true,
+        distractionFreeMode: false
+    })
+    gitalk.render('comment-container')
+</script>
+
+
+    </div>
+</div>
+
+
+</div>
+                
+                
+                    <div class="column is-3-tablet is-3-desktop is-3-widescreen has-order-3 is-hidden-touch is-hidden-desktop-only column-right is-sticky">
+                        
+
+    <div class="widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#接线">
+        <span class="has-mr-6">1</span>
+        <span>接线</span>
+        </a></li><li>
+        <a class="is-flex" href="#网上的温控代码">
+        <span class="has-mr-6">2</span>
+        <span>网上的温控代码</span>
+        </a></li><li>
+        <a class="is-flex" href="#我自己修改后的温控代码">
+        <span class="has-mr-6">3</span>
+        <span>我自己修改后的温控代码</span>
+        </a></li><li>
+        <a class="is-flex" href="#设置开机自启动">
+        <span class="has-mr-6">4</span>
+        <span>设置开机自启动</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img class="logo-img" src="/images/logo.svg" alt="温控散热" height="28" />
+                    <img class="logo-img-dark" src="/images/logo-dark.svg" alt="温控散热" height="28" />
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Thomas Woo&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://smileorigin.site',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

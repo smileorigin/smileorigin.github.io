@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <script type="text/javascript" src="/js/dark.js"></script>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+
+
+<meta name="keywords" content="Android,JavaScript,Java,Database">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Gson - Thomas Woo</title>
+
+
+    <meta name="description" content="Gson（又称Google Gson）是Google公司发布的一个开放源代码的Java库，主要用途为序列化Java对象为JSON字符串，或反序列化JSON字符串成Java对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gson">
+<meta property="og:url" content="http://smileorigin.site/android/framework/gson/gson/index.html">
+<meta property="og:site_name" content="Thomas Woo">
+<meta property="og:description" content="Gson（又称Google Gson）是Google公司发布的一个开放源代码的Java库，主要用途为序列化Java对象为JSON字符串，或反序列化JSON字符串成Java对象">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://smileorigin.site/images/og_image.png">
+<meta property="article:published_time" content="2017-03-16T09:26:44.000Z">
+<meta property="article:modified_time" content="2020-06-13T11:57:00.179Z">
+<meta property="article:author" content="Thomas Woo">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Framework">
+<meta property="article:tag" content="Gson">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://smileorigin.site/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110922455-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110922455-1');
+</script>
+
+    
+    <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?33cec7dfd968d9ffd9ff2a5da2be77d0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img class="logo-img" src="/images/logo.svg" alt="Gson" height="28" />
+                <img class="logo-img-dark" src="/images/logo-dark.svg" alt="Gson" height="28" />
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/album">Album</a>
+                
+                <a class="navbar-item"
+                href="/bbs">BBS</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                <a class="navbar-item" id="dark-switch" title="Dark Mode" href="javascript:;">
+                    <i class="fas fa-moon" id="dark-icon"></i>
+                </a>
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns columns-center">
+                <div class="column is-9-widescreen is-12 has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-03-16T09:26:44.000Z">2017-03-16</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/GSON/">GSON</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 619 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Gson
+            
+        </h1>
+        <div class="content">
+            <p>Gson（又称Google Gson）是Google公司发布的一个开放源代码的Java库，主要用途为序列化Java对象为JSON字符串，或反序列化JSON字符串成Java对象</p>
+<a id="more"></a>
+
+<h2 id="添加依赖包"><a href="#添加依赖包" class="headerlink" title="添加依赖包"></a>添加依赖包</h2><p>项目结构管理–&gt;依赖–&gt;Library Dependency–&gt;搜索Gson（com.google.code.gson:gson:2.8.0)</p>
+<h2 id="安装Json快速生成实体类插件"><a href="#安装Json快速生成实体类插件" class="headerlink" title="安装Json快速生成实体类插件"></a>安装Json快速生成实体类插件</h2><p>Setting–&gt;plugins–&gt;Browse Repositories–&gt;GsonFormat</p>
+<h2 id="设置快捷键"><a href="#设置快捷键" class="headerlink" title="设置快捷键"></a>设置快捷键</h2><p>Setting–&gt;Keymap–&gt;search–&gt;gson</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>在代码编辑区使用快捷键，然后输入JSON文档，就可以生成JSON实体类了</p>
+<h2 id="具体实现代码"><a href="#具体实现代码" class="headerlink" title="具体实现代码"></a>具体实现代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@BindView</span>(R.id.edit_query)</span><br><span class="line">    EditText mEditQuery;</span><br><span class="line">    <span class="meta">@BindView</span>(R.id.tv_result)</span><br><span class="line">    TextView mTvResult;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        ButterKnife.bind(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">search</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> String search_content = mEditQuery.getText().toString();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// get the json data and set the result in the TextView</span></span><br><span class="line">        <span class="comment">//first check the string if not chinese</span></span><br><span class="line">        <span class="comment">//is chinese only get the translation</span></span><br><span class="line">        <span class="comment">// is english get the all translation</span></span><br><span class="line">        <span class="keyword">new</span> AsyncTask&lt;String, Void, String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">protected</span> String <span class="title">doInBackground</span><span class="params">(String... params)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    URL url = <span class="keyword">new</span> URL(params[<span class="number">0</span>]);</span><br><span class="line">                    URLConnection connection = url.openConnection();</span><br><span class="line"></span><br><span class="line">                    InputStream input = connection.getInputStream();</span><br><span class="line">                    InputStreamReader reader = <span class="keyword">new</span> InputStreamReader(input);</span><br><span class="line">                    BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(reader);</span><br><span class="line">                    StringBuilder builder = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">                    String line;</span><br><span class="line">                    <span class="keyword">while</span> ((line = bufferedReader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        builder.append(line);</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">return</span> builder.toString();</span><br><span class="line"></span><br><span class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPostExecute</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">                String result = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">                Gson gson = <span class="keyword">new</span> Gson();</span><br><span class="line">                YouDao youDao = gson.fromJson(s, YouDao<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (RegularExpression.isChinese(search_content)) &#123;</span><br><span class="line">                    result = youDao.getTranslation().get(<span class="number">0</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    String temp = <span class="string">"\n"</span> + <span class="string">"webTranslation:"</span> + <span class="string">"\n"</span>;</span><br><span class="line">                    List&lt;YouDao.WebBean&gt; webList = youDao.getWeb();</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i &lt;webList.size(); i++)&#123;</span><br><span class="line">                        temp += webList.get(i).toString() + <span class="string">"\n"</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    result = youDao.getBasic().toString() + temp;</span><br><span class="line">                &#125;</span><br><span class="line">                mTvResult.setText(result);</span><br><span class="line">                <span class="keyword">super</span>.onPostExecute(s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.execute(<span class="string">"http://fanyi.youdao.com/openapi.do?keyfrom="</span> +</span><br><span class="line">                <span class="string">"FloatingSearchApi&amp;key"</span> +</span><br><span class="line">                <span class="string">"=598006220&amp;type=data&amp;doctype="</span> +</span><br><span class="line">                <span class="string">"json&amp;version=1.1&amp;q="</span> +</span><br><span class="line">                search_content);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> www.lollipopstudio.top.gsontest;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.google.gson.annotations.SerializedName;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 项目名称：GsonTest</span></span><br><span class="line"><span class="comment"> * 类描述：</span></span><br><span class="line"><span class="comment"> * 创建人：smileorigin</span></span><br><span class="line"><span class="comment"> * 创建时间：2017/3/16 16:26</span></span><br><span class="line"><span class="comment"> * 修改人：smileorigin</span></span><br><span class="line"><span class="comment"> * 修改时间：2017/3/16 16:26</span></span><br><span class="line"><span class="comment"> * 修改备注：</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">YouDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * translation : ["微笑"]</span></span><br><span class="line"><span class="comment">     * basic : &#123;"us-phonetic":"smaɪl","phonetic":"smaɪl","uk-phonetic":"smaɪl","explains":["n. 微笑；笑容；喜色","vt. 微笑着表示","vi. 微笑","n. (Smile)人名；(塞)斯米莱"]&#125;</span></span><br><span class="line"><span class="comment">     * query : smile</span></span><br><span class="line"><span class="comment">     * errorCode : 0</span></span><br><span class="line"><span class="comment">     * web : [&#123;"value":["微笑","贾乃亮","Smile (乐队)"],"key":"Smile"&#125;,&#123;"value":["再次微笑","笑吧！东海","再次微笑"],"key":"Smile Again"&#125;,&#123;"value":["オリジナル スマイル"],"key":"Original Smile"&#125;]</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> BasicBean basic;</span><br><span class="line">    <span class="keyword">private</span> String query;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> errorCode;</span><br><span class="line">    <span class="keyword">private</span> List&lt;String&gt; translation;</span><br><span class="line">    <span class="keyword">private</span> List&lt;WebBean&gt; web;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> BasicBean <span class="title">getBasic</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> basic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBasic</span><span class="params">(BasicBean basic)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.basic = basic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getQuery</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> query;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setQuery</span><span class="params">(String query)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.query = query;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getErrorCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> errorCode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setErrorCode</span><span class="params">(<span class="keyword">int</span> errorCode)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.errorCode = errorCode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">getTranslation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> translation;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTranslation</span><span class="params">(List&lt;String&gt; translation)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.translation = translation;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;WebBean&gt; <span class="title">getWeb</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> web;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setWeb</span><span class="params">(List&lt;WebBean&gt; web)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.web = web;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">BasicBean</span> </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * us-phonetic : smaɪl</span></span><br><span class="line"><span class="comment">         * phonetic : smaɪl</span></span><br><span class="line"><span class="comment">         * uk-phonetic : smaɪl</span></span><br><span class="line"><span class="comment">         * explains : ["n. 微笑；笑容；喜色","vt. 微笑着表示","vi. 微笑","n. (Smile)人名；(塞)斯米莱"]</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">        <span class="meta">@SerializedName</span>(<span class="string">"us-phonetic"</span>)</span><br><span class="line">        <span class="keyword">private</span> String usphonetic;</span><br><span class="line">        <span class="keyword">private</span> String phonetic;</span><br><span class="line">        <span class="meta">@SerializedName</span>(<span class="string">"uk-phonetic"</span>)</span><br><span class="line">        <span class="keyword">private</span> String ukphonetic;</span><br><span class="line">        <span class="keyword">private</span> List&lt;String&gt; explains;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getUsphonetic</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> usphonetic;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsphonetic</span><span class="params">(String usphonetic)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.usphonetic = usphonetic;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getPhonetic</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> phonetic;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPhonetic</span><span class="params">(String phonetic)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.phonetic = phonetic;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getUkphonetic</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> ukphonetic;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUkphonetic</span><span class="params">(String ukphonetic)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.ukphonetic = ukphonetic;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">getExplains</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> explains;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setExplains</span><span class="params">(List&lt;String&gt; explains)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.explains = explains;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            String result = <span class="string">""</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; getExplains().size(); i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i &lt; getExplains().size() - <span class="number">1</span>) &#123;</span><br><span class="line">                    result += getExplains().get(i) + <span class="string">"\n"</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    result += getExplains().get(i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"en:"</span> + getUkphonetic() + <span class="string">"\n"</span> + <span class="string">"us:"</span> + getUsphonetic() + <span class="string">"\n"</span> + <span class="string">"Translation:"</span> + <span class="string">"\n"</span> + result;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">WebBean</span> </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * value : ["微笑","贾乃亮","Smile (乐队)"]</span></span><br><span class="line"><span class="comment">         * key : Smile</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> String key;</span><br><span class="line">        <span class="keyword">private</span> List&lt;String&gt; value;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getKey</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> key;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setKey</span><span class="params">(String key)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.key = key;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">getValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> value;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setValue</span><span class="params">(List&lt;String&gt; value)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.value = value;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            String result = <span class="string">""</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; getValue().size(); i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i &lt; getValue().size() - <span class="number">1</span>) &#123;</span><br><span class="line">                    result += getValue().get(i) + <span class="string">","</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    result += getValue().get(i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> getKey() + <span class="string">":"</span> + result;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Android/" rel="tag">Android</a>, <a class="has-link-grey -link" href="/tags/Framework/" rel="tag">Framework</a>, <a class="has-link-grey -link" href="/tags/Gson/" rel="tag">Gson</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Wechatpay.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/android/utils/vibrate/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Vibrate(手机振动器的使用)</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/project/tc/">
+                <span class="level-item">七牛图床快速上传工具</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '8fb0efbb7d2496c108f3',
+        clientSecret: '376c8cd0ff2283ef21dcf9bd1f8348014402bd24',
+        id: '58bcd7a020397a09fff4d07570a761d1',
+        repo: 'gittalk',
+        owner: 'smileorigin',
+        admin: "smileorigin",
+        createIssueManually: true,
+        distractionFreeMode: false
+    })
+    gitalk.render('comment-container')
+</script>
+
+
+    </div>
+</div>
+
+
+</div>
+                
+                
+                    <div class="column is-3-tablet is-3-desktop is-3-widescreen has-order-3 is-hidden-touch is-hidden-desktop-only column-right is-sticky">
+                        
+
+    <div class="widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#添加依赖包">
+        <span class="has-mr-6">1</span>
+        <span>添加依赖包</span>
+        </a></li><li>
+        <a class="is-flex" href="#安装Json快速生成实体类插件">
+        <span class="has-mr-6">2</span>
+        <span>安装Json快速生成实体类插件</span>
+        </a></li><li>
+        <a class="is-flex" href="#设置快捷键">
+        <span class="has-mr-6">3</span>
+        <span>设置快捷键</span>
+        </a></li><li>
+        <a class="is-flex" href="#使用">
+        <span class="has-mr-6">4</span>
+        <span>使用</span>
+        </a></li><li>
+        <a class="is-flex" href="#具体实现代码">
+        <span class="has-mr-6">5</span>
+        <span>具体实现代码</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img class="logo-img" src="/images/logo.svg" alt="Gson" height="28" />
+                    <img class="logo-img-dark" src="/images/logo-dark.svg" alt="Gson" height="28" />
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Thomas Woo&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://smileorigin.site',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

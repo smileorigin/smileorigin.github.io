@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <script type="text/javascript" src="/js/dark.js"></script>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+
+
+<meta name="keywords" content="Android,JavaScript,Java,Database">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>MySQL 多表操作 - Thomas Woo</title>
+
+
+    <meta name="description" content="There is recorded some MySQL multilist operation.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 多表操作">
+<meta property="og:url" content="http://smileorigin.site/database/mysql/multi-table-operation/index.html">
+<meta property="og:site_name" content="Thomas Woo">
+<meta property="og:description" content="There is recorded some MySQL multilist operation.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://smileorigin.site/images/og_image.png">
+<meta property="article:published_time" content="2018-08-02T02:00:00.000Z">
+<meta property="article:modified_time" content="2020-06-13T11:57:00.180Z">
+<meta property="article:author" content="Thomas Woo">
+<meta property="article:tag" content="Notes">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="Multilist">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://smileorigin.site/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110922455-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110922455-1');
+</script>
+
+    
+    <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?33cec7dfd968d9ffd9ff2a5da2be77d0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img class="logo-img" src="/images/logo.svg" alt="MySQL 多表操作" height="28" />
+                <img class="logo-img-dark" src="/images/logo-dark.svg" alt="MySQL 多表操作" height="28" />
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/album">Album</a>
+                
+                <a class="navbar-item"
+                href="/bbs">BBS</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                <a class="navbar-item" id="dark-switch" title="Dark Mode" href="javascript:;">
+                    <i class="fas fa-moon" id="dark-icon"></i>
+                </a>
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns columns-center">
+                <div class="column is-9-widescreen is-12 has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-08-02T02:00:00.000Z">2018-08-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Database/">Database</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 480 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                MySQL 多表操作
+            
+        </h1>
+        <div class="content">
+            <p>There is recorded some MySQL multilist operation.</p>
+<a id="more"></a>
+
+<h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><ul>
+<li><p>使用别名进行多表查询</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select t1.* from t_user t1, t_deptment t2 where t1.id &#x3D; t2.id;</span><br><span class="line">+----+------+------+</span><br><span class="line">| id | name | sex  |</span><br><span class="line">+----+------+------+</span><br><span class="line">|  1 | u1   | a    |</span><br><span class="line">|  2 | u2   | b    |</span><br><span class="line">|  3 | u3   | c    |</span><br><span class="line">+----+------+------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select t1.id,t1.name, t2.id,t2.name from</span><br><span class="line">    -&gt; t_user t1, t_deptment t2</span><br><span class="line">    -&gt; where t1.id &#x3D; t2.id</span><br><span class="line">    -&gt; and t2.id &#x3D; 2;</span><br><span class="line">+----+------+----+------+</span><br><span class="line">| id | name | id | name |</span><br><span class="line">+----+------+----+------+</span><br><span class="line">|  2 | u2   |  2 | bb   |</span><br><span class="line">+----+------+----+------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果在GROUP BY后接WHERE的话会报错，GROUP BY后不能接WHERE子句，但是可以接HAVING子句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select id from t_user group by id where id &gt; 2;</span><br><span class="line">ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#39;where id &gt; 2&#39; at line 1</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select id from t_user group by id having id &gt; 2;</span><br><span class="line">+----+</span><br><span class="line">| id |</span><br><span class="line">+----+</span><br><span class="line">|  3 |</span><br><span class="line">|  4 |</span><br><span class="line">+----+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="多表连接"><a href="#多表连接" class="headerlink" title="多表连接"></a>多表连接</h2><p>多表连接记得使用条件判断取出拥有相同条件的多表的数据，否则会出现重复的数据<br>多个表使用多个<code>inner join</code>连接<br>要查询的表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from t1;</span><br><span class="line">+----+------+</span><br><span class="line">| c1 | c2   |</span><br><span class="line">+----+------+</span><br><span class="line">| a  | b    |</span><br><span class="line">| b  | c    |</span><br><span class="line">| c  | d    |</span><br><span class="line">+----+------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from t2;</span><br><span class="line">+----+------+</span><br><span class="line">| c3 | c4   |</span><br><span class="line">+----+------+</span><br><span class="line">| b  | d    |</span><br><span class="line">| c  | f    |</span><br><span class="line">| h  | j    |</span><br><span class="line">+----+------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h3><p>将两个表符合条件的数据查询出来并列在一起</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from t1 inner join t2 on c1 &#x3D; c3;</span><br><span class="line">+----+------+----+------+</span><br><span class="line">| c1 | c2   | c3 | c4   |</span><br><span class="line">+----+------+----+------+</span><br><span class="line">| b  | c    | b  | d    |</span><br><span class="line">| c  | d    | c  | f    |</span><br><span class="line">+----+------+----+------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="左连接"><a href="#左连接" class="headerlink" title="左连接"></a>左连接</h3><p>将两个表符合条件的数据查询出来并列在一起，不符合的数据只放置第一个表的数据，另一个表的数据置空</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from t1 left join t2 on c1 &#x3D; c3;</span><br><span class="line">+----+------+------+------+</span><br><span class="line">| c1 | c2   | c3   | c4   |</span><br><span class="line">+----+------+------+------+</span><br><span class="line">| b  | c    | b    | d    |</span><br><span class="line">| c  | d    | c    | f    |</span><br><span class="line">| a  | b    | NULL | NULL |</span><br><span class="line">+----+------+------+------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="右连接"><a href="#右连接" class="headerlink" title="右连接"></a>右连接</h3><p>将两个表符合条件的数据查询出来并列在一起，不符合的数据只放置第二个表的数据，另一个表的数据置空</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from t1 right join t2 on c1 &#x3D; c3;</span><br><span class="line">+------+------+----+------+</span><br><span class="line">| c1   | c2   | c3 | c4   |</span><br><span class="line">+------+------+----+------+</span><br><span class="line">| b    | c    | b  | d    |</span><br><span class="line">| c    | d    | c  | f    |</span><br><span class="line">| NULL | NULL | h  | j    |</span><br><span class="line">+------+------+----+------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Multilist/" rel="tag">Multilist</a>, <a class="has-link-grey -link" href="/tags/MySQL/" rel="tag">MySQL</a>, <a class="has-link-grey -link" href="/tags/Notes/" rel="tag">Notes</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Wechatpay.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/database/mysql/pratices/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">MySQL练习</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/database/mysql/mysql/">
+                <span class="level-item">MySQL</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '8fb0efbb7d2496c108f3',
+        clientSecret: '376c8cd0ff2283ef21dcf9bd1f8348014402bd24',
+        id: '05d6fe77f63be624455060a31cf38763',
+        repo: 'gittalk',
+        owner: 'smileorigin',
+        admin: "smileorigin",
+        createIssueManually: true,
+        distractionFreeMode: false
+    })
+    gitalk.render('comment-container')
+</script>
+
+
+    </div>
+</div>
+
+
+</div>
+                
+                
+                    <div class="column is-3-tablet is-3-desktop is-3-widescreen has-order-3 is-hidden-touch is-hidden-desktop-only column-right is-sticky">
+                        
+
+    <div class="widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#多表查询">
+        <span class="has-mr-6">1</span>
+        <span>多表查询</span>
+        </a></li><li>
+        <a class="is-flex" href="#多表连接">
+        <span class="has-mr-6">2</span>
+        <span>多表连接</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#内连接">
+        <span class="has-mr-6">2.1</span>
+        <span>内连接</span>
+        </a></li><li>
+        <a class="is-flex" href="#左连接">
+        <span class="has-mr-6">2.2</span>
+        <span>左连接</span>
+        </a></li><li>
+        <a class="is-flex" href="#右连接">
+        <span class="has-mr-6">2.3</span>
+        <span>右连接</span>
+        </a></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img class="logo-img" src="/images/logo.svg" alt="MySQL 多表操作" height="28" />
+                    <img class="logo-img-dark" src="/images/logo-dark.svg" alt="MySQL 多表操作" height="28" />
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Thomas Woo&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://smileorigin.site',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

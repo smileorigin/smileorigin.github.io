@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <script type="text/javascript" src="/js/dark.js"></script>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+
+
+<meta name="keywords" content="Android,JavaScript,Java,Database">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>DynamicTranslate - Thomas Woo</title>
+
+
+    <meta name="description" content="在日益国际化的现在，英语成为了主流的语言，很多地方，生活和学术上都需要用到英语，很多研究的结果文章也是以英语为主要语言，而现在刚接触技术或者英语的人就很难很快的学好英语，没办法看懂英语内容，而传统的翻译软件存在巨大的局限性，没有办法很快速的进行翻译，一般的输入翻译存在很大的局限性，国内软件又有太多的广告，软件也十分臃肿。因此我们致力于打造一款高效，快速，又界面精美的翻译APP，我们的快捷翻译覆盖9">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DynamicTranslate">
+<meta property="og:url" content="http://smileorigin.site/project/dynamic-translate/index.html">
+<meta property="og:site_name" content="Thomas Woo">
+<meta property="og:description" content="在日益国际化的现在，英语成为了主流的语言，很多地方，生活和学术上都需要用到英语，很多研究的结果文章也是以英语为主要语言，而现在刚接触技术或者英语的人就很难很快的学好英语，没办法看懂英语内容，而传统的翻译软件存在巨大的局限性，没有办法很快速的进行翻译，一般的输入翻译存在很大的局限性，国内软件又有太多的广告，软件也十分臃肿。因此我们致力于打造一款高效，快速，又界面精美的翻译APP，我们的快捷翻译覆盖9">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://smileorigin.site/images/og_image.png">
+<meta property="article:published_time" content="2017-10-21T10:39:00.000Z">
+<meta property="article:modified_time" content="2020-06-13T11:57:00.182Z">
+<meta property="article:author" content="Thomas Woo">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Translate">
+<meta property="article:tag" content="Design">
+<meta property="article:tag" content="Bigbang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://smileorigin.site/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110922455-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110922455-1');
+</script>
+
+    
+    <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?33cec7dfd968d9ffd9ff2a5da2be77d0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img class="logo-img" src="/images/logo.svg" alt="DynamicTranslate" height="28" />
+                <img class="logo-img-dark" src="/images/logo-dark.svg" alt="DynamicTranslate" height="28" />
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/album">Album</a>
+                
+                <a class="navbar-item"
+                href="/bbs">BBS</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                <a class="navbar-item" id="dark-switch" title="Dark Mode" href="javascript:;">
+                    <i class="fas fa-moon" id="dark-icon"></i>
+                </a>
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns columns-center">
+                <div class="column is-9-widescreen is-12 has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-10-21T10:39:00.000Z">2017-10-21</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Project/">Project</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    19 分钟 读完 (大约 2897 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                DynamicTranslate
+            
+        </h1>
+        <div class="content">
+            <p>在日益国际化的现在，英语成为了主流的语言，很多地方，生活和学术上都需要用到英语，很多研究的结果文章也是以英语为主要语言，而现在刚接触技术或者英语的人就很难很快的学好英语，没办法看懂英语内容，而传统的翻译软件存在巨大的局限性，没有办法很快速的进行翻译，一般的输入翻译存在很大的局限性，国内软件又有太多的广告，软件也十分臃肿。因此我们致力于打造一款高效，快速，又界面精美的翻译APP，我们的快捷翻译覆盖99%的操作场景，能让我们告别手动输入查找翻译的复杂过程</p>
+<a id="more"></a>
+
+<h2 id="部分功能演示视频"><a href="#部分功能演示视频" class="headerlink" title="部分功能演示视频"></a>部分功能演示视频</h2><p><a href="http://v.youku.com/v_show/id_XMzExMTY3Mzk1Mg==.html?spm=a2h3j.8428770.3416059.1">点击查看演示视频</a></p>
+<h2 id="功能引导界面"><a href="#功能引导界面" class="headerlink" title="功能引导界面"></a>功能引导界面</h2><p>程序初次安装打开会有操作提示，可以根据提示熟悉程序操作</p>
+<ul>
+<li>翻译源切换按钮<br>  点击此按钮可切换有道和百度的翻译源（搜索翻译时使用的翻译提供商）<br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204013337.png" alt=""></li>
+<li>OCR图片转文字按钮<br>  点击此按钮会展开两个小按钮，如右图右下角所示，一个是相机按钮，一个是相册按钮，通过点其中一个按钮来获取图片并进行裁剪后，识别图中文字进行翻译<br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204125724.png" alt=""><br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204125735.png" alt=""></li>
+<li>魔术手势球<br>  通过简单的上、下、左、右滑动手势，长按、单击操作，进行相关功能的调用，集杂多的按钮为一体，简洁高效<br>  在魔术手势球被拖动的过程中，魔术手势球中间的图标会跟随手势的方向变换相关方向的图标。如上拉是打开设置界面，此时小球中的图标就是设置图标<br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204125837.png" alt=""><br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130014.png" alt=""><br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130028.png" alt=""><br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130048.png" alt=""><br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130103.png" alt=""></li>
+</ul>
+<h2 id="权限引导"><a href="#权限引导" class="headerlink" title="权限引导"></a>权限引导</h2><p>功能引导完毕后，会弹出权限请求界面，点击同意获取“易译”运行需要使用的权限，例如：易译图片识别文字功能需要使用到的<code>拍照</code>、<code>文件存储器的读写</code>的权限<br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130135.png" alt=""><br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130147.png" alt=""><br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130158.png" alt=""></p>
+<h2 id="主界面翻译查询功能"><a href="#主界面翻译查询功能" class="headerlink" title="主界面翻译查询功能"></a>主界面翻译查询功能</h2><ul>
+<li>手动输入<br>  在主界面，点击输入框，就可以输入要翻译的内容，点击魔术手势按钮，进行查询，查询过程中魔术收拾按钮会显示进度圈，查询完成后在卡片中会显示翻译结果<br>  点击翻译结果就可以复制到剪切板，点击音标就可以播放单词发音，如果有开启分词模式，长按翻译结果就可调出分词界面，选择需要的内容<br>  查询完翻译后，将魔术手势球向右划就可以将翻译结果添加到记忆本中<br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130319.png" alt=""></li>
+<li>语音输入<br>  长按魔术手势球不放即可开始语音输入，此时魔术手势球的图标就会变成语音输入提示图标，放开手指就可结束语音输入，长时间没有声音输入，程序也会自动停止语音输入功能<br>  语音输入结束后，程序会通过讯飞提供的语音技术，将语音转换为文字，自动输入到输入框，此时只需要点击魔术手势球就可以进行翻译了<br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130357.png" alt=""><br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130412.png" alt=""></li>
+</ul>
+<h2 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h2><ul>
+<li><p>登陆<br>  本程序为了程序的简洁性，提供了便捷的一键登陆省去了用户的注册和使用成本，非常方便<br>  点击“QQ一键登陆”后如果有安装手机QQ则会自动跳转到快捷登陆界面，如果没有安装手机QQ则会跳转到网页登陆界面，登陆完毕后，将会自动获取用户头像和云端记忆本数据，用户可以自由的选择同步方式，也可以选择不同步<br>  第一次登陆成功后，将会显示用户引导，提示“退出操作”<br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130449.png" alt=""><br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130510.png" alt=""><br>  点击头像后就会有一个翻转效果，翻转为一个叉叉的图标，点击就可进行退出操作，将会显示一个炸裂的效果，程序将自定进行退出操作<br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130523.png" alt=""><br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130539.png" alt=""><br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130603.png" alt=""><br>  登陆成功后，可以进行选择同步方式，不选择则不进行同步，选择后，程序背景波浪将会加速波浪变矮，同步完成后，波浪会恢复正常，提醒同步成功<br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130637.png" alt=""></p>
+</li>
+<li><p>多彩主题<br>  设置界面右滑即可进入主题设置界面，“易译”内置20种多彩主题，可以随心切换，也可以开启“随机主题”模式，开启后每次进程序都会切换不同的主题<br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130703.png" alt=""><br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130721.png" alt=""></p>
+</li>
+<li><p>更多设置<br>  在设置界面向右滑动即可进入<strong>更多设置</strong><br>  在这里可以进行更多的设置，如：检查版本更新，清空单词发音的缓存的操作<br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130747.png" alt=""></p>
+</li>
+</ul>
+<h2 id="句子词性分析"><a href="#句子词性分析" class="headerlink" title="句子词性分析"></a>句子词性分析</h2><p>在设置中开启分词模式后，在使用复制翻译或者任何触发翻译（除主界面的输入点击翻译）都会优先触发分词功能。    分词功能是用来帮助用户筛选和排序获得的文字，我们日常生活中，复制的要翻译的内容或者获取的要翻译的内容大都会参杂着一些不需要的文字，传统的做法是粘贴后在一个个删除，而有了分词后，就可以直接选择需要的部分，简单快捷，定位准确，选好后直接点击右下角的搜索图标就会跳转到主界面进行翻译<br>选中文字后，可以点击右上角的图标进行复制<br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204130938.png" alt=""><br>左下角的第一个图标可以进行反向选择<br>左下角第二个图标点击后，可以随意拖动文字进行任意排序，点击按钮后按钮会变成打勾按钮，排序好后，点击打勾图标按钮即<br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204131006.png" alt=""><br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204131015.png" alt=""><br>分词功能覆盖于大部分的程序操作，极大的便利于用户对信息的过滤，快捷的分离信息，分离获取的翻译的内容，值获取想要的部分</p>
+<h2 id="手势悬浮球"><a href="#手势悬浮球" class="headerlink" title="手势悬浮球"></a>手势悬浮球</h2><p>在设置第一页即可找到开启的开关，点击开关后如果程序没有具有展示悬浮球的权限，程序将会自动跳转到系统悬浮窗设置界面，只要打开设置悬浮窗口的开关，返回程序再打开收拾悬浮球的开关即可，打开时会有操作介绍<br>悬浮球是本程序快捷操作的核心，很大程度的辅助了用户的操作</p>
+<ul>
+<li>长按悬浮球然后在拖动就可以进行悬浮球的移动</li>
+<li>单击就可以进入程序的主界面</li>
+<li>下拉可以进行快速的语音输入，图标将会变成“碟片”形式旋转，提示正在收听，当用户不说话时，语音录入将会自动停止，此时如果有打开分词模式将会进入分词模式，如果没有打开分词模式将直接进入主界面进行翻译</li>
+<li>下拉两秒不放，即可<strong>暂时</strong>关闭悬浮球，并在下次打开主界面的时候再次自动打开</li>
+<li>向左或者向右拉动，即可打开全局复制功能<br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204131200.png" alt=""><br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204131212.png" alt=""><br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204131221.png" alt=""></li>
+</ul>
+<h2 id="复制翻译"><a href="#复制翻译" class="headerlink" title="复制翻译"></a>复制翻译</h2><p>在设置中打开复制翻译，即可使用复制翻译功能，也可在设置中开启或者关闭复制查词是否只对英语有效，来过滤复制的触发情况<br>在任何界面（除本程序）复制任何要翻译的内容，就会呼出本程序（如果又开启分词模式则进入分词模式，没有开启则直接进入主界面进行翻译）<br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204131245.png" alt=""><br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204131255.png" alt=""><br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204131304.png" alt=""></p>
+<h2 id="全局复制"><a href="#全局复制" class="headerlink" title="全局复制"></a>全局复制</h2><p>通过悬浮球左拉或者右拉手势既可触发<br>有些系统或者软件的界面是无法复制的，所以针对此我们推出了全局复制功能，在大部分场景中都可以实现快捷省心的复制。启动全局复制后，会出现选区，可选择复制的文字周围会出现虚线框，点击即可选中，长按触发翻译功能，为了不遮挡可复制范围，下方的两个按钮是可以任意拖动的，不影响具体功能，选中点击确定即可获取选中的所有文本进入翻译<br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204131422.png" alt=""></p>
+<h2 id="OCR"><a href="#OCR" class="headerlink" title="OCR"></a>OCR</h2><ul>
+<li>基本OCR<br>  在主界面图片选取按钮选取图片后就会进入裁剪界面，选择需要识别的文字的区域点击确定即可自动开始识别<br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204131437.png" alt=""><br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204131451.png" alt=""></li>
+<li>悬浮手势球快捷OCR<br>  在任意界面（除主程序界面），通过上拉手势球就可进入OCR快捷识别功能<br>  开启后会在屏幕上显示3个按钮，3个按钮都是可以随意移动的<br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204131517.png" alt=""><br>  点击确定按钮可以开启截取模式，截取全屏，然后你可以选择要翻译的内容进行裁剪，然后调用翻译功能（如果有开启分词模式则先进入分词模式）<br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204131528.png" alt=""><br>  点击中间的按钮即可开启全屏标注功能，自定翻译全屏幕的英文，然后以叠层的方式覆盖在原文上<br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204131550.png" alt=""><br>  点击叠层内容即可显示OCR识别的文字的原文<br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204131606.png" alt=""><br>  长按叠层可开启分词模式，对翻译的内容进行选取和复制，或者再次翻译</li>
+</ul>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Android/" rel="tag">Android</a>, <a class="has-link-grey -link" href="/tags/Bigbang/" rel="tag">Bigbang</a>, <a class="has-link-grey -link" href="/tags/Design/" rel="tag">Design</a>, <a class="has-link-grey -link" href="/tags/Translate/" rel="tag">Translate</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Wechatpay.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/project/hexo-blog-utils/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">HexoBlogUtils</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/git/git/">
+                <span class="level-item">Git操作</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '8fb0efbb7d2496c108f3',
+        clientSecret: '376c8cd0ff2283ef21dcf9bd1f8348014402bd24',
+        id: '630bb1598808ca92e17fd37d57c2c6fa',
+        repo: 'gittalk',
+        owner: 'smileorigin',
+        admin: "smileorigin",
+        createIssueManually: true,
+        distractionFreeMode: false
+    })
+    gitalk.render('comment-container')
+</script>
+
+
+    </div>
+</div>
+
+
+</div>
+                
+                
+                    <div class="column is-3-tablet is-3-desktop is-3-widescreen has-order-3 is-hidden-touch is-hidden-desktop-only column-right is-sticky">
+                        
+
+    <div class="widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#部分功能演示视频">
+        <span class="has-mr-6">1</span>
+        <span>部分功能演示视频</span>
+        </a></li><li>
+        <a class="is-flex" href="#功能引导界面">
+        <span class="has-mr-6">2</span>
+        <span>功能引导界面</span>
+        </a></li><li>
+        <a class="is-flex" href="#权限引导">
+        <span class="has-mr-6">3</span>
+        <span>权限引导</span>
+        </a></li><li>
+        <a class="is-flex" href="#主界面翻译查询功能">
+        <span class="has-mr-6">4</span>
+        <span>主界面翻译查询功能</span>
+        </a></li><li>
+        <a class="is-flex" href="#设置">
+        <span class="has-mr-6">5</span>
+        <span>设置</span>
+        </a></li><li>
+        <a class="is-flex" href="#句子词性分析">
+        <span class="has-mr-6">6</span>
+        <span>句子词性分析</span>
+        </a></li><li>
+        <a class="is-flex" href="#手势悬浮球">
+        <span class="has-mr-6">7</span>
+        <span>手势悬浮球</span>
+        </a></li><li>
+        <a class="is-flex" href="#复制翻译">
+        <span class="has-mr-6">8</span>
+        <span>复制翻译</span>
+        </a></li><li>
+        <a class="is-flex" href="#全局复制">
+        <span class="has-mr-6">9</span>
+        <span>全局复制</span>
+        </a></li><li>
+        <a class="is-flex" href="#OCR">
+        <span class="has-mr-6">10</span>
+        <span>OCR</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img class="logo-img" src="/images/logo.svg" alt="DynamicTranslate" height="28" />
+                    <img class="logo-img-dark" src="/images/logo-dark.svg" alt="DynamicTranslate" height="28" />
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Thomas Woo&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://smileorigin.site',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

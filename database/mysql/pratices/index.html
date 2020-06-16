@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <script type="text/javascript" src="/js/dark.js"></script>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+
+
+<meta name="keywords" content="Android,JavaScript,Java,Database">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>MySQL练习 - Thomas Woo</title>
+
+
+    <meta name="description" content="There is recorded some MySQL pratices.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL练习">
+<meta property="og:url" content="http://smileorigin.site/database/mysql/pratices/index.html">
+<meta property="og:site_name" content="Thomas Woo">
+<meta property="og:description" content="There is recorded some MySQL pratices.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://smileorigin.site/images/og_image.png">
+<meta property="article:published_time" content="2018-08-02T10:00:00.000Z">
+<meta property="article:modified_time" content="2020-06-13T11:57:00.181Z">
+<meta property="article:author" content="Thomas Woo">
+<meta property="article:tag" content="Notes">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="Pratices">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://smileorigin.site/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110922455-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110922455-1');
+</script>
+
+    
+    <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?33cec7dfd968d9ffd9ff2a5da2be77d0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img class="logo-img" src="/images/logo.svg" alt="MySQL练习" height="28" />
+                <img class="logo-img-dark" src="/images/logo-dark.svg" alt="MySQL练习" height="28" />
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/album">Album</a>
+                
+                <a class="navbar-item"
+                href="/bbs">BBS</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                <a class="navbar-item" id="dark-switch" title="Dark Mode" href="javascript:;">
+                    <i class="fas fa-moon" id="dark-icon"></i>
+                </a>
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns columns-center">
+                <div class="column is-9-widescreen is-12 has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-08-02T10:00:00.000Z">2018-08-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Database/">Database</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    13 分钟 读完 (大约 1941 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                MySQL练习
+            
+        </h1>
+        <div class="content">
+            <p>There is recorded some MySQL pratices.</p>
+<a id="more"></a>
+
+<h2 id="数据库和数据准备"><a href="#数据库和数据准备" class="headerlink" title="数据库和数据准备"></a>数据库和数据准备</h2><ul>
+<li>数据库建立<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> STUDENT</span><br><span class="line"> (</span><br><span class="line">SNO <span class="built_in">VARCHAR</span>(<span class="number">3</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">SNAME <span class="built_in">VARCHAR</span>(<span class="number">4</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">SSEX <span class="built_in">VARCHAR</span>(<span class="number">2</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">SBIRTHDAY DATETIME,</span><br><span class="line"><span class="keyword">CLASS</span> <span class="built_in">VARCHAR</span>(<span class="number">5</span>)</span><br><span class="line"> );</span><br><span class="line"></span><br><span class="line"> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> COURSE</span><br><span class="line"> (</span><br><span class="line">CNO <span class="built_in">VARCHAR</span>(<span class="number">5</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">CNAME <span class="built_in">VARCHAR</span>(<span class="number">10</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">TNO <span class="built_in">VARCHAR</span>(<span class="number">10</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line"> );</span><br><span class="line"></span><br><span class="line"> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> SCORE</span><br><span class="line"> (</span><br><span class="line">SNO <span class="built_in">VARCHAR</span>(<span class="number">3</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">CNO <span class="built_in">VARCHAR</span>(<span class="number">5</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">DEGREE <span class="built_in">NUMERIC</span>(<span class="number">10</span>, <span class="number">1</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line"> );</span><br><span class="line"></span><br><span class="line"> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> TEACHER</span><br><span class="line"> (</span><br><span class="line">TNO <span class="built_in">VARCHAR</span>(<span class="number">3</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">TNAME <span class="built_in">VARCHAR</span>(<span class="number">4</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>, TSEX <span class="built_in">VARCHAR</span>(<span class="number">2</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">TBIRTHDAY DATETIME <span class="keyword">NOT</span> <span class="literal">NULL</span>, PROF <span class="built_in">VARCHAR</span>(<span class="number">6</span>),</span><br><span class="line">DEPART <span class="built_in">VARCHAR</span>(<span class="number">10</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line"> );</span><br></pre></td></tr></table></figure></li>
+<li>数据填充<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> STUDENT (SNO,SNAME,SSEX,SBIRTHDAY,<span class="keyword">CLASS</span>) <span class="keyword">VALUES</span> (<span class="number">108</span> ,<span class="string">'曾华'</span> ,<span class="string">'男'</span> ,<span class="string">'1977-09-01'</span>,<span class="number">95033</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> STUDENT (SNO,SNAME,SSEX,SBIRTHDAY,<span class="keyword">CLASS</span>) <span class="keyword">VALUES</span> (<span class="number">105</span> ,<span class="string">'匡明'</span> ,<span class="string">'男'</span> ,<span class="string">'1975-10-02'</span>,<span class="number">95031</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> STUDENT (SNO,SNAME,SSEX,SBIRTHDAY,<span class="keyword">CLASS</span>) <span class="keyword">VALUES</span> (<span class="number">107</span> ,<span class="string">'王丽'</span> ,<span class="string">'女'</span> ,<span class="string">'1976-01-23'</span>,<span class="number">95033</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> STUDENT (SNO,SNAME,SSEX,SBIRTHDAY,<span class="keyword">CLASS</span>) <span class="keyword">VALUES</span> (<span class="number">101</span> ,<span class="string">'李军'</span> ,<span class="string">'男'</span> ,<span class="string">'1976-02-20'</span>,<span class="number">95033</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> STUDENT (SNO,SNAME,SSEX,SBIRTHDAY,<span class="keyword">CLASS</span>) <span class="keyword">VALUES</span> (<span class="number">109</span> ,<span class="string">'王芳'</span> ,<span class="string">'女'</span> ,<span class="string">'1975-02-10'</span>,<span class="number">95031</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> STUDENT (SNO,SNAME,SSEX,SBIRTHDAY,<span class="keyword">CLASS</span>) <span class="keyword">VALUES</span> (<span class="number">103</span> ,<span class="string">'陆君'</span> ,<span class="string">'男'</span> ,<span class="string">'1974-06-03'</span>,<span class="number">95031</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> COURSE(CNO,CNAME,TNO)<span class="keyword">VALUES</span> (<span class="string">'3-105'</span> ,<span class="string">'计算机导论'</span>,<span class="number">825</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> COURSE(CNO,CNAME,TNO)<span class="keyword">VALUES</span> (<span class="string">'3-245'</span> ,<span class="string">'操作系统'</span> ,<span class="number">804</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> COURSE(CNO,CNAME,TNO)<span class="keyword">VALUES</span> (<span class="string">'6-166'</span> ,<span class="string">'数据电路'</span> ,<span class="number">856</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> COURSE(CNO,CNAME,TNO)<span class="keyword">VALUES</span> (<span class="string">'9-888'</span> ,<span class="string">'高等数学'</span> ,<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SCORE(SNO,CNO,DEGREE)<span class="keyword">VALUES</span> (<span class="number">103</span>,<span class="string">'3-245'</span>,<span class="number">86</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SCORE(SNO,CNO,DEGREE)<span class="keyword">VALUES</span> (<span class="number">105</span>,<span class="string">'3-245'</span>,<span class="number">75</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SCORE(SNO,CNO,DEGREE)<span class="keyword">VALUES</span> (<span class="number">109</span>,<span class="string">'3-245'</span>,<span class="number">68</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SCORE(SNO,CNO,DEGREE)<span class="keyword">VALUES</span> (<span class="number">103</span>,<span class="string">'3-105'</span>,<span class="number">92</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SCORE(SNO,CNO,DEGREE)<span class="keyword">VALUES</span> (<span class="number">105</span>,<span class="string">'3-105'</span>,<span class="number">88</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SCORE(SNO,CNO,DEGREE)<span class="keyword">VALUES</span> (<span class="number">109</span>,<span class="string">'3-105'</span>,<span class="number">76</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SCORE(SNO,CNO,DEGREE)<span class="keyword">VALUES</span> (<span class="number">101</span>,<span class="string">'3-105'</span>,<span class="number">64</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SCORE(SNO,CNO,DEGREE)<span class="keyword">VALUES</span> (<span class="number">107</span>,<span class="string">'3-105'</span>,<span class="number">91</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SCORE(SNO,CNO,DEGREE)<span class="keyword">VALUES</span> (<span class="number">108</span>,<span class="string">'3-105'</span>,<span class="number">78</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SCORE(SNO,CNO,DEGREE)<span class="keyword">VALUES</span> (<span class="number">101</span>,<span class="string">'6-166'</span>,<span class="number">85</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SCORE(SNO,CNO,DEGREE)<span class="keyword">VALUES</span> (<span class="number">107</span>,<span class="string">'6-106'</span>,<span class="number">79</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SCORE(SNO,CNO,DEGREE)<span class="keyword">VALUES</span> (<span class="number">108</span>,<span class="string">'6-166'</span>,<span class="number">81</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> TEACHER(TNO,TNAME,TSEX,TBIRTHDAY,PROF,DEPART) <span class="keyword">VALUES</span> (<span class="number">804</span>,<span class="string">'李诚'</span>,<span class="string">'男'</span>,<span class="string">'1958-12-02'</span>,<span class="string">'副教授'</span>,<span class="string">'计算机系'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> TEACHER(TNO,TNAME,TSEX,TBIRTHDAY,PROF,DEPART) <span class="keyword">VALUES</span> (<span class="number">856</span>,<span class="string">'张旭'</span>,<span class="string">'男'</span>,<span class="string">'1969-03-12'</span>,<span class="string">'讲师'</span>,<span class="string">'电子工程系'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> TEACHER(TNO,TNAME,TSEX,TBIRTHDAY,PROF,DEPART) <span class="keyword">VALUES</span> (<span class="number">825</span>,<span class="string">'王萍'</span>,<span class="string">'女'</span>,<span class="string">'1972-05-05'</span>,<span class="string">'助教'</span>,<span class="string">'计算机系'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> TEACHER(TNO,TNAME,TSEX,TBIRTHDAY,PROF,DEPART) <span class="keyword">VALUES</span> (<span class="number">831</span>,<span class="string">'刘冰'</span>,<span class="string">'女'</span>,<span class="string">'1977-08-14'</span>,<span class="string">'助教'</span>,<span class="string">'电子工程系'</span>);</span><br></pre></td></tr></table></figure></li>
+<li>数据填充完成<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM STUDENT;</span><br><span class="line">+-----+--------+------+---------------------+-------+</span><br><span class="line">| SNO | SNAME  | SSEX | SBIRTHDAY           | CLASS |</span><br><span class="line">+-----+--------+------+---------------------+-------+</span><br><span class="line">| 108 | 曾华   | 男   | 1977-09-01 00:00:00 | 95033 |</span><br><span class="line">| 105 | 匡明   | 男   | 1975-10-02 00:00:00 | 95031 |</span><br><span class="line">| 107 | 王丽   | 女   | 1976-01-23 00:00:00 | 95033 |</span><br><span class="line">| 101 | 李军   | 男   | 1976-02-20 00:00:00 | 95033 |</span><br><span class="line">| 109 | 王芳   | 女   | 1975-02-10 00:00:00 | 95031 |</span><br><span class="line">| 103 | 陆君   | 男   | 1974-06-03 00:00:00 | 95031 |</span><br><span class="line">+-----+--------+------+---------------------+-------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT * FROM COURSE;</span><br><span class="line">+-------+-----------------+-----+</span><br><span class="line">| CNO   | CNAME           | TNO |</span><br><span class="line">+-------+-----------------+-----+</span><br><span class="line">| 3-105 | 计算机导论      | 825 |</span><br><span class="line">| 3-245 | 操作系统        | 804 |</span><br><span class="line">| 6-166 | 数据电路        | 856 |</span><br><span class="line">| 9-888 | 高等数学        | 100 |</span><br><span class="line">+-------+-----------------+-----+</span><br><span class="line">4 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT * FROM SCORE;</span><br><span class="line">+-----+-------+--------+</span><br><span class="line">| SNO | CNO   | DEGREE |</span><br><span class="line">+-----+-------+--------+</span><br><span class="line">| 103 | 3-245 |   86.0 |</span><br><span class="line">| 105 | 3-245 |   75.0 |</span><br><span class="line">| 109 | 3-245 |   68.0 |</span><br><span class="line">| 103 | 3-105 |   92.0 |</span><br><span class="line">| 105 | 3-105 |   88.0 |</span><br><span class="line">| 109 | 3-105 |   76.0 |</span><br><span class="line">| 101 | 3-105 |   64.0 |</span><br><span class="line">| 107 | 3-105 |   91.0 |</span><br><span class="line">| 108 | 3-105 |   78.0 |</span><br><span class="line">| 101 | 6-166 |   85.0 |</span><br><span class="line">| 107 | 6-106 |   79.0 |</span><br><span class="line">| 108 | 6-166 |   81.0 |</span><br><span class="line">+-----+-------+--------+</span><br><span class="line">12 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT * FROM TEACHER;</span><br><span class="line">+-----+--------+------+---------------------+-----------+-----------------+</span><br><span class="line">| TNO | TNAME  | TSEX | TBIRTHDAY           | PROF      | DEPART          |</span><br><span class="line">+-----+--------+------+---------------------+-----------+-----------------+</span><br><span class="line">| 804 | 李诚   | 男   | 1958-12-02 00:00:00 | 副教授    | 计算机系        |</span><br><span class="line">| 856 | 张旭   | 男   | 1969-03-12 00:00:00 | 讲师      | 电子工程系      |</span><br><span class="line">| 825 | 王萍   | 女   | 1972-05-05 00:00:00 | 助教      | 计算机系        |</span><br><span class="line">| 831 | 刘冰   | 女   | 1977-08-14 00:00:00 | 助教      | 电子工程系      |</span><br><span class="line">+-----+--------+------+---------------------+-----------+-----------------+</span><br><span class="line">4 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="查询STUDENT表中的所有记录的SNAME、SSEX和CLASS列"><a href="#查询STUDENT表中的所有记录的SNAME、SSEX和CLASS列" class="headerlink" title="查询STUDENT表中的所有记录的SNAME、SSEX和CLASS列"></a>查询STUDENT表中的所有记录的SNAME、SSEX和CLASS列</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT SNAME, SSEX, CLASS FROM STUDENT;</span><br><span class="line">+--------+------+-------+</span><br><span class="line">| SNAME  | SSEX | CLASS |</span><br><span class="line">+--------+------+-------+</span><br><span class="line">| 曾华   | 男   | 95033 |</span><br><span class="line">| 匡明   | 男   | 95031 |</span><br><span class="line">| 王丽   | 女   | 95033 |</span><br><span class="line">| 李军   | 男   | 95033 |</span><br><span class="line">| 王芳   | 女   | 95031 |</span><br><span class="line">| 陆君   | 男   | 95031 |</span><br><span class="line">+--------+------+-------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询教师所有的单位即不重复的DEPART列"><a href="#查询教师所有的单位即不重复的DEPART列" class="headerlink" title="查询教师所有的单位即不重复的DEPART列"></a>查询教师所有的单位即不重复的DEPART列</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT DEPART FROM TEACHER GROUP BY DEPART;</span><br><span class="line">+-----------------+</span><br><span class="line">| DEPART          |</span><br><span class="line">+-----------------+</span><br><span class="line">| 电子工程系      |</span><br><span class="line">| 计算机系        |</span><br><span class="line">+-----------------+</span><br><span class="line">2 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询STUDENT表的所有记录"><a href="#查询STUDENT表的所有记录" class="headerlink" title="查询STUDENT表的所有记录"></a>查询STUDENT表的所有记录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM STUDENT;</span><br><span class="line">+-----+--------+------+---------------------+-------+</span><br><span class="line">| SNO | SNAME  | SSEX | SBIRTHDAY           | CLASS |</span><br><span class="line">+-----+--------+------+---------------------+-------+</span><br><span class="line">| 108 | 曾华   | 男   | 1977-09-01 00:00:00 | 95033 |</span><br><span class="line">| 105 | 匡明   | 男   | 1975-10-02 00:00:00 | 95031 |</span><br><span class="line">| 107 | 王丽   | 女   | 1976-01-23 00:00:00 | 95033 |</span><br><span class="line">| 101 | 李军   | 男   | 1976-02-20 00:00:00 | 95033 |</span><br><span class="line">| 109 | 王芳   | 女   | 1975-02-10 00:00:00 | 95031 |</span><br><span class="line">| 103 | 陆君   | 男   | 1974-06-03 00:00:00 | 95031 |</span><br><span class="line">+-----+--------+------+---------------------+-------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询SCORE表中成绩在60到80之间的所有记录"><a href="#查询SCORE表中成绩在60到80之间的所有记录" class="headerlink" title="查询SCORE表中成绩在60到80之间的所有记录"></a>查询SCORE表中成绩在60到80之间的所有记录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM SCORE WHERE DEGREE BETWEEN 60 AND 80;</span><br><span class="line">+-----+-------+--------+</span><br><span class="line">| SNO | CNO   | DEGREE |</span><br><span class="line">+-----+-------+--------+</span><br><span class="line">| 105 | 3-245 |   75.0 |</span><br><span class="line">| 109 | 3-245 |   68.0 |</span><br><span class="line">| 109 | 3-105 |   76.0 |</span><br><span class="line">| 101 | 3-105 |   64.0 |</span><br><span class="line">| 108 | 3-105 |   78.0 |</span><br><span class="line">| 107 | 6-106 |   79.0 |</span><br><span class="line">+-----+-------+--------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询SCORE表中成绩为85，86或88的记录"><a href="#查询SCORE表中成绩为85，86或88的记录" class="headerlink" title="查询SCORE表中成绩为85，86或88的记录"></a>查询SCORE表中成绩为85，86或88的记录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM SCORE WHERE DEGREE IN(85, 86, 88);</span><br><span class="line">+-----+-------+--------+</span><br><span class="line">| SNO | CNO   | DEGREE |</span><br><span class="line">+-----+-------+--------+</span><br><span class="line">| 103 | 3-245 |   86.0 |</span><br><span class="line">| 105 | 3-105 |   88.0 |</span><br><span class="line">| 101 | 6-166 |   85.0 |</span><br><span class="line">+-----+-------+--------+</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询STUDENT表中“95031”班或性别为“女”的同学记录"><a href="#查询STUDENT表中“95031”班或性别为“女”的同学记录" class="headerlink" title="查询STUDENT表中“95031”班或性别为“女”的同学记录"></a>查询STUDENT表中“95031”班或性别为“女”的同学记录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM STUDENT WHERE CLASS=<span class="string">'95031'</span> OR SSEX=<span class="string">'女'</span>;</span><br><span class="line">+-----+--------+------+---------------------+-------+</span><br><span class="line">| SNO | SNAME  | SSEX | SBIRTHDAY           | CLASS |</span><br><span class="line">+-----+--------+------+---------------------+-------+</span><br><span class="line">| 105 | 匡明   | 男   | 1975-10-02 00:00:00 | 95031 |</span><br><span class="line">| 107 | 王丽   | 女   | 1976-01-23 00:00:00 | 95033 |</span><br><span class="line">| 109 | 王芳   | 女   | 1975-02-10 00:00:00 | 95031 |</span><br><span class="line">| 103 | 陆君   | 男   | 1974-06-03 00:00:00 | 95031 |</span><br><span class="line">+-----+--------+------+---------------------+-------+</span><br><span class="line">4 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="以CLASS降序查询STUDENT表的所有记录"><a href="#以CLASS降序查询STUDENT表的所有记录" class="headerlink" title="以CLASS降序查询STUDENT表的所有记录"></a>以CLASS降序查询STUDENT表的所有记录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM STUDENT ORDER BY CLASS DESC;</span><br><span class="line">+-----+--------+------+---------------------+-------+</span><br><span class="line">| SNO | SNAME  | SSEX | SBIRTHDAY           | CLASS |</span><br><span class="line">+-----+--------+------+---------------------+-------+</span><br><span class="line">| 108 | 曾华   | 男   | 1977-09-01 00:00:00 | 95033 |</span><br><span class="line">| 107 | 王丽   | 女   | 1976-01-23 00:00:00 | 95033 |</span><br><span class="line">| 101 | 李军   | 男   | 1976-02-20 00:00:00 | 95033 |</span><br><span class="line">| 105 | 匡明   | 男   | 1975-10-02 00:00:00 | 95031 |</span><br><span class="line">| 109 | 王芳   | 女   | 1975-02-10 00:00:00 | 95031 |</span><br><span class="line">| 103 | 陆君   | 男   | 1974-06-03 00:00:00 | 95031 |</span><br><span class="line">+-----+--------+------+---------------------+-------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="以CNO升序、DEGREE降序查询SCORE表的所有记录"><a href="#以CNO升序、DEGREE降序查询SCORE表的所有记录" class="headerlink" title="以CNO升序、DEGREE降序查询SCORE表的所有记录"></a>以CNO升序、DEGREE降序查询SCORE表的所有记录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM SCORE ORDER BY CNO, DEGREE DESC;</span><br><span class="line">+-----+-------+--------+</span><br><span class="line">| SNO | CNO   | DEGREE |</span><br><span class="line">+-----+-------+--------+</span><br><span class="line">| 103 | 3-105 |   92.0 |</span><br><span class="line">| 107 | 3-105 |   91.0 |</span><br><span class="line">| 105 | 3-105 |   88.0 |</span><br><span class="line">| 108 | 3-105 |   78.0 |</span><br><span class="line">| 109 | 3-105 |   76.0 |</span><br><span class="line">| 101 | 3-105 |   64.0 |</span><br><span class="line">| 103 | 3-245 |   86.0 |</span><br><span class="line">| 105 | 3-245 |   75.0 |</span><br><span class="line">| 109 | 3-245 |   68.0 |</span><br><span class="line">| 107 | 6-106 |   79.0 |</span><br><span class="line">| 101 | 6-166 |   85.0 |</span><br><span class="line">| 108 | 6-166 |   81.0 |</span><br><span class="line">+-----+-------+--------+</span><br><span class="line">12 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询“95031”班的学生人数"><a href="#查询“95031”班的学生人数" class="headerlink" title="查询“95031”班的学生人数"></a>查询“95031”班的学生人数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT COUNT(*) FROM STUDENT WHERE CLASS=<span class="string">'95031'</span>;</span><br><span class="line">+----------+</span><br><span class="line">| COUNT(*) |</span><br><span class="line">+----------+</span><br><span class="line">|        3 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询SCORE表中的最高分的学生学号和课程号"><a href="#查询SCORE表中的最高分的学生学号和课程号" class="headerlink" title="查询SCORE表中的最高分的学生学号和课程号"></a>查询SCORE表中的最高分的学生学号和课程号</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT SNO, CNO FROM SCORE WHERE DEGREE IN (SELECT MAX(DEGREE) FROM SCORE);</span><br><span class="line">+-----+-------+</span><br><span class="line">| SNO | CNO   |</span><br><span class="line">+-----+-------+</span><br><span class="line">| 103 | 3-105 |</span><br><span class="line">+-----+-------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询‘3-105’号课程的平均分"><a href="#查询‘3-105’号课程的平均分" class="headerlink" title="查询‘3-105’号课程的平均分"></a>查询‘3-105’号课程的平均分</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT AVG(DEGREE) FROM SCORE WHERE CNO=<span class="string">'3-105'</span>;</span><br><span class="line">+-------------+</span><br><span class="line">| AVG(DEGREE) |</span><br><span class="line">+-------------+</span><br><span class="line">|    81.50000 |</span><br><span class="line">+-------------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询SCORE表中至少有2名学生选修的并以3开头的课程的平均分数"><a href="#查询SCORE表中至少有2名学生选修的并以3开头的课程的平均分数" class="headerlink" title="查询SCORE表中至少有2名学生选修的并以3开头的课程的平均分数"></a>查询SCORE表中至少有2名学生选修的并以3开头的课程的平均分数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT AVG(DEGREE) FROM SCORE GROUP BY CNO HAVING COUNT(CNO)&gt;1 AND CNO LIKE <span class="string">'3%'</span>;</span><br><span class="line">+-------------+</span><br><span class="line">| AVG(DEGREE) |</span><br><span class="line">+-------------+</span><br><span class="line">|    81.50000 |</span><br><span class="line">|    76.33333 |</span><br><span class="line">+-------------+</span><br><span class="line">2 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询最低分大于70，最高分小于90的SNO列"><a href="#查询最低分大于70，最高分小于90的SNO列" class="headerlink" title="查询最低分大于70，最高分小于90的SNO列"></a>查询最低分大于70，最高分小于90的SNO列</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT SNO FROM SCORE GROUP BY SNO HAVING MIN(DEGREE)&gt;70 AND MAX(DEGREE)&lt;90;</span><br><span class="line">+-----+</span><br><span class="line">| SNO |</span><br><span class="line">+-----+</span><br><span class="line">| 105 |</span><br><span class="line">| 108 |</span><br><span class="line">+-----+</span><br><span class="line">2 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询所有学生的SNAME、CNO和DEGREE列"><a href="#查询所有学生的SNAME、CNO和DEGREE列" class="headerlink" title="查询所有学生的SNAME、CNO和DEGREE列"></a>查询所有学生的SNAME、CNO和DEGREE列</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT A.SNAME, B.CNO, B.DEGREE FROM STUDENT A, SCORE B WHERE A.SNO=B.SNO;</span><br><span class="line">+--------+-------+--------+</span><br><span class="line">| SNAME  | CNO   | DEGREE |</span><br><span class="line">+--------+-------+--------+</span><br><span class="line">| 陆君   | 3-245 |   86.0 |</span><br><span class="line">| 匡明   | 3-245 |   75.0 |</span><br><span class="line">| 王芳   | 3-245 |   68.0 |</span><br><span class="line">| 陆君   | 3-105 |   92.0 |</span><br><span class="line">| 匡明   | 3-105 |   88.0 |</span><br><span class="line">| 王芳   | 3-105 |   76.0 |</span><br><span class="line">| 李军   | 3-105 |   64.0 |</span><br><span class="line">| 王丽   | 3-105 |   91.0 |</span><br><span class="line">| 曾华   | 3-105 |   78.0 |</span><br><span class="line">| 李军   | 6-166 |   85.0 |</span><br><span class="line">| 王丽   | 6-106 |   79.0 |</span><br><span class="line">| 曾华   | 6-166 |   81.0 |</span><br><span class="line">+--------+-------+--------+</span><br><span class="line">12 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"><span class="comment"># 解法二使用内连接</span></span><br><span class="line">mysql&gt; SELECT STUDENT.SNAME, SCORE.CNO, SCORE.DEGREE FROM STUDENT INNER JOIN SCORE ON STUDENT.SNO=SCORE.SNO;</span><br><span class="line">+--------+-------+--------+</span><br><span class="line">| SNAME  | CNO   | DEGREE |</span><br><span class="line">+--------+-------+--------+</span><br><span class="line">| 陆君   | 3-245 |   86.0 |</span><br><span class="line">| 匡明   | 3-245 |   75.0 |</span><br><span class="line">| 王芳   | 3-245 |   68.0 |</span><br><span class="line">| 陆君   | 3-105 |   92.0 |</span><br><span class="line">| 匡明   | 3-105 |   88.0 |</span><br><span class="line">| 王芳   | 3-105 |   76.0 |</span><br><span class="line">| 李军   | 3-105 |   64.0 |</span><br><span class="line">| 王丽   | 3-105 |   91.0 |</span><br><span class="line">| 曾华   | 3-105 |   78.0 |</span><br><span class="line">| 李军   | 6-166 |   85.0 |</span><br><span class="line">| 王丽   | 6-106 |   79.0 |</span><br><span class="line">| 曾华   | 6-166 |   81.0 |</span><br><span class="line">+--------+-------+--------+</span><br><span class="line">12 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询所有学生的SNO、CNAME和DEGREE列"><a href="#查询所有学生的SNO、CNAME和DEGREE列" class="headerlink" title="查询所有学生的SNO、CNAME和DEGREE列"></a>查询所有学生的SNO、CNAME和DEGREE列</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT A.SNO, B.CNAME, A.DEGREE FROM SCORE A, COURSE B WHERE A.CNO=B.CNO;</span><br><span class="line">+-----+-----------------+--------+</span><br><span class="line">| SNO | CNAME           | DEGREE |</span><br><span class="line">+-----+-----------------+--------+</span><br><span class="line">| 103 | 操作系统        |   86.0 |</span><br><span class="line">| 105 | 操作系统        |   75.0 |</span><br><span class="line">| 109 | 操作系统        |   68.0 |</span><br><span class="line">| 103 | 计算机导论      |   92.0 |</span><br><span class="line">| 105 | 计算机导论      |   88.0 |</span><br><span class="line">| 109 | 计算机导论      |   76.0 |</span><br><span class="line">| 101 | 计算机导论      |   64.0 |</span><br><span class="line">| 107 | 计算机导论      |   91.0 |</span><br><span class="line">| 108 | 计算机导论      |   78.0 |</span><br><span class="line">| 101 | 数据电路        |   85.0 |</span><br><span class="line">| 108 | 数据电路        |   81.0 |</span><br><span class="line">+-----+-----------------+--------+</span><br><span class="line">11 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.01 sec)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解法二使用内连接</span></span><br><span class="line">mysql&gt; SELECT A.SNO, C.CNAME, B.DEGREE FROM STUDENT A INNER JOIN SCORE B INNER JOIN COURSE C ON A.SNO=B.SNO AND B.CNO=C.CNO;</span><br><span class="line">+-----+-----------------+--------+</span><br><span class="line">| SNO | CNAME           | DEGREE |</span><br><span class="line">+-----+-----------------+--------+</span><br><span class="line">| 108 | 计算机导论      |   78.0 |</span><br><span class="line">| 108 | 数据电路        |   81.0 |</span><br><span class="line">| 105 | 操作系统        |   75.0 |</span><br><span class="line">| 105 | 计算机导论      |   88.0 |</span><br><span class="line">| 107 | 计算机导论      |   91.0 |</span><br><span class="line">| 101 | 计算机导论      |   64.0 |</span><br><span class="line">| 101 | 数据电路        |   85.0 |</span><br><span class="line">| 109 | 操作系统        |   68.0 |</span><br><span class="line">| 109 | 计算机导论      |   76.0 |</span><br><span class="line">| 103 | 操作系统        |   86.0 |</span><br><span class="line">| 103 | 计算机导论      |   92.0 |</span><br><span class="line">+-----+-----------------+--------+</span><br><span class="line">11 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询所有学生的SNAME、CNAME和DEGREE列"><a href="#查询所有学生的SNAME、CNAME和DEGREE列" class="headerlink" title="查询所有学生的SNAME、CNAME和DEGREE列"></a>查询所有学生的SNAME、CNAME和DEGREE列</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT A.SNAME, B.CNAME, C.DEGREE FROM STUDENT A, COURSE B, SCORE C WHERE A.SNO=C.SNO AND B.CNO=C.CNO;</span><br><span class="line">+--------+-----------------+--------+</span><br><span class="line">| SNAME  | CNAME           | DEGREE |</span><br><span class="line">+--------+-----------------+--------+</span><br><span class="line">| 曾华   | 计算机导论      |   78.0 |</span><br><span class="line">| 曾华   | 数据电路        |   81.0 |</span><br><span class="line">| 匡明   | 操作系统        |   75.0 |</span><br><span class="line">| 匡明   | 计算机导论      |   88.0 |</span><br><span class="line">| 王丽   | 计算机导论      |   91.0 |</span><br><span class="line">| 李军   | 计算机导论      |   64.0 |</span><br><span class="line">| 李军   | 数据电路        |   85.0 |</span><br><span class="line">| 王芳   | 操作系统        |   68.0 |</span><br><span class="line">| 王芳   | 计算机导论      |   76.0 |</span><br><span class="line">| 陆君   | 操作系统        |   86.0 |</span><br><span class="line">| 陆君   | 计算机导论      |   92.0 |</span><br><span class="line">+--------+-----------------+--------+</span><br><span class="line">11 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解法二内连接</span></span><br><span class="line">mysql&gt; SELECT STUDENT.SNAME, COURSE.CNAME, SCORE.DEGREE FROM STUDENT INNER JOIN SCORE INNER JOIN COURSE ON STUDENT.SNO=SCORE.SNO AND SCORE.CNO=COURSE.CNO;</span><br><span class="line">+--------+-----------------+--------+</span><br><span class="line">| SNAME  | CNAME           | DEGREE |</span><br><span class="line">+--------+-----------------+--------+</span><br><span class="line">| 曾华   | 计算机导论      |   78.0 |</span><br><span class="line">| 曾华   | 数据电路        |   81.0 |</span><br><span class="line">| 匡明   | 操作系统        |   75.0 |</span><br><span class="line">| 匡明   | 计算机导论      |   88.0 |</span><br><span class="line">| 王丽   | 计算机导论      |   91.0 |</span><br><span class="line">| 李军   | 计算机导论      |   64.0 |</span><br><span class="line">| 李军   | 数据电路        |   85.0 |</span><br><span class="line">| 王芳   | 操作系统        |   68.0 |</span><br><span class="line">| 王芳   | 计算机导论      |   76.0 |</span><br><span class="line">| 陆君   | 操作系统        |   86.0 |</span><br><span class="line">| 陆君   | 计算机导论      |   92.0 |</span><br><span class="line">+--------+-----------------+--------+</span><br><span class="line">11 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询“95033”班所选课程的平均分"><a href="#查询“95033”班所选课程的平均分" class="headerlink" title="查询“95033”班所选课程的平均分"></a>查询“95033”班所选课程的平均分</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT AVG(DEGREE) FROM SCORE INNER JOIN STUDENT S ON S.CLASS=<span class="string">'95033'</span>;</span><br><span class="line">+-------------+</span><br><span class="line">| AVG(DEGREE) |</span><br><span class="line">+-------------+</span><br><span class="line">|    80.25000 |</span><br><span class="line">+-------------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解法二</span></span><br><span class="line">mysql&gt; mysql&gt; SELECT AVG(DEGREE) FRO WHERE SNO IN(SELECT SNO FROM STUDENT WHERE CLASS=<span class="string">'95033'</span>);</span><br><span class="line">+-------------+</span><br><span class="line">| AVG(DEGREE) |</span><br><span class="line">+-------------+</span><br><span class="line">|    79.66667 |</span><br><span class="line">+-------------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="假设使用如下命令建立了一个grade表"><a href="#假设使用如下命令建立了一个grade表" class="headerlink" title="假设使用如下命令建立了一个grade表"></a>假设使用如下命令建立了一个grade表</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE grade(low int,upp int,rank char(1));</span><br><span class="line">INSERT INTO grade VALUES(90,100,<span class="string">'A'</span>);</span><br><span class="line">INSERT INTO grade VALUES(80,89,<span class="string">'B'</span>);</span><br><span class="line">INSERT INTO grade VALUES(70,79,<span class="string">'C'</span>);</span><br><span class="line">INSERT INTO grade VALUES(60,69,<span class="string">'D'</span>);</span><br><span class="line">INSERT INTO grade VALUES(0,59,<span class="string">'E'</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>查询所有同学的SNO、CNO和rank列</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT A.SNO, A.CNO, B.rank FROM SCORE A, grade B WHERE A.DEGREE BETWEEN low and upp;</span><br><span class="line">+-----+-------+------+</span><br><span class="line">| SNO | CNO   | rank |</span><br><span class="line">+-----+-------+------+</span><br><span class="line">| 103 | 3-245 | B    |</span><br><span class="line">| 105 | 3-245 | C    |</span><br><span class="line">| 109 | 3-245 | D    |</span><br><span class="line">| 103 | 3-105 | A    |</span><br><span class="line">| 105 | 3-105 | B    |</span><br><span class="line">| 109 | 3-105 | C    |</span><br><span class="line">| 101 | 3-105 | D    |</span><br><span class="line">| 107 | 3-105 | A    |</span><br><span class="line">| 108 | 3-105 | C    |</span><br><span class="line">| 101 | 6-166 | B    |</span><br><span class="line">| 107 | 6-106 | C    |</span><br><span class="line">| 108 | 6-166 | B    |</span><br><span class="line">+-----+-------+------+</span><br><span class="line">12 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure></li>
+<li><p>查询选修“3-105”课程的成绩高于“109”号同学成绩的所有同学的记录</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM STUDENT WHERE SNO IN (SELECT SNO FROM SCORE WHERE CNO=<span class="string">'3-105'</span> AND DEGREE&gt;(SELECT DEGREE FROM SCORE WHERE SNO=<span class="string">'109'</span> AND CNO=<span class="string">'3-105'</span>));</span><br><span class="line">+-----+--------+------+---------------------+-------+</span><br><span class="line">| SNO | SNAME  | SSEX | SBIRTHDAY           | CLASS |</span><br><span class="line">+-----+--------+------+---------------------+-------+</span><br><span class="line">| 103 | 陆君   | 男   | 1974-06-03 00:00:00 | 95031 |</span><br><span class="line">| 105 | 匡明   | 男   | 1975-10-02 00:00:00 | 95031 |</span><br><span class="line">| 107 | 王丽   | 女   | 1976-01-23 00:00:00 | 95033 |</span><br><span class="line">| 108 | 曾华   | 男   | 1977-09-01 00:00:00 | 95033 |</span><br><span class="line">+-----+--------+------+---------------------+-------+</span><br><span class="line">4 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询”95033”班和”95031”班全体学生的记录</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM STUDENT WHERE CLASS IN(<span class="string">'95033'</span>, <span class="string">'95031'</span>);</span><br><span class="line">+-----+--------+------+---------------------+-------+</span><br><span class="line">| SNO | SNAME  | SSEX | SBIRTHDAY           | CLASS |</span><br><span class="line">+-----+--------+------+---------------------+-------+</span><br><span class="line">| 108 | 曾华   | 男   | 1977-09-01 00:00:00 | 95033 |</span><br><span class="line">| 105 | 匡明   | 男   | 1975-10-02 00:00:00 | 95031 |</span><br><span class="line">| 107 | 王丽   | 女   | 1976-01-23 00:00:00 | 95033 |</span><br><span class="line">| 101 | 李军   | 男   | 1976-02-20 00:00:00 | 95033 |</span><br><span class="line">| 109 | 王芳   | 女   | 1975-02-10 00:00:00 | 95031 |</span><br><span class="line">| 103 | 陆君   | 男   | 1974-06-03 00:00:00 | 95031 |</span><br><span class="line">+-----+--------+------+---------------------+-------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure></li>
+<li><p>查询存在有85分以上成绩的课程CNO</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT CNO FROM SCORE GROUP BY CNO HAVING CNO IN (SELECT CNO FROM SCORE WHERE DEGREE&gt;85);</span><br><span class="line">+-------+</span><br><span class="line">| CNO   |</span><br><span class="line">+-------+</span><br><span class="line">| 3-105 |</span><br><span class="line">| 3-245 |</span><br><span class="line">+-------+</span><br><span class="line">2 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure></li>
+<li><p>查询出“计算机系“教师所教课程的成绩表</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM SCORE WHERE CNO IN(SELECT CNO FROM COURSE WHERE TNO IN(SELECT TNO FROM TEACHER WHERE DEPART=<span class="string">'计算机系'</span>));</span><br><span class="line">+-----+-------+--------+</span><br><span class="line">| SNO | CNO   | DEGREE |</span><br><span class="line">+-----+-------+--------+</span><br><span class="line">| 103 | 3-245 |   86.0 |</span><br><span class="line">| 105 | 3-245 |   75.0 |</span><br><span class="line">| 109 | 3-245 |   68.0 |</span><br><span class="line">| 103 | 3-105 |   92.0 |</span><br><span class="line">| 105 | 3-105 |   88.0 |</span><br><span class="line">| 109 | 3-105 |   76.0 |</span><br><span class="line">| 101 | 3-105 |   64.0 |</span><br><span class="line">| 107 | 3-105 |   91.0 |</span><br><span class="line">| 108 | 3-105 |   78.0 |</span><br><span class="line">+-----+-------+--------+</span><br><span class="line">9 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"><span class="comment"># 解法二</span></span><br><span class="line">mysql&gt; SELECT * FROM SCORE WHERE CNO IN(SELECT C.CNO FROM TEACHER T, COURSE C WHERE T.DEPART=<span class="string">'计算机系'</span> AND T.TNO=C.TNO);</span><br><span class="line">+-----+-------+--------+</span><br><span class="line">| SNO | CNO   | DEGREE |</span><br><span class="line">+-----+-------+--------+</span><br><span class="line">| 103 | 3-245 |   86.0 |</span><br><span class="line">| 105 | 3-245 |   75.0 |</span><br><span class="line">| 109 | 3-245 |   68.0 |</span><br><span class="line">| 103 | 3-105 |   92.0 |</span><br><span class="line">| 105 | 3-105 |   88.0 |</span><br><span class="line">| 109 | 3-105 |   76.0 |</span><br><span class="line">| 101 | 3-105 |   64.0 |</span><br><span class="line">| 107 | 3-105 |   91.0 |</span><br><span class="line">| 108 | 3-105 |   78.0 |</span><br><span class="line">+-----+-------+--------+</span><br><span class="line">9 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/MySQL/" rel="tag">MySQL</a>, <a class="has-link-grey -link" href="/tags/Notes/" rel="tag">Notes</a>, <a class="has-link-grey -link" href="/tags/Pratices/" rel="tag">Pratices</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Wechatpay.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/database/paradigm/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">数据库三范式（笔记）</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/database/mysql/multi-table-operation/">
+                <span class="level-item">MySQL 多表操作</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '8fb0efbb7d2496c108f3',
+        clientSecret: '376c8cd0ff2283ef21dcf9bd1f8348014402bd24',
+        id: 'f9edb9d15ee22109212083b24e872241',
+        repo: 'gittalk',
+        owner: 'smileorigin',
+        admin: "smileorigin",
+        createIssueManually: true,
+        distractionFreeMode: false
+    })
+    gitalk.render('comment-container')
+</script>
+
+
+    </div>
+</div>
+
+
+</div>
+                
+                
+                    <div class="column is-3-tablet is-3-desktop is-3-widescreen has-order-3 is-hidden-touch is-hidden-desktop-only column-right is-sticky">
+                        
+
+    <div class="widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#数据库和数据准备">
+        <span class="has-mr-6">1</span>
+        <span>数据库和数据准备</span>
+        </a></li><li>
+        <a class="is-flex" href="#题目">
+        <span class="has-mr-6">2</span>
+        <span>题目</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#查询STUDENT表中的所有记录的SNAME、SSEX和CLASS列">
+        <span class="has-mr-6">2.1</span>
+        <span>查询STUDENT表中的所有记录的SNAME、SSEX和CLASS列</span>
+        </a></li><li>
+        <a class="is-flex" href="#查询教师所有的单位即不重复的DEPART列">
+        <span class="has-mr-6">2.2</span>
+        <span>查询教师所有的单位即不重复的DEPART列</span>
+        </a></li><li>
+        <a class="is-flex" href="#查询STUDENT表的所有记录">
+        <span class="has-mr-6">2.3</span>
+        <span>查询STUDENT表的所有记录</span>
+        </a></li><li>
+        <a class="is-flex" href="#查询SCORE表中成绩在60到80之间的所有记录">
+        <span class="has-mr-6">2.4</span>
+        <span>查询SCORE表中成绩在60到80之间的所有记录</span>
+        </a></li><li>
+        <a class="is-flex" href="#查询SCORE表中成绩为85，86或88的记录">
+        <span class="has-mr-6">2.5</span>
+        <span>查询SCORE表中成绩为85，86或88的记录</span>
+        </a></li><li>
+        <a class="is-flex" href="#查询STUDENT表中“95031”班或性别为“女”的同学记录">
+        <span class="has-mr-6">2.6</span>
+        <span>查询STUDENT表中“95031”班或性别为“女”的同学记录</span>
+        </a></li><li>
+        <a class="is-flex" href="#以CLASS降序查询STUDENT表的所有记录">
+        <span class="has-mr-6">2.7</span>
+        <span>以CLASS降序查询STUDENT表的所有记录</span>
+        </a></li><li>
+        <a class="is-flex" href="#以CNO升序、DEGREE降序查询SCORE表的所有记录">
+        <span class="has-mr-6">2.8</span>
+        <span>以CNO升序、DEGREE降序查询SCORE表的所有记录</span>
+        </a></li><li>
+        <a class="is-flex" href="#查询“95031”班的学生人数">
+        <span class="has-mr-6">2.9</span>
+        <span>查询“95031”班的学生人数</span>
+        </a></li><li>
+        <a class="is-flex" href="#查询SCORE表中的最高分的学生学号和课程号">
+        <span class="has-mr-6">2.10</span>
+        <span>查询SCORE表中的最高分的学生学号和课程号</span>
+        </a></li><li>
+        <a class="is-flex" href="#查询‘3-105’号课程的平均分">
+        <span class="has-mr-6">2.11</span>
+        <span>查询‘3-105’号课程的平均分</span>
+        </a></li><li>
+        <a class="is-flex" href="#查询SCORE表中至少有2名学生选修的并以3开头的课程的平均分数">
+        <span class="has-mr-6">2.12</span>
+        <span>查询SCORE表中至少有2名学生选修的并以3开头的课程的平均分数</span>
+        </a></li><li>
+        <a class="is-flex" href="#查询最低分大于70，最高分小于90的SNO列">
+        <span class="has-mr-6">2.13</span>
+        <span>查询最低分大于70，最高分小于90的SNO列</span>
+        </a></li><li>
+        <a class="is-flex" href="#查询所有学生的SNAME、CNO和DEGREE列">
+        <span class="has-mr-6">2.14</span>
+        <span>查询所有学生的SNAME、CNO和DEGREE列</span>
+        </a></li><li>
+        <a class="is-flex" href="#查询所有学生的SNO、CNAME和DEGREE列">
+        <span class="has-mr-6">2.15</span>
+        <span>查询所有学生的SNO、CNAME和DEGREE列</span>
+        </a></li><li>
+        <a class="is-flex" href="#查询所有学生的SNAME、CNAME和DEGREE列">
+        <span class="has-mr-6">2.16</span>
+        <span>查询所有学生的SNAME、CNAME和DEGREE列</span>
+        </a></li><li>
+        <a class="is-flex" href="#查询“95033”班所选课程的平均分">
+        <span class="has-mr-6">2.17</span>
+        <span>查询“95033”班所选课程的平均分</span>
+        </a></li><li>
+        <a class="is-flex" href="#假设使用如下命令建立了一个grade表">
+        <span class="has-mr-6">2.18</span>
+        <span>假设使用如下命令建立了一个grade表</span>
+        </a></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img class="logo-img" src="/images/logo.svg" alt="MySQL练习" height="28" />
+                    <img class="logo-img-dark" src="/images/logo-dark.svg" alt="MySQL练习" height="28" />
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Thomas Woo&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://smileorigin.site',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

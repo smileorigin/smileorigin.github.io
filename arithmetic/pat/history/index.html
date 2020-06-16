@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <script type="text/javascript" src="/js/dark.js"></script>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+
+
+<meta name="keywords" content="Android,JavaScript,Java,Database">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>PAT解题记录 - Thomas Woo</title>
+
+
+    <meta name="description" content="题目来自PAT网站的 BasicLevel 题目本文用来记录个人解答的PAT题目，仅供个人学习使用，未经允许不得转载，以下均为Python3解法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PAT解题记录">
+<meta property="og:url" content="http://smileorigin.site/arithmetic/pat/history/index.html">
+<meta property="og:site_name" content="Thomas Woo">
+<meta property="og:description" content="题目来自PAT网站的 BasicLevel 题目本文用来记录个人解答的PAT题目，仅供个人学习使用，未经允许不得转载，以下均为Python3解法">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://smileorigin.site/images/og_image.png">
+<meta property="article:published_time" content="2018-08-03T13:50:00.000Z">
+<meta property="article:modified_time" content="2020-06-13T11:57:00.180Z">
+<meta property="article:author" content="Thomas Woo">
+<meta property="article:tag" content="Experience">
+<meta property="article:tag" content="Original">
+<meta property="article:tag" content="PAT">
+<meta property="article:tag" content="BasicLevel">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://smileorigin.site/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110922455-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110922455-1');
+</script>
+
+    
+    <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?33cec7dfd968d9ffd9ff2a5da2be77d0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img class="logo-img" src="/images/logo.svg" alt="PAT解题记录" height="28" />
+                <img class="logo-img-dark" src="/images/logo-dark.svg" alt="PAT解题记录" height="28" />
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/album">Album</a>
+                
+                <a class="navbar-item"
+                href="/bbs">BBS</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                <a class="navbar-item" id="dark-switch" title="Dark Mode" href="javascript:;">
+                    <i class="fas fa-moon" id="dark-icon"></i>
+                </a>
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns columns-center">
+                <div class="column is-9-widescreen is-12 has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-08-03T13:50:00.000Z">2018-08-03</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Arithmetic/">Arithmetic</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    36 分钟 读完 (大约 5432 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                PAT解题记录
+            
+        </h1>
+        <div class="content">
+            <p>题目来自<a href="https://pintia.cn/problem-sets/994805260223102976/problems">PAT网站</a>的 BasicLevel 题目<br>本文用来记录个人解答的PAT题目，仅供个人学习使用，未经允许不得转载，以下均为Python3解法</p>
+<a id="more"></a>
+
+<h2 id="1001-害死人不偿命的-3n-1-猜想-15"><a href="#1001-害死人不偿命的-3n-1-猜想-15" class="headerlink" title="1001 害死人不偿命的(3n+1)猜想 (15)"></a>1001 害死人不偿命的(3n+1)猜想 (15)</h2><p>卡拉兹(Callatz)猜想：<br>对任何一个自然数n，如果它是偶数，那么把它砍掉一半；如果它是奇数，那么把(3n+1)砍掉一半。这样一直反复砍下去，最后一定在某一步得到n=1。卡拉兹在1950年的世界数学家大会上公布了这个猜想，传说当时耶鲁大学师生齐动员，拼命想证明这个貌似很傻很天真的命题，结果闹得学生们无心学业，一心只证(3n+1)，以至于有人说这是一个阴谋，卡拉兹是在蓄意延缓美国数学界教学与科研的进展……<br>我们今天的题目不是证明卡拉兹猜想，而是对给定的任一不超过1000的正整数n，简单地数一下，需要多少步（砍几下）才能得到n=1？<br><strong>输入格式：</strong>每个测试输入包含1个测试用例，即给出自然数n的值。<br><strong>输出格式：</strong>输出从n计算到1需要的步数。<br><strong>输入样例：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p><strong>Solution</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(n)</span>:</span></span><br><span class="line">  step = <span class="number">0</span></span><br><span class="line">  <span class="keyword">while</span> n &gt; <span class="number">1</span>:</span><br><span class="line">    step += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> n % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">      n /= <span class="number">2</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      n = (<span class="number">3</span> * n + <span class="number">1</span>) / <span class="number">2</span></span><br><span class="line">  <span class="keyword">return</span> step</span><br><span class="line"></span><br><span class="line">test = int(input())</span><br><span class="line">print(solution(test))</span><br></pre></td></tr></table></figure>
+
+<h2 id="1002-写出这个数-20"><a href="#1002-写出这个数-20" class="headerlink" title="1002 写出这个数 (20)"></a>1002 写出这个数 (20)</h2><p>读入一个自然数n，计算其各位数字之和，用汉语拼音写出和的每一位数字。<br><strong>输入格式：</strong>每个测试输入包含1个测试用例，即给出自然数n的值。这里保证n小于10^100^。<br><strong>输出格式：</strong>在一行内输出n的各位数字之和的每一位，拼音数字间有1 空格，但一行中最后一个拼音数字后没有空格。<br><strong>输入样例：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1234567890987654321123456789</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例：</strong></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yi <span class="keyword">san</span> <span class="keyword">wu</span></span><br></pre></td></tr></table></figure>
+<p><strong>Solution</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(n)</span>:</span></span><br><span class="line">  sum_str = str(sum(map(int, n)))</span><br><span class="line">  table = &#123;<span class="string">'0'</span>:<span class="string">'ling'</span>, <span class="string">'1'</span>:<span class="string">'yi'</span>, <span class="string">'2'</span>:<span class="string">'er'</span>, <span class="string">'3'</span>:<span class="string">'san'</span>, <span class="string">'4'</span>:<span class="string">'si'</span>, <span class="string">'5'</span>:<span class="string">'wu'</span>, <span class="string">'6'</span>:<span class="string">'liu'</span>, <span class="string">'7'</span>:<span class="string">'qi'</span>, <span class="string">'8'</span>:<span class="string">'ba'</span>, <span class="string">'9'</span>:<span class="string">'jiu'</span>&#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">' '</span>.join([table[key] <span class="keyword">for</span> key <span class="keyword">in</span> sum_str])</span><br><span class="line"></span><br><span class="line">test = input()</span><br><span class="line">print(solution(test))</span><br></pre></td></tr></table></figure>
+
+<h2 id="1004-成绩排名-20"><a href="#1004-成绩排名-20" class="headerlink" title="1004 成绩排名 (20)"></a>1004 成绩排名 (20)</h2><p>读入n名学生的姓名、学号、成绩，分别输出成绩最高和成绩最低学生的姓名和学号。<br><strong>输入格式：</strong>每个测试输入包含1个测试用例，格式为:</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">第<span class="number">1</span>行：正整数n</span><br><span class="line">第<span class="number">2</span>行：第<span class="number">1</span>个学生的姓名 学号 成绩</span><br><span class="line">第<span class="number">3</span>行：第<span class="number">2</span>个学生的姓名 学号 成绩</span><br><span class="line">... ... ...</span><br><span class="line">第n+<span class="number">1</span>行：第n个学生的姓名 学号 成绩</span><br></pre></td></tr></table></figure>
+<p>其中姓名和学号均为不超过10个字符的字符串，成绩为0到100之间的一个整数，这里保证在一组测试用例中没有两个学生的成绩是相同的。<br><strong>输出格式：</strong>对每个测试用例输出2行，第1行是成绩最高学生的姓名和学号，第2行是成绩最低学生的姓名和学号，字符串间有1空格。<br><strong>输入样例：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span></span><br><span class="line">Joe Math990112 <span class="number">89</span></span><br><span class="line">Mike CS991301 <span class="number">100</span></span><br><span class="line">Mary EE990830 <span class="number">95</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例：</strong></p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Mike</span> <span class="string">CS991301</span></span><br><span class="line"><span class="attr">Joe</span> <span class="string">Math990112</span></span><br></pre></td></tr></table></figure>
+<p><strong>Solution</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(count, grades)</span>:</span></span><br><span class="line">  grades = sorted(grades, key=<span class="keyword">lambda</span> grade: int(grade[<span class="number">2</span>]), reverse=<span class="literal">True</span>)</span><br><span class="line">  print(<span class="string">'&#123;&#125; &#123;&#125;'</span>.format(grades[<span class="number">0</span>][<span class="number">0</span>], grades[<span class="number">0</span>][<span class="number">1</span>]))</span><br><span class="line">  print(<span class="string">'&#123;&#125; &#123;&#125;'</span>.format(grades[count<span class="number">-1</span>][<span class="number">0</span>], grades[count<span class="number">-1</span>][<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line">count = int(input())</span><br><span class="line">data = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(count):</span><br><span class="line">  data.append(input().split(<span class="string">' '</span>))</span><br><span class="line">solution(count, data)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1006-换个格式输出整数-15"><a href="#1006-换个格式输出整数-15" class="headerlink" title="1006 换个格式输出整数 (15)"></a>1006 换个格式输出整数 (15)</h2><p>让我们用字母B来表示“百”、字母S表示“十”，用“12…n”来表示个位数字n（&amp;lt10），换个格式来输出任一个不超过3位的正整数。例如234应该被输出为BBSSS1234，因为它有2个“百”、3个“十”、以及个位的4。<br><strong>输入格式：</strong>每个测试输入包含1个测试用例，给出正整数n（&amp;lt1000）。<br><strong>输出格式：</strong>每个测试用例的输出占一行，用规定的格式输出n。<br><strong>输入样例1：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">234</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BBSSS1234</span><br></pre></td></tr></table></figure>
+<p><strong>输入样例2：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">23</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SS123</span><br></pre></td></tr></table></figure>
+<p><strong>Solution</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(n)</span>:</span></span><br><span class="line">  nums = list(map(int, n))</span><br><span class="line">  nums = [<span class="number">0</span>] * (<span class="number">3</span> - len(nums)) + nums</span><br><span class="line">  print(<span class="string">'B'</span> * nums[<span class="number">0</span>] + <span class="string">'S'</span> * nums[<span class="number">1</span>] + <span class="string">''</span>.join([str(num) <span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">1</span>, nums[<span class="number">2</span>]+<span class="number">1</span>)]))</span><br><span class="line"></span><br><span class="line">test = input()</span><br><span class="line">solution(test)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1009-说反话-20"><a href="#1009-说反话-20" class="headerlink" title="1009 说反话 (20)"></a>1009 说反话 (20)</h2><p>给定一句英语，要求你编写程序，将句中所有单词的顺序颠倒输出。<br><strong>输入格式：</strong>测试输入包含一个测试用例，在一行内给出总长度不超过80的字符串。字符串由若干单词和若干空格组成，其中单词是由英文字母（大小写有区分）组成的字符串，单词之间用1个空格分开，输入保证句子末尾没有多余的空格。<br><strong>输出格式：</strong>每个测试用例的输出占一行，输出倒序后的句子。<br><strong>输入样例：</strong></p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Hello World Here I Come</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例：</strong></p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Come I Here World Hello</span></span><br></pre></td></tr></table></figure>
+<p><strong>Solution</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(english)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">' '</span>.join(english[::<span class="number">-1</span>])</span><br><span class="line"></span><br><span class="line">english = input().split()</span><br><span class="line">print(solution(english))</span><br></pre></td></tr></table></figure>
+
+<h2 id="1010-一元多项式求导（25）"><a href="#1010-一元多项式求导（25）" class="headerlink" title="1010 一元多项式求导（25）"></a>1010 一元多项式求导（25）</h2><p>设计函数求一元多项式的导数。（注：xn（n为整数）的一阶导数为nxn−1。）<br><strong>输入格式:</strong><br>以指数递降方式输入多项式非零项系数和指数（绝对值均为不超过 1000 的整数）。数字间以空格分隔。<br><strong>输出格式:</strong><br>以与输入相同的格式输出导数多项式非零项的系数和指数。数字间以空格分隔，但结尾不能有多余空格。注意“零多项式”的指数和系数都是 0，但是表示为 <code>0 0</code>。<br><strong>输入样例:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span> <span class="number">4</span> <span class="number">-5</span> <span class="number">2</span> <span class="number">6</span> <span class="number">1</span> <span class="number">-2</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">12</span> <span class="number">3</span> <span class="number">-10</span> <span class="number">1</span> <span class="number">6</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p><strong>Solution:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(nums)</span>:</span></span><br><span class="line">    result = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(nums), <span class="number">2</span>):</span><br><span class="line">        coe, index = nums[i], nums[i+<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> index == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        result.append(<span class="string">'&#123;&#125; &#123;&#125;'</span>.format(coe*index, index<span class="number">-1</span>))</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> result:</span><br><span class="line">        result.append(<span class="string">'0 0'</span>)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">nums = list(map(int, input().split()))</span><br><span class="line">print(<span class="string">' '</span>.join(solution(nums)))</span><br></pre></td></tr></table></figure>
+
+<h2 id="1011-A-B和C-15"><a href="#1011-A-B和C-15" class="headerlink" title="1011 A+B和C (15)"></a>1011 A+B和C (15)</h2><p>给定区间[-2^31, 2^31]内的3个整数A、B和C，请判断A+B是否大于C。<br><strong>输入格式：</strong><br>输入第1行给出正整数T(&lt;=10)，是测试用例的个数。随后给出T组测试用例，每组占一行，顺序给出A、B和C。整数间以空格分隔。<br><strong>输出格式：</strong><br>对每组测试用例，在一行中输出“Case #X: true”如果A+B&gt;C，否则输出“Case #X: false”，其中X是测试用例的编号（从1开始）。<br><strong>输入样例：</strong></p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span></span><br><span class="line"><span class="symbol">1 </span><span class="number">2</span> <span class="number">3</span></span><br><span class="line"><span class="symbol">2 </span><span class="number">3</span> <span class="number">4</span></span><br><span class="line"><span class="symbol">2147483647 </span><span class="number">0</span> <span class="number">2147483646</span></span><br><span class="line"><span class="symbol">0 </span>-<span class="number">2147483648</span> -<span class="number">2147483647</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例：</strong></p>
+<figure class="highlight cal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Case</span> <span class="string">#1</span>: <span class="literal">false</span></span><br><span class="line"><span class="keyword">Case</span> <span class="string">#2</span>: <span class="literal">true</span></span><br><span class="line"><span class="keyword">Case</span> <span class="string">#3</span>: <span class="literal">true</span></span><br><span class="line"><span class="keyword">Case</span> <span class="string">#4</span>: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p><strong>Solution</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(abcs)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(abcs)):</span><br><span class="line">        print(<span class="string">'Case #&#123;&#125;: &#123;&#125;'</span>.format(i + <span class="number">1</span>, str(abcs[i][<span class="number">0</span>] + abcs[i][<span class="number">1</span>] &gt; abcs[i][<span class="number">2</span>]).lower()))</span><br><span class="line"></span><br><span class="line">count = int(input())</span><br><span class="line">abcs = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(count):</span><br><span class="line">    abcs.append(list(map(int, input().split())))</span><br><span class="line">solution(abcs)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1012-数字分类-20"><a href="#1012-数字分类-20" class="headerlink" title="1012 数字分类 (20)"></a>1012 数字分类 (20)</h2><p>给定一系列正整数，请按要求对数字进行分类，并输出以下5个数字：<br>A1 = 能被5整除的数字中所有偶数的和；<br>A2 = 将被5除后余1的数字按给出顺序进行交错求和，即计算n1-n2+n3-n4…；<br>A3 = 被5除后余2的数字的个数；<br>A4 = 被5除后余3的数字的平均数，精确到小数点后1位；<br>A5 = 被5除后余4的数字中最大数字。<br><strong>输入格式：</strong><br>每个输入包含1个测试用例。每个测试用例先给出一个不超过1000的正整数N，随后给出N个不超过1000的待分类的正整数。数字间以空格分隔。<br><strong>输出格式：</strong><br>对给定的N个正整数，按题目要求计算A1~A5并在一行中顺序输出。数字间以空格分隔，但行末不得有多余空格。<br>若其中某一类数字不存在，则在相应位置输出“N”。<br><strong>输入样例1：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">13</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="number">9</span> <span class="number">10</span> <span class="number">20</span> <span class="number">16</span> <span class="number">18</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例1：</strong></p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">30 </span><span class="number">11</span> <span class="number">2</span> <span class="number">9.7</span> <span class="number">9</span></span><br></pre></td></tr></table></figure>
+<p><strong>输入样例2：</strong></p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">8 </span><span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">9</span> <span class="number">16</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例2：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">N <span class="number">11</span> <span class="number">2</span> N <span class="number">9</span></span><br></pre></td></tr></table></figure>
+<p><strong>Solution</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(nums)</span>:</span></span><br><span class="line">    a1, a2, a3, a4, a5 = <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, [], []</span><br><span class="line">    symbol, flag = <span class="number">1</span>, <span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">        remainder = num % <span class="number">5</span></span><br><span class="line">        <span class="keyword">if</span> remainder == <span class="number">0</span> <span class="keyword">and</span> num % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">            a1 += num</span><br><span class="line">        <span class="keyword">elif</span> remainder == <span class="number">1</span>:</span><br><span class="line">            a2 = a2 + symbol * num</span><br><span class="line">            symbol *= <span class="number">-1</span></span><br><span class="line">            flag = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">elif</span> remainder == <span class="number">2</span>:</span><br><span class="line">            a3 += <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> remainder == <span class="number">3</span>:</span><br><span class="line">            a4.append(num)</span><br><span class="line">        <span class="keyword">elif</span> remainder == <span class="number">4</span>:</span><br><span class="line">            a5.append(num)</span><br><span class="line">    a1 = a1 <span class="keyword">if</span> a1 &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="string">'N'</span></span><br><span class="line">    a2 = a2 <span class="keyword">if</span> flag &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="string">'N'</span></span><br><span class="line">    a3 = a3 <span class="keyword">if</span> a3 &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="string">'N'</span></span><br><span class="line">    a4 = round(sum(a4) / len(a4), <span class="number">1</span>) <span class="keyword">if</span> len(a4) &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="string">'N'</span></span><br><span class="line">    a5 = max(a5) <span class="keyword">if</span> len(a5) &gt; <span class="number">0</span> <span class="keyword">else</span> <span class="string">'N'</span></span><br><span class="line">    print(a1, a2, a3, a4, a5)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">nums = list(map(int, input().split()))</span><br><span class="line">solution(nums[<span class="number">1</span>:])</span><br></pre></td></tr></table></figure>
+
+<h2 id="1017-A除以B（20）"><a href="#1017-A除以B（20）" class="headerlink" title="1017 A除以B（20）"></a>1017 A除以B（20）</h2><p>本题要求计算 A/B，其中 A 是不超过 1000 位的正整数，B 是 1 位正整数。你需要输出商数 Q 和余数 R，使得 A=B×Q+R 成立。<br><strong>输入格式:</strong><br>输入在一行中依次给出 A 和 B，中间以 1 空格分隔。<br><strong>输出格式：</strong><br>在一行中依次输出 Q 和 R，中间以 1 空格分隔。<br><strong>输入样例：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123456789050987654321</span> <span class="number">7</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">17636684150141093474</span> <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<p><strong>Solution:</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    q = a // b</span><br><span class="line">    r = a % b</span><br><span class="line">    print(q, r)</span><br><span class="line"></span><br><span class="line">a, b = list(map(int, input().split()))</span><br><span class="line">solution(a, b)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1021-个位数统计-15"><a href="#1021-个位数统计-15" class="headerlink" title="1021 个位数统计 (15)"></a>1021 个位数统计 (15)</h2><p>给定一个k位整数N = d<del>k-1</del><em>10^k-1^ + … + d<del>1</del></em>10^1^ + d<del>0</del> (0&lt;=d<del>i</del>&lt;=9, i=0,…,k-1, d<del>k-1</del>&gt;0)，请编写程序统计每种不同的个位数字出现的次数。例如：给定N = 100311，则有2个0，3个1，和1个3。<br><strong>输入格式：</strong><br>每个输入包含1个测试用例，即一个不超过1000位的正整数N。<br><strong>输出格式：</strong><br>对N中每一种不同的个位数字，以D:M的格式在一行中输出该位数字D及其在N中出现的次数M。要求按D的升序输出。<br><strong>输入样例：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">100311</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>:<span class="number">2</span></span><br><span class="line"><span class="number">1</span>:<span class="number">3</span></span><br><span class="line"><span class="number">3</span>:<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p><strong>Solution</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> operator</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(num)</span>:</span></span><br><span class="line">  result = &#123;&#125;</span><br><span class="line">  num = list(num)</span><br><span class="line">  num.sort()</span><br><span class="line">  <span class="keyword">for</span> key <span class="keyword">in</span> num:</span><br><span class="line">    <span class="keyword">if</span> key <span class="keyword">in</span> result:</span><br><span class="line">      result[key] += <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      result[key] = <span class="number">1</span></span><br><span class="line">  <span class="keyword">for</span> k,v <span class="keyword">in</span> result.items():</span><br><span class="line">    print(<span class="string">'&#123;&#125;:&#123;&#125;'</span>.format(k,v))</span><br><span class="line">test = input()</span><br><span class="line">solution(test)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1023-组个最小数-20"><a href="#1023-组个最小数-20" class="headerlink" title="1023 组个最小数 (20)"></a>1023 组个最小数 (20)</h2><p>给定数字0-9各若干个。你可以以任意顺序排列这些数字，但必须全部使用。目标是使得最后得到的数尽可能小（注意0不能做首位）。例如：给定两个0，两个1，三个5，一个8，我们得到的最小的数就是10015558。<br>现给定数字，请编写程序输出能够组成的最小的数。<br><strong>输入格式：</strong><br>每个输入包含1个测试用例。每个测试用例在一行中给出10个非负整数，顺序表示我们拥有数字0、数字1、……数字9的个数。整数间用一个空格分隔。10个数字的总个数不超过50，且至少拥有1个非0的数字。<br><strong>输出格式：</strong><br>在一行中输出能够组成的最小的数。<br><strong>输入样例：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> <span class="number">2</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">3</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10015558</span></span><br></pre></td></tr></table></figure>
+<p><strong>Solution</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(counts)</span>:</span></span><br><span class="line">    result = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">10</span>):</span><br><span class="line">      result += str(i) * counts[i]</span><br><span class="line">    <span class="keyword">return</span> result[<span class="number">0</span>] + <span class="string">'0'</span> * counts[<span class="number">0</span>] + result[<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">counts = list(map(int, input().split(<span class="string">' '</span>)))</span><br><span class="line">print(solution(counts))</span><br></pre></td></tr></table></figure>
+
+<h2 id="1031-查验身份证-15"><a href="#1031-查验身份证-15" class="headerlink" title="1031 查验身份证(15)"></a>1031 查验身份证(15)</h2><p>一个合法的身份证号码由17位地区、日期编号和顺序编号加1位校验码组成。校验码的计算规则如下：<br>首先对前17位数字加权求和，权重分配为：{7，9，10，5，8，4，2，1，6，3，7，9，10，5，8，4，2}；然后将计算的和对11取模得到值Z；最后按照以下关系对应Z值与校验码M的值：<br>Z：0 1 2 3 4 5 6 7 8 9 10\ M：1 0 X 9 8 7 6 5 4 3 2<br>现在给定一些身份证号码，请你验证校验码的有效性，并输出有问题的号码。<br><strong>输入格式：</strong><br>输入第一行给出正整数N（&lt;= 100）是输入的身份证号码的个数。随后N行，每行给出1个18位身份证号码。<br><strong>输出格式：</strong><br>按照输入的顺序每行输出1个有问题的身份证号码。这里并不检验前17位是否合理，只检查前17位是否全为数字且最后1位校验码计算准确。如果所有号码都正常，则输出“All passed”。<br><strong>输入样例1：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">320124198808240056</span></span><br><span class="line"><span class="number">12010</span>X198901011234</span><br><span class="line"><span class="number">110108196711301866</span></span><br><span class="line"><span class="number">37070419881216001</span>X</span><br></pre></td></tr></table></figure>
+<p><strong>输出样例1：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">12010</span>X198901011234</span><br><span class="line"><span class="number">110108196711301866</span></span><br><span class="line"><span class="number">37070419881216001</span>X</span><br></pre></td></tr></table></figure>
+<p><strong>输入样例2：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">320124198808240056</span></span><br><span class="line"><span class="number">110108196711301862</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例2：</strong></p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">All</span> passed</span><br></pre></td></tr></table></figure>
+<p><strong>Solution</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(ids)</span>:</span></span><br><span class="line">  table = &#123;<span class="number">0</span>:<span class="string">'1'</span>, <span class="number">1</span>:<span class="string">'0'</span>, <span class="number">2</span>:<span class="string">'X'</span>, <span class="number">3</span>:<span class="string">'9'</span>, <span class="number">4</span>:<span class="string">'8'</span>, <span class="number">5</span>:<span class="string">'7'</span>, <span class="number">6</span>:<span class="string">'6'</span>, <span class="number">7</span>:<span class="string">'5'</span>, <span class="number">8</span>:<span class="string">'4'</span>, <span class="number">9</span>:<span class="string">'3'</span>, <span class="number">10</span>:<span class="string">'2'</span>&#125;</span><br><span class="line">  weight = [<span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">2</span>]</span><br><span class="line">  flag = <span class="literal">True</span></span><br><span class="line">  <span class="keyword">for</span> id <span class="keyword">in</span> ids:</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> id[:<span class="number">17</span>].isdigit():</span><br><span class="line">      print(id)</span><br><span class="line">      flag = <span class="literal">False</span></span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    weight_sum = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">17</span>):</span><br><span class="line">      weight_sum += int(id[i]) * weight[i]</span><br><span class="line">    <span class="keyword">if</span> table[weight_sum % <span class="number">11</span>] != id[<span class="number">17</span>]:</span><br><span class="line">      print(id)</span><br><span class="line">      flag = <span class="literal">False</span></span><br><span class="line">  <span class="keyword">if</span> (flag):</span><br><span class="line">    print(<span class="string">'All passed'</span>)</span><br><span class="line"></span><br><span class="line">count = int(input())</span><br><span class="line">data = [input() <span class="keyword">for</span> i <span class="keyword">in</span> range(count)]</span><br><span class="line">solution(data)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1037-在霍格沃茨找零钱（20）"><a href="#1037-在霍格沃茨找零钱（20）" class="headerlink" title="1037 在霍格沃茨找零钱（20）"></a>1037 在霍格沃茨找零钱（20）</h2><p>如果你是哈利·波特迷，你会知道魔法世界有它自己的货币系统 —— 就如海格告诉哈利的：“十七个银西可(Sickle)兑一个加隆(Galleon)，二十九个纳特(Knut)兑一个西可，很容易。”现在，给定哈利应付的价钱P和他实付的钱A，你的任务是写一个程序来计算他应该被找的零钱。<br><strong>输入格式：</strong><br>输入在1行中分别给出P和A，格式为“Galleon.Sickle.Knut”，其间用1个空格分隔。这里Galleon是[0, 10^7^]区间内的整数，Sickle是[0, 17)区间内的整数，Knut是[0, 29)区间内的整数。<br><strong>输出格式：</strong><br>在一行中用与输入同样的格式输出哈利应该被找的零钱。如果他没带够钱，那么输出的应该是负数。<br><strong>输入样例1：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10.16</span><span class="number">.27</span> <span class="number">14.1</span><span class="number">.28</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例1：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3.2</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+<p><strong>输入样例2：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">14.1</span><span class="number">.28</span> <span class="number">10.16</span><span class="number">.27</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例2：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">-3.2</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+<p><strong>Solution</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(p, a)</span>:</span></span><br><span class="line">    <span class="comment"># 1*Galleon--&gt;17*Sickle  1*Sickle--&gt;29*Knut</span></span><br><span class="line">    <span class="comment"># Galleon Sickle Knut</span></span><br><span class="line">    p_knut = p[<span class="number">0</span>] * <span class="number">17</span> * <span class="number">29</span> + p[<span class="number">1</span>] * <span class="number">29</span> + p[<span class="number">2</span>]</span><br><span class="line">    a_knut = a[<span class="number">0</span>] * <span class="number">17</span> * <span class="number">29</span> + a[<span class="number">1</span>] * <span class="number">29</span> + a[<span class="number">2</span>]</span><br><span class="line">    change = a_knut - p_knut</span><br><span class="line">    symbol = <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> change &lt; <span class="number">0</span>:</span><br><span class="line">        change = abs(change)</span><br><span class="line">        symbol = <span class="number">-1</span></span><br><span class="line">    change_galleon = change // (<span class="number">17</span> * <span class="number">29</span>)</span><br><span class="line">    change_sickle = change % (<span class="number">17</span> * <span class="number">29</span>) // <span class="number">29</span></span><br><span class="line">    change_kunt = change % <span class="number">29</span></span><br><span class="line">    print(<span class="string">'&#123;&#125;.&#123;&#125;.&#123;&#125;'</span>.format(change_galleon * symbol, change_sickle, change_kunt))</span><br><span class="line"></span><br><span class="line">pa = input().split()</span><br><span class="line">p = list(map(int, pa[<span class="number">0</span>].split(<span class="string">'.'</span>)))</span><br><span class="line">a = list(map(int, pa[<span class="number">1</span>].split(<span class="string">'.'</span>)))</span><br><span class="line">solution(p, a)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1038-统计同成绩学生-20"><a href="#1038-统计同成绩学生-20" class="headerlink" title="1038 统计同成绩学生(20)"></a>1038 统计同成绩学生(20)</h2><p>本题要求读入N名学生的成绩，将获得某一给定分数的学生人数输出。<br><strong>输入格式：</strong><br>输入在第1行给出不超过10^5^的正整数N，即学生总人数。随后1行给出N名学生的百分制整数成绩，中间以空格分隔。最后1行给出要查询的分数个数K（不超过N的正整数），随后是K个分数，中间以空格分隔。<br><strong>输出格式：</strong><br>在一行中按查询顺序给出得分等于指定分数的学生人数，中间以空格分隔，但行末不得有多余空格。<br><strong>输入样例：</strong></p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span></span><br><span class="line"><span class="symbol">60 </span><span class="number">75</span> <span class="number">90</span> <span class="number">55</span> <span class="number">75</span> <span class="number">99</span> <span class="number">82</span> <span class="number">90</span> <span class="number">75</span> <span class="number">50</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">75</span> <span class="number">90</span> <span class="number">88</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例：</strong></p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">3 </span><span class="number">2</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p><strong>Solution</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(grades, targets)</span>:</span></span><br><span class="line">    result = &#123;target:<span class="number">0</span> <span class="keyword">for</span> target <span class="keyword">in</span> targets&#125;</span><br><span class="line">    <span class="keyword">for</span> grade <span class="keyword">in</span> grades:</span><br><span class="line">        <span class="keyword">if</span> grade <span class="keyword">in</span> result:</span><br><span class="line">            result[grade] += <span class="number">1</span></span><br><span class="line">    print(<span class="string">' '</span>.join(map(str, [result[target] <span class="keyword">for</span> target <span class="keyword">in</span> targets])))</span><br><span class="line"></span><br><span class="line">input()</span><br><span class="line">grades = list(map(int, input().split()))</span><br><span class="line">targets = list(map(int, input().split()))</span><br><span class="line">solution(grades, targets[<span class="number">1</span>:])</span><br></pre></td></tr></table></figure>
+
+<h2 id="1041-考试座位号-15"><a href="#1041-考试座位号-15" class="headerlink" title="1041 考试座位号(15)"></a>1041 考试座位号(15)</h2><p>每个PAT考生在参加考试时都会被分配两个座位号，一个是试机座位，一个是考试座位。正常情况下，考生在入场时先得到试机座位号码，入座进入试机状态后，系统会显示该考生的考试座位号码，考试时考生需要换到考试座位就座。但有些考生迟到了，试机已经结束，他们只能拿着领到的试机座位号码求助于你，从后台查出他们的考试座位号码。<br><strong>输入格式：</strong><br>输入第一行给出一个正整数N（&lt;=1000），随后N行，每行给出一个考生的信息：“准考证号 试机座位号 考试座位号”。其中准考证号由14位数字组成，座位从1到N编号。输入保证每个人的准考证号都不同，并且任何时候都不会把两个人分配到同一个座位上。<br>考生信息之后，给出一个正整数M（&lt;=N），随后一行中给出M个待查询的试机座位号码，以空格分隔。<br><strong>输出格式：</strong><br>对应每个需要查询的试机座位号码，在一行中输出对应考生的准考证号和考试座位号码，中间用1个空格分隔。<br><strong>输入样例：</strong></p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4</span></span><br><span class="line"><span class="symbol">10120150912233 </span><span class="number">2</span> <span class="number">4</span></span><br><span class="line"><span class="symbol">10120150912119 </span><span class="number">4</span> <span class="number">1</span></span><br><span class="line"><span class="symbol">10120150912126 </span><span class="number">1</span> <span class="number">3</span></span><br><span class="line"><span class="symbol">10120150912002 </span><span class="number">3</span> <span class="number">2</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例：</strong></p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">10120150912002 </span><span class="number">2</span></span><br><span class="line"><span class="symbol">10120150912119 </span><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p><strong>Solution</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(datas, targets)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> target <span class="keyword">in</span> targets:</span><br><span class="line">        <span class="keyword">if</span> target <span class="keyword">in</span> datas:</span><br><span class="line">            print(datas[target])</span><br><span class="line"></span><br><span class="line">n = int(input())</span><br><span class="line">datas = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    data = input().split()</span><br><span class="line">    datas[data[<span class="number">1</span>]] = data[<span class="number">0</span>] + <span class="string">' '</span> + data[<span class="number">2</span>]</span><br><span class="line">input()</span><br><span class="line">targets = input().split()</span><br><span class="line">solution(datas, targets)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1042-字符统计-20"><a href="#1042-字符统计-20" class="headerlink" title="1042 字符统计(20)"></a>1042 字符统计(20)</h2><p>请编写程序，找出一段给定文字中出现最频繁的那个英文字母。<br><strong>输入格式：</strong><br>输入在一行中给出一个长度不超过1000的字符串。字符串由ASCII码表中任意可见字符及空格组成，至少包含1个英文字母，以回车结束（回车不算在内）。<br><strong>输出格式：</strong><br>在一行中输出出现频率最高的那个英文字母及其出现次数，其间以空格分隔。如果有并列，则输出按字母序最小的那个字母。统计时不区分大小写，输出小写字母。<br><strong>输入样例：</strong></p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">This is a<span class="built_in"> simple </span>TEST.  There ARE numbers <span class="keyword">and</span> other symbols 1&amp;2&amp;3<span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span>.</span><br></pre></td></tr></table></figure>
+<p><strong>输出样例：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e <span class="number">7</span></span><br></pre></td></tr></table></figure>
+<p><strong>Solution</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(chars)</span>:</span></span><br><span class="line">    statistical = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> char <span class="keyword">in</span> chars:</span><br><span class="line">        <span class="keyword">if</span> char.isalpha():</span><br><span class="line">            <span class="keyword">if</span> char <span class="keyword">in</span> statistical:</span><br><span class="line">                statistical[char] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                statistical[char] = <span class="number">1</span></span><br><span class="line">    <span class="comment"># 传到key的值为元组，如:('e', 7)</span></span><br><span class="line">    key = max(sorted(statistical.items()), key=<span class="keyword">lambda</span> x:x[<span class="number">1</span>])</span><br><span class="line">    print(key[<span class="number">0</span>], key[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">chars = input().lower()</span><br><span class="line">solution(chars)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1046-划拳-15"><a href="#1046-划拳-15" class="headerlink" title="1046 划拳(15)"></a>1046 划拳(15)</h2><p>划拳是古老中国酒文化的一个有趣的组成部分。酒桌上两人划拳的方法为：每人口中喊出一个数字，同时用手比划出一个数字。如果谁比划出的数字正好等于两人喊出的数字之和，谁就赢了，输家罚一杯酒。两人同赢或两人同输则继续下一轮，直到唯一的赢家出现。<br>下面给出甲、乙两人的划拳记录，请你统计他们最后分别喝了多少杯酒。<br><strong>输入格式：</strong><br>输入第一行先给出一个正整数N（&lt;=100），随后N行，每行给出一轮划拳的记录，格式为：<br>甲喊 甲划 乙喊 乙划<br>其中“喊”是喊出的数字，“划”是划出的数字，均为不超过100的正整数（两只手一起划）。<br><strong>输出格式：</strong><br>在一行中先后输出甲、乙两人喝酒的杯数，其间以一个空格分隔。<br><strong>输入样例：</strong></p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span></span><br><span class="line"><span class="symbol">8 </span><span class="number">10</span> <span class="number">9</span> <span class="number">12</span></span><br><span class="line"><span class="symbol">5 </span><span class="number">10</span> <span class="number">5</span> <span class="number">10</span></span><br><span class="line"><span class="symbol">3 </span><span class="number">8</span> <span class="number">5</span> <span class="number">12</span></span><br><span class="line"><span class="symbol">12 </span><span class="number">18</span> <span class="number">1</span> <span class="number">13</span></span><br><span class="line"><span class="symbol">4 </span><span class="number">16</span> <span class="number">12</span> <span class="number">15</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例：</strong></p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">1 </span><span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p><strong>Solution</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(records)</span>:</span></span><br><span class="line">  first, second = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> record <span class="keyword">in</span> records:</span><br><span class="line">    <span class="comment"># 甲喊、乙喊、甲划、乙划</span></span><br><span class="line">    c1, c2, g1, g2 = record[<span class="number">0</span>], record[<span class="number">2</span>], record[<span class="number">1</span>], record[<span class="number">3</span>]</span><br><span class="line">    <span class="keyword">if</span> g1 == g2:</span><br><span class="line">      <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">elif</span> c1 + c2 == g1:</span><br><span class="line">      second += <span class="number">1</span></span><br><span class="line">    <span class="keyword">elif</span> c1 + c2 == g2:</span><br><span class="line">      first += <span class="number">1</span></span><br><span class="line">  print(first, second)</span><br><span class="line"></span><br><span class="line">n = int(input())</span><br><span class="line">records = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    records.append(list(map(int, input().split(<span class="string">' '</span>))))</span><br><span class="line">solution(records)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1047-编程团体赛-20"><a href="#1047-编程团体赛-20" class="headerlink" title="1047 编程团体赛(20)"></a>1047 编程团体赛(20)</h2><p>编程团体赛的规则为：每个参赛队由若干队员组成；所有队员独立比赛；参赛队的成绩为所有队员的成绩和；成绩最高的队获胜。<br>现给定所有队员的比赛成绩，请你编写程序找出冠军队。<br><strong>输入格式：</strong><br>输入第一行给出一个正整数N（&lt;=10000），即所有参赛队员总数。随后N行，每行给出一位队员的成绩，格式为：“队伍编号-队员编号 成绩”，其中“队伍编号”为1到1000的正整数，“队员编号”为1到10的正整数，“成绩”为0到100的整数。<br><strong>输出格式：</strong><br>在一行中输出冠军队的编号和总成绩，其间以一个空格分隔。注意：题目保证冠军队是唯一的。<br><strong>输入样例：</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">3</span><span class="number">-10</span> <span class="number">99</span></span><br><span class="line"><span class="number">11</span><span class="number">-5</span> <span class="number">87</span></span><br><span class="line"><span class="number">102</span><span class="number">-1</span> <span class="number">0</span></span><br><span class="line"><span class="number">102</span><span class="number">-3</span> <span class="number">100</span></span><br><span class="line"><span class="number">11</span><span class="number">-9</span> <span class="number">89</span></span><br><span class="line"><span class="number">3</span><span class="number">-2</span> <span class="number">61</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例：</strong></p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">11 </span><span class="number">176</span></span><br></pre></td></tr></table></figure>
+<p><strong>Solution</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(scores)</span>:</span></span><br><span class="line">    statistical_scores = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> score <span class="keyword">in</span> scores:</span><br><span class="line">        <span class="keyword">if</span> score[<span class="number">0</span>] <span class="keyword">in</span> statistical_scores:</span><br><span class="line">            statistical_scores[score[<span class="number">0</span>]] += int(score[<span class="number">2</span>])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            statistical_scores[score[<span class="number">0</span>]] = int(score[<span class="number">2</span>])</span><br><span class="line">    team_score = max(statistical_scores.items(), key=<span class="keyword">lambda</span> x:x[<span class="number">1</span>])</span><br><span class="line">    print(team_score[<span class="number">0</span>], team_score[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">n = int(input())</span><br><span class="line">scores = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    scores.append(input().replace(<span class="string">'-'</span>, <span class="string">' '</span>).split())</span><br><span class="line">solution(scores)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1053-住房空置率（20）"><a href="#1053-住房空置率（20）" class="headerlink" title="1053 住房空置率（20）"></a>1053 住房空置率（20）</h2><p>在不打扰居民的前提下，统计住房空置率的一种方法是根据每户用电量的连续变化规律进行判断。判断方法如下：</p>
+<ul>
+<li>在观察期内，若存在超过一半的日子用电量低于某给定的阈值 e，则该住房为“可能空置”；</li>
+<li>若观察期超过某给定阈值 D 天，且满足上一个条件，则该住房为“空置”。<br>现给定某居民区的住户用电量数据，请你统计“可能空置”的比率和“空置”比率，即以上两种状态的住房占居民区住房总套数的百分比。</li>
+</ul>
+<p><strong>输入格式</strong>：<br>输入第一行给出正整数 N（≤1000），为居民区住房总套数；正实数 e，即低电量阈值；正整数 D，即观察期阈值。随后 N 行，每行按以下格式给出一套住房的用电量数据：<br>K E1 E2 … EK<br>其中 K 为观察的天数，Ei 为第 i 天的用电量。<br><strong>输出格式</strong>：<br>在一行中输出“可能空置”的比率和“空置”比率的百分比值，其间以一个空格分隔，保留小数点后 1 位。<br><strong>输入样例</strong>：</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">5 </span><span class="number">0.5</span> <span class="number">10</span></span><br><span class="line"><span class="symbol">6 </span><span class="number">0.3</span> <span class="number">0.4</span> <span class="number">0.5</span> <span class="number">0.2</span> <span class="number">0.8</span> <span class="number">0.6</span></span><br><span class="line"><span class="symbol">10 </span><span class="number">0.0</span> <span class="number">0.1</span> <span class="number">0.2</span> <span class="number">0.3</span> <span class="number">0.0</span> <span class="number">0.8</span> <span class="number">0.6</span> <span class="number">0.7</span> <span class="number">0.0</span> <span class="number">0.5</span></span><br><span class="line"><span class="symbol">5 </span><span class="number">0.4</span> <span class="number">0.3</span> <span class="number">0.5</span> <span class="number">0.1</span> <span class="number">0.7</span></span><br><span class="line"><span class="symbol">11 </span><span class="number">0.1</span> <span class="number">0.1</span> <span class="number">0.1</span> <span class="number">0.1</span> <span class="number">0.1</span> <span class="number">0.1</span> <span class="number">0.1</span> <span class="number">0.1</span> <span class="number">0.1</span> <span class="number">0.1</span> <span class="number">0.1</span></span><br><span class="line"><span class="symbol">11 </span><span class="number">2</span> <span class="number">2</span> <span class="number">2</span> <span class="number">1</span> <span class="number">1</span> <span class="number">0.1</span> <span class="number">1</span> <span class="number">0.1</span> <span class="number">0.1</span> <span class="number">0.1</span> <span class="number">0.1</span></span><br></pre></td></tr></table></figure>
+<p><strong>输出样例</strong>：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">40.0</span>% <span class="number">20.0</span>%</span><br></pre></td></tr></table></figure>
+<p>（样例解释：第2、3户为“可能空置”，第4户为“空置”，其他户不是空置。）<br><strong>Solution</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(n, e, d, dates, consumptions)</span>:</span></span><br><span class="line">    count_maybe, count_must = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        consumption = consumptions[i]</span><br><span class="line">        <span class="keyword">if</span> len(list(filter(<span class="keyword">lambda</span> x: x &lt; e, consumption))) &gt; len(consumption) / <span class="number">2</span>:</span><br><span class="line">            count_maybe += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> dates[i] &gt; d:</span><br><span class="line">                count_must += <span class="number">1</span></span><br><span class="line">                count_maybe -= <span class="number">1</span></span><br><span class="line">    print(<span class="string">'&#123;&#125;% &#123;&#125;%'</span>.format(round(count_maybe / n * <span class="number">100</span>, <span class="number">1</span>), round(count_must / n * <span class="number">100</span>, <span class="number">1</span>)))</span><br><span class="line"></span><br><span class="line">n, e, d = input().split()</span><br><span class="line">n, e, d = int(n), float(e), int(d)</span><br><span class="line">dates, consumptions = [], []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    data = input().split()</span><br><span class="line">    dates.append(int(data[<span class="number">0</span>]))</span><br><span class="line">    consumptions.append(list(map(float, data[<span class="number">1</span>:])))</span><br><span class="line">solution(n, e, d, dates, consumptions)</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/BasicLevel/" rel="tag">BasicLevel</a>, <a class="has-link-grey -link" href="/tags/Experience/" rel="tag">Experience</a>, <a class="has-link-grey -link" href="/tags/Original/" rel="tag">Original</a>, <a class="has-link-grey -link" href="/tags/PAT/" rel="tag">PAT</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Wechatpay.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/database/mysql/stored-procedure/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Stored Procedure</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/database/paradigm/">
+                <span class="level-item">数据库三范式（笔记）</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '8fb0efbb7d2496c108f3',
+        clientSecret: '376c8cd0ff2283ef21dcf9bd1f8348014402bd24',
+        id: '71c9feaebd0e503299e0abad85ce6a3c',
+        repo: 'gittalk',
+        owner: 'smileorigin',
+        admin: "smileorigin",
+        createIssueManually: true,
+        distractionFreeMode: false
+    })
+    gitalk.render('comment-container')
+</script>
+
+
+    </div>
+</div>
+
+
+</div>
+                
+                
+                    <div class="column is-3-tablet is-3-desktop is-3-widescreen has-order-3 is-hidden-touch is-hidden-desktop-only column-right is-sticky">
+                        
+
+    <div class="widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#1001-害死人不偿命的-3n-1-猜想-15">
+        <span class="has-mr-6">1</span>
+        <span>1001 害死人不偿命的(3n+1)猜想 (15)</span>
+        </a></li><li>
+        <a class="is-flex" href="#1002-写出这个数-20">
+        <span class="has-mr-6">2</span>
+        <span>1002 写出这个数 (20)</span>
+        </a></li><li>
+        <a class="is-flex" href="#1004-成绩排名-20">
+        <span class="has-mr-6">3</span>
+        <span>1004 成绩排名 (20)</span>
+        </a></li><li>
+        <a class="is-flex" href="#1006-换个格式输出整数-15">
+        <span class="has-mr-6">4</span>
+        <span>1006 换个格式输出整数 (15)</span>
+        </a></li><li>
+        <a class="is-flex" href="#1009-说反话-20">
+        <span class="has-mr-6">5</span>
+        <span>1009 说反话 (20)</span>
+        </a></li><li>
+        <a class="is-flex" href="#1010-一元多项式求导（25）">
+        <span class="has-mr-6">6</span>
+        <span>1010 一元多项式求导（25）</span>
+        </a></li><li>
+        <a class="is-flex" href="#1011-A-B和C-15">
+        <span class="has-mr-6">7</span>
+        <span>1011 A+B和C (15)</span>
+        </a></li><li>
+        <a class="is-flex" href="#1012-数字分类-20">
+        <span class="has-mr-6">8</span>
+        <span>1012 数字分类 (20)</span>
+        </a></li><li>
+        <a class="is-flex" href="#1017-A除以B（20）">
+        <span class="has-mr-6">9</span>
+        <span>1017 A除以B（20）</span>
+        </a></li><li>
+        <a class="is-flex" href="#1021-个位数统计-15">
+        <span class="has-mr-6">10</span>
+        <span>1021 个位数统计 (15)</span>
+        </a></li><li>
+        <a class="is-flex" href="#1023-组个最小数-20">
+        <span class="has-mr-6">11</span>
+        <span>1023 组个最小数 (20)</span>
+        </a></li><li>
+        <a class="is-flex" href="#1031-查验身份证-15">
+        <span class="has-mr-6">12</span>
+        <span>1031 查验身份证(15)</span>
+        </a></li><li>
+        <a class="is-flex" href="#1037-在霍格沃茨找零钱（20）">
+        <span class="has-mr-6">13</span>
+        <span>1037 在霍格沃茨找零钱（20）</span>
+        </a></li><li>
+        <a class="is-flex" href="#1038-统计同成绩学生-20">
+        <span class="has-mr-6">14</span>
+        <span>1038 统计同成绩学生(20)</span>
+        </a></li><li>
+        <a class="is-flex" href="#1041-考试座位号-15">
+        <span class="has-mr-6">15</span>
+        <span>1041 考试座位号(15)</span>
+        </a></li><li>
+        <a class="is-flex" href="#1042-字符统计-20">
+        <span class="has-mr-6">16</span>
+        <span>1042 字符统计(20)</span>
+        </a></li><li>
+        <a class="is-flex" href="#1046-划拳-15">
+        <span class="has-mr-6">17</span>
+        <span>1046 划拳(15)</span>
+        </a></li><li>
+        <a class="is-flex" href="#1047-编程团体赛-20">
+        <span class="has-mr-6">18</span>
+        <span>1047 编程团体赛(20)</span>
+        </a></li><li>
+        <a class="is-flex" href="#1053-住房空置率（20）">
+        <span class="has-mr-6">19</span>
+        <span>1053 住房空置率（20）</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img class="logo-img" src="/images/logo.svg" alt="PAT解题记录" height="28" />
+                    <img class="logo-img-dark" src="/images/logo-dark.svg" alt="PAT解题记录" height="28" />
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Thomas Woo&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://smileorigin.site',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

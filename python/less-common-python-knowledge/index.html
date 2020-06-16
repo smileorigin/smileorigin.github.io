@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <script type="text/javascript" src="/js/dark.js"></script>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+
+
+<meta name="keywords" content="Android,JavaScript,Java,Database">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Less common Python knowledge - Thomas Woo</title>
+
+
+    <meta name="description" content="Something unknow or less common Python knowledge">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Less common Python knowledge">
+<meta property="og:url" content="http://smileorigin.site/python/less-common-python-knowledge/index.html">
+<meta property="og:site_name" content="Thomas Woo">
+<meta property="og:description" content="Something unknow or less common Python knowledge">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://smileorigin.site/images/og_image.png">
+<meta property="article:published_time" content="2017-12-14T10:10:00.000Z">
+<meta property="article:modified_time" content="2020-06-13T11:57:00.184Z">
+<meta property="article:author" content="Thomas Woo">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="A byte of Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://smileorigin.site/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110922455-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110922455-1');
+</script>
+
+    
+    <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?33cec7dfd968d9ffd9ff2a5da2be77d0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img class="logo-img" src="/images/logo.svg" alt="Less common Python knowledge" height="28" />
+                <img class="logo-img-dark" src="/images/logo-dark.svg" alt="Less common Python knowledge" height="28" />
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/album">Album</a>
+                
+                <a class="navbar-item"
+                href="/bbs">BBS</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                <a class="navbar-item" id="dark-switch" title="Dark Mode" href="javascript:;">
+                    <i class="fas fa-moon" id="dark-icon"></i>
+                </a>
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns columns-center">
+                <div class="column is-9-widescreen is-12 has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-12-14T10:10:00.000Z">2017-12-14</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    16 分钟 读完 (大约 2412 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Less common Python knowledge
+            
+        </h1>
+        <div class="content">
+            <p>Something unknow or less common Python knowledge</p>
+<a id="more"></a>
+
+<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><p>集合（Set）是一个无序不重复元素的序列，每个元素只会出现一次。当集合中的项目存在与否比起次序或其出现次数更加重要时，我们就会使用集合    </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">parame = &#123;value01,value02,...&#125;</span><br><span class="line">或者</span><br><span class="line">set(value)</span><br></pre></td></tr></table></figure>
+<p>通过使用集合，你可以测试某些对象的资格或情况，检查它们是否是其它集合的子集，找到两个集合的交集，等等</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">fruit = &#123;<span class="string">'apple'</span>, <span class="string">'banana'</span>, <span class="string">'orange'</span>&#125;</span><br><span class="line">color = &#123;<span class="string">'yellow'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>&#125;</span><br><span class="line">print(<span class="string">'apple'</span> <span class="keyword">in</span> fruit)</span><br><span class="line">print(<span class="string">'green'</span> <span class="keyword">in</span> color)</span><br><span class="line"></span><br><span class="line">color_copy = color.copy()</span><br><span class="line">print(<span class="string">'color is'</span>,color)</span><br><span class="line">print(<span class="string">'copy color is'</span>, color_copy)</span><br><span class="line"><span class="comment"># remove 'green',add pink</span></span><br><span class="line">color_copy.remove(<span class="string">'green'</span>)</span><br><span class="line">color_copy.add(<span class="string">'pink'</span>)</span><br><span class="line">print(<span class="string">'remove greeen and add pink to color_copy'</span>)</span><br><span class="line">print(<span class="string">'color is'</span>,color)</span><br><span class="line">print(<span class="string">'copy color is'</span>, color_copy)</span><br><span class="line"></span><br><span class="line">print(color &amp; color_copy)</span><br><span class="line">print(color | color_copy)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line">color <span class="keyword">is</span> &#123;<span class="string">'yellow'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>&#125;</span><br><span class="line">copy color <span class="keyword">is</span> &#123;<span class="string">'yellow'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>&#125;</span><br><span class="line">remove greeen <span class="keyword">and</span> add pink to color_copy</span><br><span class="line">color <span class="keyword">is</span> &#123;<span class="string">'yellow'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>&#125;</span><br><span class="line">copy color <span class="keyword">is</span> &#123;<span class="string">'yellow'</span>, <span class="string">'pink'</span>, <span class="string">'blue'</span>&#125;</span><br><span class="line">&#123;<span class="string">'yellow'</span>, <span class="string">'blue'</span>&#125;</span><br><span class="line">&#123;<span class="string">'yellow'</span>, <span class="string">'green'</span>, <span class="string">'pink'</span>, <span class="string">'blue'</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="text-1"><a href="#text-1" class="headerlink" title="text[::-1]"></a>text[::-1]</h2><p>Example</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reverse</span><span class="params">(text)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> text[::<span class="number">-1</span>]</span><br><span class="line">print(reverse(<span class="string">'abcdefg'</span>))</span><br></pre></td></tr></table></figure>
+<p>Output</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gfedcba</span><br></pre></td></tr></table></figure>
+
+<h2 id="Pickle"><a href="#Pickle" class="headerlink" title="Pickle"></a>Pickle</h2><p>Python 提供了一个叫作 Pickle 的标准模块，通过它你可以将任何纯 Python 对象存储到一个文件中，并在稍后将其取回。这叫作持久地（Persistently）存储对象<br>Example</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"></span><br><span class="line"><span class="comment"># 我们存储相关对象的文件的名称</span></span><br><span class="line">shoplistfile = <span class="string">'shoplist.data'</span></span><br><span class="line"><span class="comment"># 我们需要购买的物品清单</span></span><br><span class="line">shoplist = [<span class="string">'apple'</span>, <span class="string">'mango'</span>, <span class="string">'carrot'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 准备写入文件</span></span><br><span class="line">f = open(shoplistfile, <span class="string">'wb'</span>)</span><br><span class="line"><span class="comment"># 存储对象至文件--封装（Pickling）</span></span><br><span class="line">pickle.dump(shoplist, f)</span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清除shoplist变量</span></span><br><span class="line"><span class="keyword">del</span> shoplist</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新打开存储文件</span></span><br><span class="line">f = open(shoplistfile, <span class="string">'rb'</span>)</span><br><span class="line"><span class="comment"># 从文件中载入对象--拆封（Unpickling）</span></span><br><span class="line">storedlist = pickle.load(f)</span><br><span class="line">print(storedlist)</span><br></pre></td></tr></table></figure>
+<p>Output</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'apple'</span>, <span class="string">'mango'</span>, <span class="string">'carrot'</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="VarArgs-Parameters"><a href="#VarArgs-Parameters" class="headerlink" title="VarArgs Parameters"></a>VarArgs Parameters</h2><p>有时你可能想定义的函数里面能够有任意数量的变量，也就是参数数量是可变的，这可以通过使用星号来实现<br>当我们声明一个诸如 <code>*</code>param 的星号参数时，从此处开始直到结束的所有位置参数（Positional Arguments）都将被收集并汇集成一个称为“param”的元组（Tuple）<br>类似地，当我们声明一个诸如 <code>**</code>param 的双星号参数时，从此处开始直至结束的所有关键字<br>参数都将被收集并汇集成一个名为 param 的字典（Dictionary）<br>Example</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">total</span><span class="params">(a=<span class="number">5</span>, *numbers, **phonebook)</span>:</span></span><br><span class="line">    print(<span class="string">'a'</span>, a)</span><br><span class="line">    <span class="comment">#遍历元组中的所有项目</span></span><br><span class="line">    <span class="keyword">for</span> single_item <span class="keyword">in</span> numbers:</span><br><span class="line">        print(<span class="string">'single_item'</span>, single_item)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#遍历字典中的所有项目</span></span><br><span class="line">    <span class="keyword">for</span> first_part, second_part <span class="keyword">in</span> phonebook.items():</span><br><span class="line">        print(first_part,second_part)</span><br><span class="line">    </span><br><span class="line">print(total(<span class="number">10</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,Jack=<span class="number">1123</span>,John=<span class="number">2231</span>,Inge=<span class="number">1560</span>))</span><br></pre></td></tr></table></figure>
+<p>Output</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a <span class="number">10</span></span><br><span class="line">single_item <span class="number">1</span></span><br><span class="line">single_item <span class="number">2</span></span><br><span class="line">single_item <span class="number">3</span></span><br><span class="line">Inge <span class="number">1560</span></span><br><span class="line">John <span class="number">2231</span></span><br><span class="line">Jack <span class="number">1123</span></span><br><span class="line"><span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="DocStrings"><a href="#DocStrings" class="headerlink" title="DocStrings"></a>DocStrings</h2><p>Python 有一个甚是优美的功能称作文档字符串（Documentation Strings），在称呼它时通常会使用另一个短一些的名docstrings。DocStrings 是一款你应当使用的重要工具，它能够帮助你更好地记录程序并让其更加易于理解<br>Example</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print</span><span class="params">(self, *args, sep=<span class="string">' '</span>, end=<span class="string">'\n'</span>, file=None)</span>:</span> <span class="comment"># known special case of print</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Prints the values to a stream, or to sys.stdout by default.</span></span><br><span class="line"><span class="string">    Optional keyword arguments:</span></span><br><span class="line"><span class="string">    file:  a file-like object (stream); defaults to the current sys.stdout.</span></span><br><span class="line"><span class="string">    sep:   string inserted between values, default a space.</span></span><br><span class="line"><span class="string">    end:   string appended after the last value, default a newline.</span></span><br><span class="line"><span class="string">    flush: whether to forcibly flush the stream.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line">print(<span class="keyword">print</span>.__doc__)</span><br></pre></td></tr></table></figure>
+<p>Output</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">print(value, ..., sep=<span class="string">' '</span>, end=<span class="string">'\n'</span>, file=sys.stdout, flush=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">Prints the values to a stream, <span class="keyword">or</span> to sys.stdout by default.</span><br><span class="line">Optional keyword arguments:</span><br><span class="line">file:  a file-like object (stream); defaults to the current sys.stdout.</span><br><span class="line">sep:   string inserted between values, default a space.</span><br><span class="line">end:   string appended after the last value, default a newline.</span><br><span class="line">flush: whether to forcibly flush the stream.</span><br></pre></td></tr></table></figure>
+
+<h2 id="enumerate-函数"><a href="#enumerate-函数" class="headerlink" title="enumerate()函数"></a>enumerate()函数</h2><p>enumerate() 函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在 for 循环当中<br>语法</p>
+<ul>
+<li><code>enumerate(sequence, [start=0])</code></li>
+<li>参数<ul>
+<li>sequence    一个序列、迭代器或者其他支持迭代的对象</li>
+<li>start            下标起始位置</li>
+</ul>
+</li>
+<li>返回值<br>返回enumerate(枚举)对象</li>
+</ul>
+<p>Example</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;seasons = [<span class="string">'Spring'</span>, <span class="string">'Summer'</span>, <span class="string">'Fall'</span>, <span class="string">'Winter'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(enumerate(seasons))</span><br><span class="line">&gt;[(<span class="number">0</span>, <span class="string">'Spring'</span>), (<span class="number">1</span>, <span class="string">'Summer'</span>), (<span class="number">2</span>, <span class="string">'Fall'</span>), (<span class="number">3</span>, <span class="string">'Winter'</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(enumerate(seasons, start=<span class="number">1</span>))       <span class="comment"># 下标从 1 开始</span></span><br><span class="line">&gt;[(<span class="number">1</span>, <span class="string">'Spring'</span>), (<span class="number">2</span>, <span class="string">'Summer'</span>), (<span class="number">3</span>, <span class="string">'Fall'</span>), (<span class="number">4</span>, <span class="string">'Winter'</span>)]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;seq = [<span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i, element <span class="keyword">in</span> enumerate(seq):</span><br><span class="line">    ...     print(i, seq[i])</span><br><span class="line">    ... </span><br><span class="line"><span class="number">0</span> one</span><br><span class="line"><span class="number">1</span> two</span><br><span class="line"><span class="number">2</span> three</span><br></pre></td></tr></table></figure>
+
+<h2 id="all"><a href="#all" class="headerlink" title="all()"></a>all()</h2><p>all() 函数用于判断给定的可迭代参数 iterable 中的所有元素是否都为 TRUE，如果是返回 True，否则返回 False<br>元素除了是 0、空、FALSE 外都算 TRUE。<br>函数等价于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">all</span><span class="params">(iterable)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> iterable:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> element:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<p>语法</p>
+<ul>
+<li><code>all(iterable)</code></li>
+<li>参数<br>iterable — 元组或列表</li>
+<li>返回值<br>如果iterable的所有元素不为0、False或者iterable为空，all(iterable)返回True，否则返回False<br>注意：空元组、空列表返回值为True，这里要特别注意</li>
+</ul>
+<h2 id="filter"><a href="#filter" class="headerlink" title="filter()"></a>filter()</h2><p><strong>filter()</strong> 函数用于过滤序列，过滤掉不符合条件的元素，返回由符合条件元素组成的新列表<br>该接收两个参数，第一个为函数，第二个为序列，序列的每个元素作为参数传递给函数进行判，然后返回 True 或 False，最后将返回 True 的元素放到新列表中<br>语法</p>
+<ul>
+<li><code>filter(function, iterable)</code></li>
+<li>参数<ul>
+<li>function – 判断函数</li>
+<li>iterable – 可迭代对象</li>
+</ul>
+</li>
+<li>返回值<br>返回筛选完的列表</li>
+</ul>
+<p>Example</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤出列表中的所有奇数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_odd</span><span class="params">(n)</span>:</span>     </span><br><span class="line">    <span class="keyword">return</span> n % <span class="number">2</span> == <span class="number">1</span>   </span><br><span class="line">newlist = filter(is_odd, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]) </span><br><span class="line">print(list(newlist))</span><br></pre></td></tr></table></figure>
+<p>Output</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="判断是容器还是生成器"><a href="#判断是容器还是生成器" class="headerlink" title="判断是容器还是生成器"></a>判断是容器还是生成器</h2><p>想要判断某个值是迭代器还是容器，可以拿该值为参数，两次调用iter方法，若结果相同，则是迭代器，调用内置的next方法，即可令迭代器前进一步</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">normalize_defensive</span><span class="params">(numbers)</span>:</span></span><br><span class="line">	<span class="keyword">if</span> iter(numbers) <span class="keyword">is</span> iter(numbers):</span><br><span class="line">		<span class="keyword">raise</span> TypeError(<span class="string">'Must supply a container'</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="将数值或者列表转换为元组"><a href="#将数值或者列表转换为元组" class="headerlink" title="将数值或者列表转换为元组"></a>将数值或者列表转换为元组</h2><p>将数值转换为元组–使用<code>(value,)</code>即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">12</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>(a,)</span><br><span class="line">(<span class="number">12</span>,)</span><br></pre></td></tr></table></figure>
+<p>将列表转换为元组–直接强制转换即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>tuple(b)</span><br><span class="line">(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="排序字典"><a href="#排序字典" class="headerlink" title="排序字典"></a>排序字典</h2><p>使用内置的方法<code>sorted()</code>方法进行排序<br><code>sorted()</code>语法</p>
+<ul>
+<li><code>sorted(iterable, *, key=None, reverse=False)</code></li>
+</ul>
+<p>对字典的key和value进行排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = &#123;<span class="string">'a'</span>:<span class="number">2</span>, <span class="string">'b'</span>:<span class="number">1</span>, <span class="string">'c'</span>:<span class="number">5</span>, <span class="string">'g'</span>:<span class="number">4</span>, <span class="string">'d'</span>:<span class="number">10</span>&#125;</span><br><span class="line"><span class="comment"># 对key进行排序</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sorted(a)</span><br><span class="line">[<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'g'</span>]</span><br><span class="line"><span class="comment"># 对value进行排序</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sorted(a.values())</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">10</span>]</span><br></pre></td></tr></table></figure>
+<p>根据字典的value对字典进行排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从小到大，注意排序后的结果是列表，字典key，value被放在元组中</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sorted(a.items(), key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>])</span><br><span class="line">[(<span class="string">'b'</span>, <span class="number">1</span>), (<span class="string">'a'</span>, <span class="number">2</span>), (<span class="string">'g'</span>, <span class="number">4</span>), (<span class="string">'c'</span>, <span class="number">5</span>), (<span class="string">'d'</span>, <span class="number">10</span>)]</span><br><span class="line"><span class="comment"># 从大到小</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sorted(a.items(), key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>], reverse=<span class="literal">True</span>)</span><br><span class="line">[(<span class="string">'d'</span>, <span class="number">10</span>), (<span class="string">'c'</span>, <span class="number">5</span>), (<span class="string">'g'</span>, <span class="number">4</span>), (<span class="string">'a'</span>, <span class="number">2</span>), (<span class="string">'b'</span>, <span class="number">1</span>)]</span><br></pre></td></tr></table></figure>
+
+<h2 id="打乱序列"><a href="#打乱序列" class="headerlink" title="打乱序列"></a>打乱序列</h2><p>语法</p>
+<ul>
+<li><code>random.shuffle(list)</code></li>
+</ul>
+<p>Example</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">data = list(range(<span class="number">20</span>))</span><br><span class="line">print(data)</span><br><span class="line"></span><br><span class="line"><span class="comment">#打乱元素</span></span><br><span class="line">random.shuffle(data)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>data</span><br><span class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>, <span class="number">16</span>, <span class="number">17</span>, <span class="number">18</span>, <span class="number">19</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>random.shuffle(data)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>data</span><br><span class="line">[<span class="number">7</span>, <span class="number">14</span>, <span class="number">2</span>, <span class="number">11</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">15</span>, <span class="number">19</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">12</span>, <span class="number">18</span>, <span class="number">13</span>, <span class="number">10</span>, <span class="number">17</span>, <span class="number">3</span>, <span class="number">16</span>]</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="max-方法依据自定义参数获取最大值"><a href="#max-方法依据自定义参数获取最大值" class="headerlink" title="max()方法依据自定义参数获取最大值"></a>max()方法依据自定义参数获取最大值</h2><p><code>max()</code>语法</p>
+<ul>
+<li><code>max(iterable, *[, key, default])</code></li>
+<li><code>max(arg1, arg2, *args[, key])</code></li>
+</ul>
+<p>根据字典的value取得字典的最大键和值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>max(a.items(), key=<span class="keyword">lambda</span> x:x[<span class="number">1</span>])</span><br><span class="line">(<span class="string">'d'</span>, <span class="number">10</span>)</span><br><span class="line"><span class="comment"># 如果没有指定判断的参数，则默认根据字典的key进行排序</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>max(a.items())</span><br><span class="line">(<span class="string">'g'</span>, <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="判断是否是同一类型"><a href="#判断是否是同一类型" class="headerlink" title="判断是否是同一类型"></a>判断是否是同一类型</h2><p>语法</p>
+<ul>
+<li><code>isinstance(object, classinfo)</code></li>
+</ul>
+<p>Example</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(a, int)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>isinstance(a, float)</span><br><span class="line"><span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="判断是否是子类"><a href="#判断是否是子类" class="headerlink" title="判断是否是子类"></a>判断是否是子类</h2><p>语法</p>
+<ul>
+<li><code>issubclass(class, classinfo)</code></li>
+</ul>
+<p>Example</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">a</span><span class="params">()</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">pass</span></span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">b</span><span class="params">(a)</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">pass</span></span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>issubclass(a, b)</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>issubclass(b, a)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>issubclass(b, b)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>issubclass(b, object)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="对不确定是否存在的字典的键进行赋值"><a href="#对不确定是否存在的字典的键进行赋值" class="headerlink" title="对不确定是否存在的字典的键进行赋值"></a>对不确定是否存在的字典的键进行赋值</h2><p>语法</p>
+<ul>
+<li><code>setdefault(key[, default])</code></li>
+</ul>
+<p>Example</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = &#123;&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.setdefault(<span class="string">'b'</span>, <span class="number">1</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">&#123;<span class="string">'b'</span>: <span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>本来是这样写的代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">count</span><span class="params">(datas)</span>:</span></span><br><span class="line"><span class="meta">... </span>    result = &#123;&#125;</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">for</span> data <span class="keyword">in</span> datas:</span><br><span class="line"><span class="meta">... </span>            <span class="keyword">if</span> data <span class="keyword">in</span> result:</span><br><span class="line"><span class="meta">... </span>                    result[data] += <span class="number">1</span></span><br><span class="line"><span class="meta">... </span>            <span class="keyword">else</span>:</span><br><span class="line"><span class="meta">... </span>                    result[data] = <span class="number">1</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">return</span> result</span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>count(data)</span><br><span class="line">&#123;<span class="string">'a'</span>: <span class="number">2</span>, <span class="string">'b'</span>: <span class="number">2</span>, <span class="string">'c'</span>: <span class="number">3</span>, <span class="string">'d'</span>: <span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>现在只要这样写就行了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">count</span><span class="params">(datas)</span>:</span></span><br><span class="line"><span class="meta">... </span>    result = &#123;&#125;</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">for</span> data <span class="keyword">in</span> datas:</span><br><span class="line"><span class="meta">... </span>            result.setdefault(data, <span class="number">0</span>)</span><br><span class="line"><span class="meta">... </span>            result[data] += <span class="number">1</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">return</span> result</span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>count(data)</span><br><span class="line">&#123;<span class="string">'a'</span>: <span class="number">2</span>, <span class="string">'b'</span>: <span class="number">2</span>, <span class="string">'c'</span>: <span class="number">3</span>, <span class="string">'d'</span>: <span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Decorators"><a href="#Decorators" class="headerlink" title="Decorators"></a>Decorators</h2><p>装饰器（Decorators）是应用包装函数的快捷方式。这有助于将功能与一些代码一遍又一遍地”包装“。举个例子，我为自己创建了一个<code>retry</code>装饰器，这样我可以将其运用到任何函数之中，如果在一次运行中抛出了任何错误，它就会尝试重新运行，直到最大次数5次，并且每次运行期间都会有一定的延迟。这对于你在对一台远程计算机进行网络调用的情况十分有用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line">logging.basicConfig()</span><br><span class="line">log = logging.getLogger(<span class="string">'retry'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">retry</span><span class="params">(f)</span>:</span></span><br><span class="line"><span class="meta">    @wraps(f)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapped_f</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">        MAX_ATTEMPTS = <span class="number">5</span></span><br><span class="line">        <span class="keyword">for</span> attempt <span class="keyword">in</span> range(<span class="number">1</span>, MAX_ATTEMPTS + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                <span class="keyword">return</span> f(*args, **kwargs)</span><br><span class="line">            <span class="keyword">except</span>:</span><br><span class="line">                log.exception(<span class="string">'Attempt %s/%s failed : %s'</span>, attempt, MAX_ATTEMPTS, (args, kwargs))</span><br><span class="line">                sleep(<span class="number">10</span> * attempt)</span><br><span class="line">        log.critical(<span class="string">'All %s attempts failed : %s'</span>, MAX_ATTEMPTS, (args, kwargs))</span><br><span class="line">    <span class="keyword">return</span> wrapped_f</span><br><span class="line"></span><br><span class="line">counter = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@retry</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">save_to_database</span><span class="params">(arg)</span>:</span></span><br><span class="line">    print(<span class="string">'Write to a database or make a network call or etc.'</span>)</span><br><span class="line">    print(<span class="string">'This will be automatically retried if exception is thrown.'</span>)</span><br><span class="line">    <span class="keyword">global</span> counter</span><br><span class="line">    counter += <span class="number">1</span></span><br><span class="line">    <span class="comment"># 这将在第一次调用时抛出异常</span></span><br><span class="line">    <span class="comment"># 在第二次运行时将正常工作(也就是重试)</span></span><br><span class="line">    <span class="keyword">if</span> counter &lt; <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">raise</span> ValueError(arg)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    save_to_database(<span class="string">'Some bad value'</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="字符串补足位数"><a href="#字符串补足位数" class="headerlink" title="字符串补足位数"></a>字符串补足位数</h2><p>通常使用的字符串格式化符号<code>{}</code>里面是可以带参数的</p>
+<ul>
+<li><code>{:5}</code> 代表此格式化的字符串至少有5位，不足的在字符串前面补充空格</li>
+<li><code>{:a&gt;5}</code> 代表此格式化的字符串至少有5位，不足的在字符串前面补充字符<code>a</code>（使用<code>=</code>效果一样）</li>
+<li><code>{:a&lt;5}</code> 代表此格式化的字符串至少有5位，不足的在字符串后面补充字符<code>a</code></li>
+</ul>
+<p>Example:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">6</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'&#123;:5&#125;'</span>.format(a)</span><br><span class="line"><span class="string">'    6'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'&#123;:a&gt;5&#125;'</span>.format(a)</span><br><span class="line"><span class="string">'aaaa6'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'&#123;:a=5&#125;'</span>.format(a)</span><br><span class="line"><span class="string">'aaaa6'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'&#123;:a&lt;5&#125;'</span>.format(a)</span><br><span class="line"><span class="string">'6aaaa'</span></span><br></pre></td></tr></table></figure>
+<p>还可以使用<code>zfill</code>方法进行补足，<strong>zfill</strong>可以对字符串的左边进行补足，补足元素为<code>0</code>，且在有<code>+</code>、<code>-</code>符号时补足元素会在符号之后</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="string">'43'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.zfill(<span class="number">5</span>)</span><br><span class="line"><span class="string">'00043'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = <span class="string">'-43'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b.zfill(<span class="number">5</span>)</span><br><span class="line"><span class="string">'-0043'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="获取字符的ASCII码"><a href="#获取字符的ASCII码" class="headerlink" title="获取字符的ASCII码"></a>获取字符的ASCII码</h2><p>使用python内置的<code>ord()</code>方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>ord(<span class="string">'a'</span>)</span><br><span class="line"><span class="number">97</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ord(<span class="string">'A'</span>)</span><br><span class="line"><span class="number">65</span></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/A-byte-of-Python/" rel="tag">A byte of Python</a>, <a class="has-link-grey -link" href="/tags/Python/" rel="tag">Python</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Wechatpay.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/database/redis/redis/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Redis</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/python/framework/flask/flask-coding-technique/">
+                <span class="level-item">Flask</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '8fb0efbb7d2496c108f3',
+        clientSecret: '376c8cd0ff2283ef21dcf9bd1f8348014402bd24',
+        id: '681ebe4d54137b6eb1d5ad28edbadb9e',
+        repo: 'gittalk',
+        owner: 'smileorigin',
+        admin: "smileorigin",
+        createIssueManually: true,
+        distractionFreeMode: false
+    })
+    gitalk.render('comment-container')
+</script>
+
+
+    </div>
+</div>
+
+
+</div>
+                
+                
+                    <div class="column is-3-tablet is-3-desktop is-3-widescreen has-order-3 is-hidden-touch is-hidden-desktop-only column-right is-sticky">
+                        
+
+    <div class="widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#set">
+        <span class="has-mr-6">1</span>
+        <span>set</span>
+        </a></li><li>
+        <a class="is-flex" href="#text-1">
+        <span class="has-mr-6">2</span>
+        <span>text[::-1]</span>
+        </a></li><li>
+        <a class="is-flex" href="#Pickle">
+        <span class="has-mr-6">3</span>
+        <span>Pickle</span>
+        </a></li><li>
+        <a class="is-flex" href="#VarArgs-Parameters">
+        <span class="has-mr-6">4</span>
+        <span>VarArgs Parameters</span>
+        </a></li><li>
+        <a class="is-flex" href="#DocStrings">
+        <span class="has-mr-6">5</span>
+        <span>DocStrings</span>
+        </a></li><li>
+        <a class="is-flex" href="#enumerate-函数">
+        <span class="has-mr-6">6</span>
+        <span>enumerate()函数</span>
+        </a></li><li>
+        <a class="is-flex" href="#all">
+        <span class="has-mr-6">7</span>
+        <span>all()</span>
+        </a></li><li>
+        <a class="is-flex" href="#filter">
+        <span class="has-mr-6">8</span>
+        <span>filter()</span>
+        </a></li><li>
+        <a class="is-flex" href="#判断是容器还是生成器">
+        <span class="has-mr-6">9</span>
+        <span>判断是容器还是生成器</span>
+        </a></li><li>
+        <a class="is-flex" href="#将数值或者列表转换为元组">
+        <span class="has-mr-6">10</span>
+        <span>将数值或者列表转换为元组</span>
+        </a></li><li>
+        <a class="is-flex" href="#排序字典">
+        <span class="has-mr-6">11</span>
+        <span>排序字典</span>
+        </a></li><li>
+        <a class="is-flex" href="#打乱序列">
+        <span class="has-mr-6">12</span>
+        <span>打乱序列</span>
+        </a></li><li>
+        <a class="is-flex" href="#max-方法依据自定义参数获取最大值">
+        <span class="has-mr-6">13</span>
+        <span>max()方法依据自定义参数获取最大值</span>
+        </a></li><li>
+        <a class="is-flex" href="#判断是否是同一类型">
+        <span class="has-mr-6">14</span>
+        <span>判断是否是同一类型</span>
+        </a></li><li>
+        <a class="is-flex" href="#判断是否是子类">
+        <span class="has-mr-6">15</span>
+        <span>判断是否是子类</span>
+        </a></li><li>
+        <a class="is-flex" href="#对不确定是否存在的字典的键进行赋值">
+        <span class="has-mr-6">16</span>
+        <span>对不确定是否存在的字典的键进行赋值</span>
+        </a></li><li>
+        <a class="is-flex" href="#Decorators">
+        <span class="has-mr-6">17</span>
+        <span>Decorators</span>
+        </a></li><li>
+        <a class="is-flex" href="#字符串补足位数">
+        <span class="has-mr-6">18</span>
+        <span>字符串补足位数</span>
+        </a></li><li>
+        <a class="is-flex" href="#获取字符的ASCII码">
+        <span class="has-mr-6">19</span>
+        <span>获取字符的ASCII码</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img class="logo-img" src="/images/logo.svg" alt="Less common Python knowledge" height="28" />
+                    <img class="logo-img-dark" src="/images/logo-dark.svg" alt="Less common Python knowledge" height="28" />
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Thomas Woo&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://smileorigin.site',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

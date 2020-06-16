@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <script type="text/javascript" src="/js/dark.js"></script>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+
+
+<meta name="keywords" content="Android,JavaScript,Java,Database">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Vim - Thomas Woo</title>
+
+
+    <meta name="description" content="记录一些常用的 vim 命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim">
+<meta property="og:url" content="http://smileorigin.site/linux/vim/index.html">
+<meta property="og:site_name" content="Thomas Woo">
+<meta property="og:description" content="记录一些常用的 vim 命令">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://smileorigin.site/images/og_image.png">
+<meta property="article:published_time" content="2018-11-24T15:00:00.000Z">
+<meta property="article:modified_time" content="2020-06-13T11:57:00.182Z">
+<meta property="article:author" content="Thomas Woo">
+<meta property="article:tag" content="CommandLine">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Vim">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://smileorigin.site/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110922455-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110922455-1');
+</script>
+
+    
+    <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?33cec7dfd968d9ffd9ff2a5da2be77d0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img class="logo-img" src="/images/logo.svg" alt="Vim" height="28" />
+                <img class="logo-img-dark" src="/images/logo-dark.svg" alt="Vim" height="28" />
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/album">Album</a>
+                
+                <a class="navbar-item"
+                href="/bbs">BBS</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                <a class="navbar-item" id="dark-switch" title="Dark Mode" href="javascript:;">
+                    <i class="fas fa-moon" id="dark-icon"></i>
+                </a>
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns columns-center">
+                <div class="column is-9-widescreen is-12 has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-11-24T15:00:00.000Z">2018-11-24</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    13 分钟 读完 (大约 1885 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Vim
+            
+        </h1>
+        <div class="content">
+            <p>记录一些常用的 vim 命令</p>
+<a id="more"></a>
+
+<h2 id="帮助文档"><a href="#帮助文档" class="headerlink" title="帮助文档"></a>帮助文档</h2><ul>
+<li><code>vimtutor</code><br>命令行直接运行，非vim编辑器内命令</li>
+<li><code>:h</code><br>vim内部命令</li>
+</ul>
+<h2 id="过渡阶段"><a href="#过渡阶段" class="headerlink" title="过渡阶段"></a>过渡阶段</h2><ul>
+<li><code>:set mouse=a</code><br>设置鼠标可区域选择，跟普通的编辑器一样可以进行拖选</li>
+</ul>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="打开-切换文件"><a href="#打开-切换文件" class="headerlink" title="打开/切换文件"></a>打开/切换文件</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>:e file_name</code> 、<code>:o file_name</code></td>
+<td>打开文件</td>
+</tr>
+<tr>
+<td><code>:args file_name</code></td>
+<td>如果使用<code>vim file1 file2 [filen]</code>命令打开多个文件，就可以使用<code>:args file_name</code>命令在打开的文件之间切换</td>
+</tr>
+<tr>
+<td><code>:buffers</code>、<code>:ls</code>、<code>:files</code></td>
+<td>查看缓冲区中的文件列表</td>
+</tr>
+<tr>
+<td><code>:bnext</code></td>
+<td>切换到下一个缓冲区文件</td>
+</tr>
+<tr>
+<td><code>:bprevious</code>、<code>bpre</code></td>
+<td>切换到上一个缓冲区文件</td>
+</tr>
+<tr>
+<td><code>:bfirst</code></td>
+<td>切换到第一个缓冲区文件</td>
+</tr>
+<tr>
+<td><code>:blast</code></td>
+<td>切换到最后一个缓冲区文件</td>
+</tr>
+<tr>
+<td><code>:bdelete file_name</code></td>
+<td>删除缓冲区文件</td>
+</tr>
+<tr>
+<td><code>:badd file_name</code></td>
+<td>添加文件到缓冲区</td>
+</tr>
+<tr>
+<td><code>&lt;Ctrl&gt; + z</code></td>
+<td>回到shell（最小化vim）</td>
+</tr>
+<tr>
+<td><code>fg</code>（shell中命令）</td>
+<td>在shell中输入<code>fg</code>即可回到最小化的vim中去</td>
+</tr>
+</tbody></table>
+<h3 id="退出-保存"><a href="#退出-保存" class="headerlink" title="退出/保存"></a>退出/保存</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>:w</code></td>
+<td>保存</td>
+</tr>
+<tr>
+<td><code>:w!</code></td>
+<td>强制保存，不退出vim</td>
+</tr>
+<tr>
+<td><code>:q</code></td>
+<td>退出</td>
+</tr>
+<tr>
+<td><code>:q!</code></td>
+<td>强制退出不保存</td>
+</tr>
+<tr>
+<td><code>:wq</code>、<code>ZZ</code></td>
+<td>保存并退出</td>
+</tr>
+<tr>
+<td><code>:wq!</code></td>
+<td>强制保存，并退出</td>
+</tr>
+<tr>
+<td><code>:w file</code></td>
+<td>将修改另存到file中，不退出vim</td>
+</tr>
+<tr>
+<td><code>:e!</code></td>
+<td>放弃所有修改，从上次保存文件开始再编辑命令历史</td>
+</tr>
+</tbody></table>
+<h3 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>i</code>/<code>I</code></td>
+<td>编辑</td>
+</tr>
+<tr>
+<td><code>esc</code></td>
+<td>退出编辑模式</td>
+</tr>
+<tr>
+<td><code>u</code></td>
+<td>撤销操作</td>
+</tr>
+<tr>
+<td><code>&lt;Ctrl&gt; + r</code></td>
+<td>重做（恢复被撤销的动作）</td>
+</tr>
+<tr>
+<td><code>cc</code> 、<code>S</code></td>
+<td>清空当前行并进入编辑模式</td>
+</tr>
+<tr>
+<td><code>s</code></td>
+<td>删除当前字符并进入编辑模式</td>
+</tr>
+<tr>
+<td><code>r</code></td>
+<td>替换当前字符（替换后不进入编辑模式）</td>
+</tr>
+<tr>
+<td><code>R</code></td>
+<td>持续替换字符（不进入编辑模式），替换一个光标自动移到下一个</td>
+</tr>
+<tr>
+<td><code>[&lt;Shift&gt; +] v</code></td>
+<td>可视化多选，<code>&lt;Shift&gt; + v</code>的话是行选</td>
+</tr>
+<tr>
+<td><code>&lt;ctrl&gt; + v</code></td>
+<td>可视化列选</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>重复上次操作</td>
+</tr>
+<tr>
+<td><code>set filetype?</code></td>
+<td>显示文件的filetype</td>
+</tr>
+<tr>
+<td><code>&lt;Ctrl&gt; + a</code></td>
+<td>加1</td>
+</tr>
+<tr>
+<td><code>&lt;crtl&gt; + x</code></td>
+<td>减1</td>
+</tr>
+</tbody></table>
+<h2 id="排版"><a href="#排版" class="headerlink" title="排版"></a>排版</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>=-</code></td>
+<td>格式化当前行代码</td>
+</tr>
+<tr>
+<td><code>gg=G</code></td>
+<td>格式化所有代码</td>
+</tr>
+<tr>
+<td><code>:ce</code></td>
+<td>居中</td>
+</tr>
+<tr>
+<td><code>:le</code></td>
+<td>居左</td>
+</tr>
+<tr>
+<td><code>:re</code></td>
+<td>局右</td>
+</tr>
+<tr>
+<td><code>&gt;&gt;</code></td>
+<td>向右缩进</td>
+</tr>
+<tr>
+<td><code>&lt;&lt;</code></td>
+<td>向左缩进</td>
+</tr>
+</tbody></table>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>x</code></td>
+<td>删除当前字符</td>
+</tr>
+<tr>
+<td><code>X</code></td>
+<td>删除当前字符的前一个字符</td>
+</tr>
+<tr>
+<td><code>dd</code></td>
+<td>删除当前行</td>
+</tr>
+<tr>
+<td><code>D</code> /<code>n$</code></td>
+<td>删除当前字符至行尾</td>
+</tr>
+<tr>
+<td><code>d^</code></td>
+<td>删除当前字符至行首</td>
+</tr>
+<tr>
+<td><code>dG</code></td>
+<td>删除包含当前行及之后的全部行</td>
+</tr>
+<tr>
+<td><code>cc</code></td>
+<td>清空当前行</td>
+</tr>
+<tr>
+<td><code>C</code></td>
+<td>清空当前字符到行尾的字符</td>
+</tr>
+</tbody></table>
+<h3 id="代码补全"><a href="#代码补全" class="headerlink" title="代码补全"></a>代码补全</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;Ctrl&gt; + p</code></td>
+<td>往前搜索补全</td>
+</tr>
+<tr>
+<td><code>&lt;Ctrl&gt; + n</code></td>
+<td>往后搜索补全</td>
+</tr>
+<tr>
+<td><code>&lt;Ctrl&gt; + e</code></td>
+<td>取消补全</td>
+</tr>
+<tr>
+<td><code>&lt;Ctrl&gt; + y</code></td>
+<td>确定补全</td>
+</tr>
+</tbody></table>
+<h3 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>gg</code></td>
+<td>跳转到首行</td>
+</tr>
+<tr>
+<td><code>G</code></td>
+<td>跳转到尾行</td>
+</tr>
+<tr>
+<td><code>:n</code>、<code>nG</code></td>
+<td>跳转到第n行</td>
+</tr>
+<tr>
+<td><code>o</code></td>
+<td>在下一行插入</td>
+</tr>
+<tr>
+<td><code>O</code></td>
+<td>在上一行插入</td>
+</tr>
+<tr>
+<td><code>w</code>、<code>W</code></td>
+<td>移动到下一个单词开头</td>
+</tr>
+<tr>
+<td><code>b</code>、<code>B</code></td>
+<td>移动到上一个单词开头</td>
+</tr>
+<tr>
+<td><code>e</code>、<code>E</code></td>
+<td>移动到下一个单词结尾</td>
+</tr>
+<tr>
+<td><code>{</code></td>
+<td>下一段落</td>
+</tr>
+<tr>
+<td><code>}</code></td>
+<td>上一段落</td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td>跳转到文件内容的中部</td>
+</tr>
+<tr>
+<td><code>H</code></td>
+<td>跳转到文件内容的顶部</td>
+</tr>
+<tr>
+<td><code>L</code></td>
+<td>跳转到文件内容的底部</td>
+</tr>
+<tr>
+<td><code>&lt;Ctrl&gt; + f</code></td>
+<td>下一页</td>
+</tr>
+<tr>
+<td><code>&lt;Ctrl&gt; + b</code></td>
+<td>上一页</td>
+</tr>
+<tr>
+<td><code>&#39;0</code></td>
+<td>返回上一次操作的位置</td>
+</tr>
+<tr>
+<td><code>&lt;Ctrl&gt; + o</code></td>
+<td>移动光标到上一个历史编辑位置</td>
+</tr>
+<tr>
+<td><code>&lt;Ctrl&gt; + i</code>、<code>tab</code></td>
+<td>移动光标到下一个历史编辑位置</td>
+</tr>
+<tr>
+<td><code>gn</code></td>
+<td>移动到选中元素结尾</td>
+</tr>
+</tbody></table>
+<h3 id="复制-粘贴"><a href="#复制-粘贴" class="headerlink" title="复制/粘贴"></a>复制/粘贴</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>y</code></td>
+<td>复制</td>
+</tr>
+<tr>
+<td><code>p</code></td>
+<td>粘贴到下部</td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td>粘贴到上部</td>
+</tr>
+<tr>
+<td><code>x</code>、<code>X</code></td>
+<td>剪切</td>
+</tr>
+</tbody></table>
+<h2 id="高端点的操作"><a href="#高端点的操作" class="headerlink" title="高端点的操作"></a>高端点的操作</h2><h3 id="骚操作"><a href="#骚操作" class="headerlink" title="骚操作"></a>骚操作</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>vim -d file1 file2</code></td>
+<td>对比文件不同之处</td>
+</tr>
+</tbody></table>
+<h3 id="拖动功能"><a href="#拖动功能" class="headerlink" title="拖动功能"></a>拖动功能</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>zz</code></td>
+<td>将当前行定位到屏幕中间</td>
+</tr>
+<tr>
+<td><code>zb</code></td>
+<td>将当前行定位到屏幕底部</td>
+</tr>
+<tr>
+<td><code>zt</code></td>
+<td>将当前行定位到屏幕顶部</td>
+</tr>
+</tbody></table>
+<h3 id="代码折叠"><a href="#代码折叠" class="headerlink" title="代码折叠"></a>代码折叠</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>zf</code></td>
+<td>创建折叠</td>
+</tr>
+<tr>
+<td><code>zo</code></td>
+<td>打开折叠</td>
+</tr>
+<tr>
+<td><code>zc</code></td>
+<td>关闭折叠</td>
+</tr>
+<tr>
+<td><code>:mkview</code> / <code>:loadview</code></td>
+<td>保存，载入折叠</td>
+</tr>
+</tbody></table>
+<h3 id="窗口管理"><a href="#窗口管理" class="headerlink" title="窗口管理"></a>窗口管理</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>:split [file_name]</code> 、<code>:sp [file_name]</code></td>
+<td>水平分割</td>
+</tr>
+<tr>
+<td><code>:vsplit [file_name]</code>、<code>:vs [file_name]</code></td>
+<td>垂直分割</td>
+</tr>
+<tr>
+<td><code>&lt;Ctrl&gt; + w + h</code></td>
+<td>将焦点移动到左边窗口</td>
+</tr>
+<tr>
+<td><code>&lt;Ctrl&gt; + w + j</code></td>
+<td>将焦点移动到下方窗口</td>
+</tr>
+<tr>
+<td><code>&lt;Ctrl&gt; + w + k</code></td>
+<td>将焦点移动到上方窗口</td>
+</tr>
+<tr>
+<td><code>&lt;Ctrl&gt; + w + l</code></td>
+<td>将焦点移动到右边窗口</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>更详细的教程：<a href="https://www.cnblogs.com/zzqcn/p/4788754.html">【vim】分割窗口、标签页与Quickfix窗口</a></p>
+</blockquote>
+<h3 id="Tab操作"><a href="#Tab操作" class="headerlink" title="Tab操作"></a>Tab操作</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>:tabnew [++opt选项] ［＋cmd］ 文件</code></td>
+<td>创建指定文件的新tab</td>
+</tr>
+<tr>
+<td><code>:tabc</code></td>
+<td>关闭当前的tab</td>
+</tr>
+<tr>
+<td><code>:tabo</code></td>
+<td>关闭其他的所有tab</td>
+</tr>
+<tr>
+<td><code>:tabs</code></td>
+<td>查看所有打开的tab</td>
+</tr>
+<tr>
+<td><code>:tabp</code></td>
+<td>前一个tab</td>
+</tr>
+<tr>
+<td><code>:tabn</code></td>
+<td>后一个tab</td>
+</tr>
+</tbody></table>
+<h3 id="转换文件编码和格式"><a href="#转换文件编码和格式" class="headerlink" title="转换文件编码和格式"></a>转换文件编码和格式</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>:set fileformat unix dos mas</code></td>
+<td>让换行符自由切换</td>
+</tr>
+<tr>
+<td><code>:set fileencodings</code></td>
+<td>检测打开文档编码的顺序，一般设置为utf-8、cp936</td>
+</tr>
+<tr>
+<td><code>:set fileencoding</code></td>
+<td>保存文档的编码，一般为utf-8</td>
+</tr>
+<tr>
+<td><code>:set encoding</code></td>
+<td>vim本身界面的编码，一般和文档无关</td>
+</tr>
+</tbody></table>
+<h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>f</code>  / <code>F</code></td>
+<td>当前行搜索，til，正向 / 反向</td>
+</tr>
+<tr>
+<td><code>t</code> / <code>T</code></td>
+<td>当前行搜索，until，正向 / 反向</td>
+</tr>
+<tr>
+<td><code>;</code>、<code>,</code></td>
+<td>重复当前行搜索</td>
+</tr>
+<tr>
+<td><code>/</code>、<code>?</code></td>
+<td>当前文件搜索，向上搜索 / 向下搜索</td>
+</tr>
+<tr>
+<td><code>:grep -r</code> / <code>:!grep -r</code></td>
+<td>跨文件搜索</td>
+</tr>
+<tr>
+<td><code>n</code></td>
+<td>下一个匹配内容</td>
+</tr>
+<tr>
+<td><code>N</code></td>
+<td>上一个匹配内容</td>
+</tr>
+</tbody></table>
+<h3 id="替换指定字符"><a href="#替换指定字符" class="headerlink" title="替换指定字符"></a>替换指定字符</h3><ul>
+<li><p><code>:s/target/replace[/g]</code></p>
+<ul>
+<li><code>target</code>：要被替换的内容</li>
+<li><code>replace</code>：替换的内容</li>
+<li>可选<code>/g</code>：表示替换当前行所有的需要被替换的内容，如不加这个参数则替换当前行第一个需要被替换的内容</li>
+</ul>
+<p>Example：</p>
+<ul>
+<li><code>: s/a/b</code>，将当前行的<code>a</code>替换为<code>b</code></li>
+<li><code>: s/a/b/g</code>，将当前行所有的<code>a</code>替换为<code>b</code></li>
+</ul>
+</li>
+<li><p><code>:n，$s/target/replace[/g]</code></p>
+<ul>
+<li><code>n</code>为数字表示从第n行开始到最后一行，当<code>n</code>为<code>.</code>时表示从当前行开始</li>
+<li><code>target</code>：要被替换的内容</li>
+<li><code>replace</code>：替换的内容</li>
+<li>可选<code>/g</code>：表示替换每一行所有需要被替换的内容，如不添加则替换每一行的第一个需要被替换的内容</li>
+</ul>
+<p>Example：</p>
+<ul>
+<li><code>: 2, $s/a/b</code>：替换从第2行开始到最后一行的每一行的第一个<code>a</code>为<code>b</code></li>
+<li><code>: 2, $s/a/b/g</code>：替换从第2行开始到最后一行的每一行的所有<code>a</code>为<code>b</code></li>
+<li><code>: ., $s/a/b</code>：替换从当前行开始到最后一行的每一行的第一个<code>a</code>为<code>b</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="插件使用（在安装的前提下）"><a href="#插件使用（在安装的前提下）" class="headerlink" title="插件使用（在安装的前提下）"></a>插件使用（在安装的前提下）</h2><h3 id="NERDTree"><a href="#NERDTree" class="headerlink" title="NERDTree"></a>NERDTree</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>o</code></td>
+<td>打开/关闭文件或目录</td>
+</tr>
+<tr>
+<td><code>t</code></td>
+<td>在新标签页中打开</td>
+</tr>
+<tr>
+<td><code>T</code></td>
+<td>在后台标签页打开</td>
+</tr>
+<tr>
+<td><code>!</code></td>
+<td>执行此文件</td>
+</tr>
+<tr>
+<td><code>p</code></td>
+<td>到上层目录</td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td>到根目录</td>
+</tr>
+<tr>
+<td><code>K</code></td>
+<td>到第一个节点</td>
+</tr>
+<tr>
+<td><code>J</code></td>
+<td>到最后一个节点</td>
+</tr>
+<tr>
+<td><code>u</code></td>
+<td>打开上层目录</td>
+</tr>
+<tr>
+<td><code>m</code></td>
+<td>显示文件系统菜单（添加、删除、移动操作）</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>帮助，再按一下关闭</td>
+</tr>
+<tr>
+<td><code>q</code></td>
+<td>关闭</td>
+</tr>
+<tr>
+<td><code>r</code></td>
+<td>刷新列表</td>
+</tr>
+<tr>
+<td><code>i</code></td>
+<td>水平分屏</td>
+</tr>
+<tr>
+<td><code>s</code></td>
+<td>垂直分屏</td>
+</tr>
+</tbody></table>
+<h3 id="vim-commentary"><a href="#vim-commentary" class="headerlink" title="vim-commentary"></a>vim-commentary</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>gcc</code></td>
+<td>注释当前行（普通模式下）</td>
+</tr>
+<tr>
+<td><code>gc</code></td>
+<td>注释当前选中内容（可视多选模式下）</td>
+</tr>
+<tr>
+<td><code>gcap</code></td>
+<td>注释当前所在段落</td>
+</tr>
+<tr>
+<td><code>gcu</code></td>
+<td>注释上一次注释的部分</td>
+</tr>
+<tr>
+<td><code>gcgc</code></td>
+<td>取消一组相邻的注释</td>
+</tr>
+</tbody></table>
+<h2 id="One-more-thing"><a href="#One-more-thing" class="headerlink" title="One more thing"></a>One more thing</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>q:</code></td>
+<td>查看在vim中使用的历史命令</td>
+</tr>
+</tbody></table>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ol>
+<li><a href="https://github.com/bilibili/vim-vide#%E6%8B%A5%E6%9C%89%E4%BD%A0%E8%87%AA%E5%B7%B1%E7%9A%84vimrc">vim-vide</a></li>
+<li><a href="https://www.cnblogs.com/zzqcn/p/4788754.html">【vim】分割窗口、标签页与Quickfix窗口</a></li>
+<li><a href="https://www.cnblogs.com/wangkongming/p/4050833.html">vim 树形目录插件NERDTree安装及简单用法</a></li>
+<li><a href="https://github.com/jaywcjlove/vim-web">https://github.com/jaywcjlove/vim-web</a></li>
+</ol>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/CommandLine/" rel="tag">CommandLine</a>, <a class="has-link-grey -link" href="/tags/Linux/" rel="tag">Linux</a>, <a class="has-link-grey -link" href="/tags/Vim/" rel="tag">Vim</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Wechatpay.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/linux/ssr/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Linux SSR</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/python/django-deploy/">
+                <span class="level-item">Center OS Django部署</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '8fb0efbb7d2496c108f3',
+        clientSecret: '376c8cd0ff2283ef21dcf9bd1f8348014402bd24',
+        id: 'ea89ea6bc39c8b6b249e734883f7b42f',
+        repo: 'gittalk',
+        owner: 'smileorigin',
+        admin: "smileorigin",
+        createIssueManually: true,
+        distractionFreeMode: false
+    })
+    gitalk.render('comment-container')
+</script>
+
+
+    </div>
+</div>
+
+
+</div>
+                
+                
+                    <div class="column is-3-tablet is-3-desktop is-3-widescreen has-order-3 is-hidden-touch is-hidden-desktop-only column-right is-sticky">
+                        
+
+    <div class="widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#帮助文档">
+        <span class="has-mr-6">1</span>
+        <span>帮助文档</span>
+        </a></li><li>
+        <a class="is-flex" href="#过渡阶段">
+        <span class="has-mr-6">2</span>
+        <span>过渡阶段</span>
+        </a></li><li>
+        <a class="is-flex" href="#基本操作">
+        <span class="has-mr-6">3</span>
+        <span>基本操作</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#打开-切换文件">
+        <span class="has-mr-6">3.1</span>
+        <span>打开/切换文件</span>
+        </a></li><li>
+        <a class="is-flex" href="#退出-保存">
+        <span class="has-mr-6">3.2</span>
+        <span>退出/保存</span>
+        </a></li><li>
+        <a class="is-flex" href="#编辑">
+        <span class="has-mr-6">3.3</span>
+        <span>编辑</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#排版">
+        <span class="has-mr-6">4</span>
+        <span>排版</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#删除">
+        <span class="has-mr-6">4.1</span>
+        <span>删除</span>
+        </a></li><li>
+        <a class="is-flex" href="#代码补全">
+        <span class="has-mr-6">4.2</span>
+        <span>代码补全</span>
+        </a></li><li>
+        <a class="is-flex" href="#移动">
+        <span class="has-mr-6">4.3</span>
+        <span>移动</span>
+        </a></li><li>
+        <a class="is-flex" href="#复制-粘贴">
+        <span class="has-mr-6">4.4</span>
+        <span>复制/粘贴</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#高端点的操作">
+        <span class="has-mr-6">5</span>
+        <span>高端点的操作</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#骚操作">
+        <span class="has-mr-6">5.1</span>
+        <span>骚操作</span>
+        </a></li><li>
+        <a class="is-flex" href="#拖动功能">
+        <span class="has-mr-6">5.2</span>
+        <span>拖动功能</span>
+        </a></li><li>
+        <a class="is-flex" href="#代码折叠">
+        <span class="has-mr-6">5.3</span>
+        <span>代码折叠</span>
+        </a></li><li>
+        <a class="is-flex" href="#窗口管理">
+        <span class="has-mr-6">5.4</span>
+        <span>窗口管理</span>
+        </a></li><li>
+        <a class="is-flex" href="#Tab操作">
+        <span class="has-mr-6">5.5</span>
+        <span>Tab操作</span>
+        </a></li><li>
+        <a class="is-flex" href="#转换文件编码和格式">
+        <span class="has-mr-6">5.6</span>
+        <span>转换文件编码和格式</span>
+        </a></li><li>
+        <a class="is-flex" href="#搜索">
+        <span class="has-mr-6">5.7</span>
+        <span>搜索</span>
+        </a></li><li>
+        <a class="is-flex" href="#替换指定字符">
+        <span class="has-mr-6">5.8</span>
+        <span>替换指定字符</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#插件使用（在安装的前提下）">
+        <span class="has-mr-6">6</span>
+        <span>插件使用（在安装的前提下）</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#NERDTree">
+        <span class="has-mr-6">6.1</span>
+        <span>NERDTree</span>
+        </a></li><li>
+        <a class="is-flex" href="#vim-commentary">
+        <span class="has-mr-6">6.2</span>
+        <span>vim-commentary</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#One-more-thing">
+        <span class="has-mr-6">7</span>
+        <span>One more thing</span>
+        </a></li><li>
+        <a class="is-flex" href="#参考文章">
+        <span class="has-mr-6">8</span>
+        <span>参考文章</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img class="logo-img" src="/images/logo.svg" alt="Vim" height="28" />
+                    <img class="logo-img-dark" src="/images/logo-dark.svg" alt="Vim" height="28" />
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Thomas Woo&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://smileorigin.site',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

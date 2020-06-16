@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <script type="text/javascript" src="/js/dark.js"></script>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+
+
+<meta name="keywords" content="Android,JavaScript,Java,Database">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>EffectivePython Advices Record - Thomas Woo</title>
+
+
+    <meta name="description" content="Recorded something 《EffectivePython》advices notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EffectivePython Advices Record">
+<meta property="og:url" content="http://smileorigin.site/python/advices/index.html">
+<meta property="og:site_name" content="Thomas Woo">
+<meta property="og:description" content="Recorded something 《EffectivePython》advices notes">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://smileorigin.site/images/og_image.png">
+<meta property="article:published_time" content="2018-08-07T10:00:00.000Z">
+<meta property="article:modified_time" content="2020-06-13T11:57:00.183Z">
+<meta property="article:author" content="Thomas Woo">
+<meta property="article:tag" content="Notes">
+<meta property="article:tag" content="EffectivePython">
+<meta property="article:tag" content="Advices">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://smileorigin.site/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110922455-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110922455-1');
+</script>
+
+    
+    <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?33cec7dfd968d9ffd9ff2a5da2be77d0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img class="logo-img" src="/images/logo.svg" alt="EffectivePython Advices Record" height="28" />
+                <img class="logo-img-dark" src="/images/logo-dark.svg" alt="EffectivePython Advices Record" height="28" />
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/album">Album</a>
+                
+                <a class="navbar-item"
+                href="/bbs">BBS</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                <a class="navbar-item" id="dark-switch" title="Dark Mode" href="javascript:;">
+                    <i class="fas fa-moon" id="dark-icon"></i>
+                </a>
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns columns-center">
+                <div class="column is-9-widescreen is-12 has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-08-07T10:00:00.000Z">2018-08-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    31 分钟 读完 (大约 4723 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                EffectivePython Advices Record
+            
+        </h1>
+        <div class="content">
+            <p>Recorded something 《EffectivePython》advices notes</p>
+<a id="more"></a>
+
+<h2 id="不要通过检测长度的方法来判断somelist是否为空"><a href="#不要通过检测长度的方法来判断somelist是否为空" class="headerlink" title="不要通过检测长度的方法来判断somelist是否为空"></a>不要通过检测长度的方法来判断somelist是否为空</h2><p>不要使用如：<code>if len(somelist) &gt; 0</code>来判断somelist是否为<strong>[]</strong>或<strong>“空值”</strong>，而是应该采用<code>if not somelist</code>这种写法来判断，somelist为空值或者None表达式<code>not somelist</code>都将会为True<br>检测子元素somelist[i]也应该使用这种方法<br>Example</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="literal">None</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">if</span> <span class="keyword">not</span> a:</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">"I'm none."</span>)</span><br><span class="line">...</span><br><span class="line">I<span class="string">'m none.</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; b = []</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; if not b:</span></span><br><span class="line"><span class="string">...     print("I'</span>m empty list.<span class="string">")</span></span><br><span class="line"><span class="string">...</span></span><br><span class="line"><span class="string">I'm empty list.</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; c = &#123;&#125;</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; if not c:</span></span><br><span class="line"><span class="string">...     print("</span>I<span class="string">'m empty dictionary.")</span></span><br><span class="line"><span class="string">...</span></span><br><span class="line"><span class="string">I'</span>m empty dictionary.</span><br></pre></td></tr></table></figure>
+
+<h2 id="编写Python程序的时候一定要把编码和解码放在界面最外围来做"><a href="#编写Python程序的时候一定要把编码和解码放在界面最外围来做" class="headerlink" title="编写Python程序的时候一定要把编码和解码放在界面最外围来做"></a>编写Python程序的时候一定要把编码和解码放在界面最外围来做</h2><p>程序的核心部分应该使用Unicode字符类型（也就是Python3中的str，Python2中的unicode），而且不要对字符编码做任何假设。这种办法可以另程序接受多种类型的文本编码（Latin-1、Shift JIS和Big5），又可以保证输出的文本信息只采用一种编码形式（最好是UTF-8）<br>由于Python的字符类型有别，所以Python代码中经常会出现两种使用场景：</p>
+<ul>
+<li>开发者需要原始8位值，这些8位值表示以UTF-8格式或其他编码形式来编码的字符</li>
+<li>开发者需要操作没有特定编码形式的Unicode字符<br>所以我们需要编写两个辅助函数，以便在这两种情况之间转换，使得转换后的输入数据能够符合开发者的预期<br>在Python3中，我们需要编写接受str或bytes，并总返回str的方法：  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">to_str</span><span class="params">(bytes_or_str)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> isinstance(bytes_or_str, bytes):</span><br><span class="line">        value = bytes_or_str.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        value = bytes_or_str</span><br><span class="line">    <span class="keyword">return</span> value</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>另外还需要接受str或bytes，并总是返回bytes的方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">to_bytes</span><span class="params">(bytes_or_str)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> isinstance(bytes_or_str, str):</span><br><span class="line">        value = bytes_or_str.encode(<span class="string">'utf-8'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        value = bytes_or_str</span><br><span class="line">    <span class="keyword">return</span> value</span><br></pre></td></tr></table></figure>
+
+<h2 id="用zip函数同时遍历两个迭代器"><a href="#用zip函数同时遍历两个迭代器" class="headerlink" title="用zip函数同时遍历两个迭代器"></a>用zip函数同时遍历两个迭代器</h2><p>在编写Python代码时，我们通常要面对很多个列表，而这些列表里的对象，可能也是相互关联的。通过列表推导，很容易就能根据某个表达式从源列表推算出一份派生类表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">names = [<span class="string">'Cecilia'</span>, <span class="string">'Lise'</span>, <span class="string">'Marie'</span>]</span><br><span class="line">letters = [len(n) <span class="keyword">for</span> n <span class="keyword">in</span> names]</span><br></pre></td></tr></table></figure>
+
+<p>对于本例中的派生列表和源列表来说，相同索引处的两个元素之间有着关联。如果想平行地迭代这两份列表，那么可根据names源列表的长度来执行循环</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">longest_name = <span class="literal">None</span></span><br><span class="line">max_letters = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(names)):</span><br><span class="line">    count = letters[i]</span><br><span class="line">    <span class="keyword">if</span> count &gt; max_letters:</span><br><span class="line">        longest_name = names[i]</span><br><span class="line">        max_letter = count</span><br><span class="line"></span><br><span class="line">print(longest_name)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">Cecilia</span><br></pre></td></tr></table></figure>
+
+<p>上面这段代码的问题在于，整个循环语句看上去很乱。用下标来访问names和letters会使代码不易阅读。用循环下标i来访问数组的写法一共出现了两次。改用enumerate来做可以稍微缓解这个问题。但是仍然不够理想</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i, name <span class="keyword">in</span> enumerate(names):</span><br><span class="line">    count = letters[i]</span><br><span class="line">    <span class="keyword">if</span> count &gt; max_letters:</span><br><span class="line">        longest_name = names[i]</span><br><span class="line">        max_letters = count</span><br></pre></td></tr></table></figure>
+
+<p>使用内置的<strong>zip</strong>函数能够使上述代码变得更加简洁。在Python3中的<strong>zip</strong>函数，可以把两个或者两个以上的迭代器封装为生成器，以便稍后求值。这种zip生成器，会从每个迭代器中获取该迭代器的下一个值，然后把这些值汇聚成元组。与通过下标来访问多份列表的那种写法相比，这种用zip写出来的代码更加明晰</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> name, count <span class="keyword">in</span> zip(names, letters):</span><br><span class="line">    <span class="keyword">if</span> count &gt; max_letters:</span><br><span class="line">        longest_name = name</span><br><span class="line">        max_letters = count</span><br></pre></td></tr></table></figure>
+
+<p><strong>zip</strong>存在一个问题，如果两个迭代器的长度不一致，<strong>zip</strong>会自动提前终止</p>
+<p><strong>itertools</strong>内置模块中的<strong>zip_longest</strong>函数可以平行地遍历多个迭代器，而不用在乎它们的长度是否相等</p>
+<h2 id="try-except-else"><a href="#try-except-else" class="headerlink" title="try/except/else"></a>try/except/else</h2><p><strong>try/except/else</strong> 结构可以清晰地描述出哪些异常会由自己的代码来处理、哪些异常会传播到上一级。如果try块没有发生异常，那么就执行else块。有了这种else块，我们可以尽量缩减try块内的代码量，使其更加易读。例如，要从字符串中加载JSON字典数据，然后返回字典里某个键所对应的值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_json</span><span class="params">(data, key)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        result_dict = json.loads(data) <span class="comment"># May raise ValueError</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">raise</span> KeyError <span class="keyword">from</span> e</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> result_dict[key] <span class="comment"># May raise KeyError</span></span><br></pre></td></tr></table></figure>
+
+<p>如果数据不是有效的JSON格式，那么用json.loads解码时，会产生ValueError。这个异常会由except块来捕获并处理。如果能够解码，那么else块里的查找语句就会执行，它会根据键来查出相关的值。查询时若有异常，则该异常会向上传播，因为查询语句并不在刚才那个try块的范围内。这种else子句，会把try/except后面的内容和except本身区分开，使异常的传播行为变得更加清晰</p>
+<h2 id="用生成器表达式来改写数据量较大的列表推导式"><a href="#用生成器表达式来改写数据量较大的列表推导式" class="headerlink" title="用生成器表达式来改写数据量较大的列表推导式"></a>用生成器表达式来改写数据量较大的列表推导式</h2><p>列表推导缺点–在推导过程中，对于输入序列中的每个值来说，可能都要创建仅含一项元素的全新列表。当输入的数据比较少时，不会出现问题，但如果输入的数据非常多，那么可能会消耗大量的内存，并导致程序崩溃<br>例如要读取一份文件并返回每行的字符数。若采用列表推导来做，则需要把文件每一行的长度都保存在内存中。如果这个文件特别大，或者是通过无休止的network socket来读取，那么这种列表推到就会出问题。下面这段列表推到代码，只适合处理少量的输入值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">value = [len(x) <span class="keyword">for</span> x <span class="keyword">in</span> open(<span class="string">'/tmp/test_file.txt'</span>)]</span><br><span class="line">print(value)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">[<span class="number">2</span>,<span class="number">100</span>,<span class="number">200</span>,<span class="number">43</span>,<span class="number">100</span>]</span><br></pre></td></tr></table></figure>
+
+<p>为了解决此问题，Python提供了生成器表达式，它是对列表推导和生成器的一种泛化。生成器表达式在运行的时候，并不会把整个输出序列都呈现出来，而是会估值为迭代器，这个迭代器每次可以根据生成器表达式产生一项数据。把实现列表推到所用的那种写法放在一对括号中，就构成了生成器表达式。下面给出的生成器表达式与刚才的代码等效。二者的区别在于，对于生成器表达式求值的时候，它会立刻返回一个迭代器，而不会深入文件中的内容。以刚才返回的迭代器为参数，逐次调用内置的next函数，即可使其按照生成器表达式来输出下一个值。可以根据自己的需求，多次命令迭代器根据生成器表达式来生成新值，而不用担心内存用量激增</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">it = (len(x) <span class="keyword">for</span> x <span class="keyword">in</span> open(<span class="string">'/tmp/test_file.txt'</span>))</span><br><span class="line">print(next(it))</span><br><span class="line">print(next(it))</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">100</span></span><br></pre></td></tr></table></figure>
+
+<p>使用生成器表达式还有个好处，就是可以相互组合。下面代码会把刚那个生成器表达式所返回的迭代器用作另一个生成器表达式的输入值。外围的迭代器每次前进时，都会推动内部那个迭代器，这就产生了连锁效应，使得执行循环、评估条件表达式、对接输入和输出等逻辑都组合在一起。这种连锁生成器表达式，可以迅速在Python中执行。如果要吧多种手法组合起来，以操作大批量的输入数据，那最好用生成器表达式来实现。只是要注意：由生成器表达式所返回的那个迭代器是有状态的，用过一轮之后，就不要反复使用了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">roots = ((x, x**<span class="number">0.5</span>) <span class="keyword">for</span> x <span class="keyword">in</span> it)</span><br><span class="line">print(next(roots))</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">(<span class="number">12</span>,<span class="number">23</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="考虑用生成器来改写直接返回列表的函数"><a href="#考虑用生成器来改写直接返回列表的函数" class="headerlink" title="考虑用生成器来改写直接返回列表的函数"></a>考虑用生成器来改写直接返回列表的函数</h2><p>如果函数要产生一系列结果，那么最简单的做法就是把这些结果都放在一份列表里，并将其返回给调用者。例如：我们要查出字符串中每个词的首字母在整个字符串里的位置。下面这段代码，用append方法将这些词的首字母索引添加到result列表中，并在函数结束时将其返回给调用者</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index_words</span><span class="params">(text)</span>:</span></span><br><span class="line">    result = []</span><br><span class="line">    <span class="keyword">if</span> text:</span><br><span class="line">        result.append(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">for</span> index, letter <span class="keyword">in</span> enumerate(text):</span><br><span class="line">        <span class="keyword">if</span> letter == <span class="string">' '</span>:</span><br><span class="line">            result.append(index + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+
+<p>输入一些范例值，以验证该函数能够正常运作：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>address = <span class="string">'Four score and seven years age...'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>result = index_words(address)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(result[:<span class="number">3</span>])</span><br><span class="line">[<span class="number">0</span>, <span class="number">5</span>, <span class="number">11</span>]</span><br></pre></td></tr></table></figure>
+
+<p>第一个问题是，这个代码写得有点拥挤。每次找到新的结果，都要调用append方法。但我们真正应该强调的，并不是对result.append方法的调用，而是该方法给列表中添加的那个值，也就是index + 1。另外，函数首尾还有一行代码用来创建及返回result列表。于是，在函数主体部分的约130个字符里，重要的大概只有75个</p>
+<p>这个函数改用生成器（generator）来写会更好。生成器是使用<strong>yield</strong>表达式的函数。调用函数时，它并不是真正的运行，而是会返回生成器。每次在这个迭代器上面调用内置的next函数时，迭代器会把生成器推进到下一个yield表达式那里。生成器传给<strong>yield</strong>的每一个值都会由迭代器返回给调用者</p>
+<p>下面的这个生成器函数，会产生和刚才那个函数相同的效果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index_words_iter</span><span class="params">(text)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> text:</span><br><span class="line">        <span class="keyword">yield</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> index, letter <span class="keyword">in</span> enumerate(text):</span><br><span class="line">        <span class="keyword">if</span> letter == <span class="string">' '</span>:</span><br><span class="line">            <span class="keyword">yield</span> index + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">result = list(index_words_iter(address))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(result[:<span class="number">3</span>])</span><br><span class="line">[<span class="number">0</span>, <span class="number">5</span>, <span class="number">11</span>]</span><br></pre></td></tr></table></figure>
+
+<p>这个函数不需要包含域result列表相交互的那些代码，因而看起来比刚才那种写法清晰许多。原来那个result列表中的元素，现在都分别传给<strong>yield</strong>表达式了。调用该生成器后所返回的迭代器，可以传给内置的list函数，以将其转换为列表</p>
+<h2 id="使用None和文档字符串来描述具有动态默认值的参数"><a href="#使用None和文档字符串来描述具有动态默认值的参数" class="headerlink" title="使用None和文档字符串来描述具有动态默认值的参数"></a>使用None和文档字符串来描述具有动态默认值的参数</h2><p>有时我们想采用一种非静态的类型，来做关键字参数的默认值。例如：在打印日志消息的时候，要把相关事件的记录时间也标注在这条消息中。默认情况下，消息里面所包含的时间，应该是调用<strong>log</strong>函数那一刻的时间。如果我们以为参数的默认值会在每次执行函数时得到评估，那可能就会写出下面这种代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">log</span><span class="params">(message, when=datetime.datetime.now<span class="params">()</span>)</span>:</span></span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'%s : %s'</span> % (when, message))</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>log(<span class="string">'Hi there!'</span>)</span><br><span class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-08</span> <span class="number">09</span>:<span class="number">41</span>:<span class="number">37.025822</span> : Hi there!</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>time.sleep(<span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>log(<span class="string">'Hi again!'</span>)</span><br><span class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-08</span> <span class="number">09</span>:<span class="number">41</span>:<span class="number">37.025822</span> : Hi again!</span><br></pre></td></tr></table></figure>
+
+<p>两条消息的时间戳是一样的，这是因为datetime.now()只执行了一次，也就是它只在函数定义的时候执行了一次。参数的默认值，会在每个模块加载进来的时候求出，而很多模块都是在程序启动的时候加载的。包含这段代码的模块一旦加载进来参数的默认值也就固定不变了，程序不会再次执行datetime.now()<br>True Example</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">log</span><span class="params">(message, when=None)</span>:</span></span><br><span class="line"><span class="meta">... </span>    when = datetime.datetime.now() <span class="keyword">if</span> when <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">else</span> when</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'%s : %s'</span> % (when, message))</span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>log(<span class="string">'Hi there!'</span>)</span><br><span class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-08</span> <span class="number">09</span>:<span class="number">48</span>:<span class="number">01.383500</span> : Hi there!</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>log(<span class="string">'Hi again!'</span>)</span><br><span class="line"><span class="number">2018</span><span class="number">-08</span><span class="number">-08</span> <span class="number">09</span>:<span class="number">48</span>:<span class="number">06.394290</span> : Hi again!</span><br></pre></td></tr></table></figure>
+
+<p>默认值为字典的错误情况实例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> json</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">decode</span><span class="params">(data, default=&#123;&#125;)</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">try</span>:</span><br><span class="line"><span class="meta">... </span>            <span class="keyword">return</span> json.loads(data)</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">except</span> ValueError:</span><br><span class="line"><span class="meta">... </span>            <span class="keyword">return</span> default</span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>foo = decode(<span class="string">'bad data'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>foo[<span class="string">'stuff'</span>] = <span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bar = decode(<span class="string">'also bad'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bar[<span class="string">'meep'</span>] = <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">'Foo:'</span>, foo)</span><br><span class="line">Foo: &#123;<span class="string">'stuff'</span>: <span class="number">5</span>, <span class="string">'meep'</span>: <span class="number">1</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">'Bar:'</span>, bar)</span><br><span class="line">Bar: &#123;<span class="string">'stuff'</span>: <span class="number">5</span>, <span class="string">'meep'</span>: <span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>True Example</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">decode</span><span class="params">(data, default=None)</span>:</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">if</span> default <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line"><span class="meta">... </span>            default = &#123;&#125;</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">try</span>:</span><br><span class="line"><span class="meta">... </span>            <span class="keyword">return</span> json.loads(data)</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">except</span> ValueError:</span><br><span class="line"><span class="meta">... </span>            <span class="keyword">return</span> default</span><br><span class="line"><span class="meta">... </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>foo = decode(<span class="string">'bad data'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>foo[<span class="string">'stuff'</span>] = <span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bar = decode(<span class="string">'also bad'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bar[<span class="string">'meep'</span>] = <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">'Foo:'</span>, foo)</span><br><span class="line">Foo: &#123;<span class="string">'stuff'</span>: <span class="number">5</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">'Bar:'</span>, bar)</span><br><span class="line">Bar: &#123;<span class="string">'meep'</span>: <span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="用只能以关键字形式指定的参数来确保代码明晰"><a href="#用只能以关键字形式指定的参数来确保代码明晰" class="headerlink" title="用只能以关键字形式指定的参数来确保代码明晰"></a>用只能以关键字形式指定的参数来确保代码明晰</h2><p>下面定义的这个safe_division_c函数，带有两个只能以关键字形式来指定的参数。参数列表里的*号，标志着位置参数就此终结，之后那些参数，都只能以关键字形式来指定</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">safe_division_c</span><span class="params">(number, divisor, *, ignore_overflow=False, ignore_zero_division=False)</span>:</span></span><br></pre></td></tr></table></figure>
+
+<p>现在，我们就不用位置参数的形式来指定关键字参数了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">safe_division_c(<span class="number">1</span>, <span class="number">10</span>**<span class="number">500</span>, <span class="literal">True</span>, <span class="literal">False</span>)</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">TypeError: safe_division_c() takes <span class="number">2</span> positional arguments but <span class="number">4</span> were given</span><br></pre></td></tr></table></figure>
+
+<p>关键字参数依然可以用关键字的形式来指定，如果不指定，也依然会采用默认值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">safe_division_c(<span class="number">1</span>, <span class="number">0</span>, ignore_zero_division=<span class="literal">True</span>)  <span class="comment"># OK</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    safe_division_c(<span class="number">1</span>, <span class="number">0</span>)</span><br><span class="line"><span class="keyword">except</span> ZeroDivisionError:</span><br><span class="line">    <span class="keyword">pass</span>     <span class="comment"># Excepted</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="使用内置算法与数据结构"><a href="#使用内置算法与数据结构" class="headerlink" title="使用内置算法与数据结构"></a>使用内置算法与数据结构</h2><p>如果Python程序要处理的数量比较可观，那么代码的执行速度会受到复杂算法拖累。然而这并不能证明Python是一门执行速度很低的语言，因为这种情况很可能是算法和数据结构选择不佳导致的<br>幸运的是Python的标准程序库里面，内置了各种算法与数据结构，以供开发者使用。这些常见的算法与数据结构，不仅执行速度比较快，而且还可以简化编程工作。其中某些实用工具，是很难由开发者自己正确实现出来的。所以，我们应该直接使用这些Python自带的功能，而不要重新去实现它们，以节省时间和精力</p>
+<h3 id="双向队列"><a href="#双向队列" class="headerlink" title="双向队列"></a>双向队列</h3><p><strong>collections</strong>模块中的<strong>deque</strong>类，是一种双向队列（double-ended queue，双端队列）。从该队列的头部或者尾部插入或移除一个元素，只需要消耗常数级别的时间，这一特性使得它非常适合用来表示先进先出队列。内置的list类型，也可以像队列那样，按照一定的顺序来存放元素。从list尾部插入或者移除元素，也仅仅需要常熟级别的时间。但是，从list头部插入或者移除元素，却会耗费线性级别的时间，这与deque的常数级别时间相比，要慢得多</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">start = time()</span><br><span class="line">fifo = deque()</span><br><span class="line"><span class="comment"># Producter</span></span><br><span class="line">fifo.extend([i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">200000</span>)])</span><br><span class="line"><span class="comment"># Consumer</span></span><br><span class="line"><span class="keyword">while</span> len(fifo) &gt; <span class="number">0</span>:</span><br><span class="line">    x = fifo.popleft()</span><br><span class="line">end = time()</span><br><span class="line">print(<span class="string">'deque: &#123;&#125;'</span>.format(end-start))</span><br><span class="line"></span><br><span class="line">start = time()</span><br><span class="line">l = []</span><br><span class="line">l.extend([i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">200000</span>)])</span><br><span class="line"><span class="keyword">while</span> len(l) &gt; <span class="number">0</span>:</span><br><span class="line">    x = l.pop(<span class="number">0</span>)</span><br><span class="line">end = time()</span><br><span class="line">print(<span class="string">'list: &#123;&#125;'</span>.format(end-start))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 可看到在20万级数据下一直移除第一个元素双向队列的效率要高得非常多</span></span><br><span class="line">deque: 0.08118391036987305</span><br><span class="line">list: 4.417634010314941</span><br></pre></td></tr></table></figure>
+
+<h3 id="有序字典"><a href="#有序字典" class="headerlink" title="有序字典"></a>有序字典</h3><p>标准字典是无序的。也就是说在拥有相同键值对的两个dict上面迭代，可能会出现不同的迭代顺序。标准的字典之所以会出现这种奇怪的现象，是由其快速哈希表（fast hash table）的实现方式导致的<br><strong>collections</strong>模块中的<strong>OrderedDict</strong>类，是一种特殊的字典，它能按照键的插入顺序，来保存键值对在字典中的次序。在OrderedDict上面根据键来迭代，其行为是确定的。这种确定的行为，可以极大地简化测试与调试工作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</span><br><span class="line"> </span><br><span class="line">a = OrderedDict()</span><br><span class="line">a[<span class="string">'foo'</span>] = <span class="number">1</span></span><br><span class="line">a[<span class="string">'bar'</span>] = <span class="number">2</span></span><br><span class="line">b = OrderedDict()</span><br><span class="line">b[<span class="string">'foo'</span>] = <span class="string">'red'</span></span><br><span class="line">b[<span class="string">'bar'</span>] = <span class="string">'blue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> value1, value2 <span class="keyword">in</span> zip(a.values(), b.values()):</span><br><span class="line">    print(value1, value2)</span><br></pre></td></tr></table></figure>
+
+<h3 id="带有默认值的字典"><a href="#带有默认值的字典" class="headerlink" title="带有默认值的字典"></a>带有默认值的字典</h3><p>字典可以用来保存一些统计数据。但是，由于字典里面未必有我们要查询的那个键，所以在用字典保存计数器的时候，就必须用稍微麻烦一些的方式，才能够实现这种简单的功能</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">stats = &#123;&#125;</span><br><span class="line">key = <span class="string">'my_counter'</span></span><br><span class="line"><span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> stats:</span><br><span class="line">    stats[key] = <span class="number">0</span></span><br><span class="line">stats[key] += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可以用collections模块中的defaultdict类来简化上述代码。如果字典中没有待访问的键，那么它就会把某个默认值与这个键自动关联起来。于是，我们只要提供返回默认值的函数即可，字典会调用该函数为每一个默认的键指定默认值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"></span><br><span class="line">dict = defaultdict(int)</span><br><span class="line">print(dict[<span class="string">'a'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># out</span></span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="堆队列"><a href="#堆队列" class="headerlink" title="堆队列"></a>堆队列</h3><p>堆（heap）是一种数据结构，很适合用来实现优先级队列。heapq模块提供了<strong>heappush</strong>、<strong>heappop</strong>和<strong>nsmallest</strong>等一些函数，能够在标准的list类型之中创建堆结构<br>各种优先级的元素，都可以按任意顺序插入堆中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a = []</span><br><span class="line">heapq.heappush(a, <span class="number">5</span>)</span><br><span class="line">heapq.heappush(a, <span class="number">3</span>)</span><br><span class="line">heapq.heappush(a, <span class="number">7</span>)</span><br><span class="line">heapq.heappush(a, <span class="number">4</span>)</span><br><span class="line">print(<span class="string">'Before: '</span>, a)</span><br><span class="line"><span class="comment"># 使用sort后依然能保持堆的结构，但是添加reverse后就不能保持堆结构了</span></span><br><span class="line"><span class="comment"># a.sort()</span></span><br><span class="line">print(<span class="string">'After； '</span>, a)</span><br><span class="line"><span class="comment"># 按照优先级弹出元素的，数值越小优先级越大</span></span><br><span class="line">print(heapq.heappop(a), heapq.heappop(a), heapq.heappop(a), heapq.heappop(a))</span><br></pre></td></tr></table></figure>
+
+<h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><p>在list上面使用index方法来搜索某个元素，所耗的时间会与列表的长度成线性比例。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = list(range(<span class="number">10</span>**<span class="number">6</span>))</span><br><span class="line">i = x.index(<span class="number">991234</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>bisect</strong>模块中的bisect_left等函数，提供了高效的二分折半搜索算法，能够在一系列排好顺序的元素之中搜寻某个值。由bisect_left函数所返回的索引，表示待搜寻的值在序列中的插入点（将该值插在此处，能够使序列依然保持有序）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i= bisect_left(x, <span class="number">991234</span>)</span><br></pre></td></tr></table></figure>
+
+<p>二分搜算法的复杂度，是对数级别的。这就意味着，用bisect来搜索包含一百个元素的列表，与用index来搜索包含14个元素的列表，所耗费的时间差不多。由此可见，这种对数级别的算法，要比线性级别的算法快很多</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bisect <span class="keyword">import</span> bisect_left</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">a = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10000</span>)]</span><br><span class="line"></span><br><span class="line">start = time()</span><br><span class="line">bisect_left(a, <span class="number">9000</span>)</span><br><span class="line">end = time()</span><br><span class="line">print(<span class="string">'bisect: &#123;&#125;'</span>.format(end - start))</span><br><span class="line"></span><br><span class="line">start = time()</span><br><span class="line">a.index(<span class="number">9000</span>)</span><br><span class="line">end = time()</span><br><span class="line">print(<span class="string">'list: &#123;&#125;'</span>.format(end - start))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行结果</span></span><br><span class="line">bisect: <span class="number">1.3828277587890625e-05</span></span><br><span class="line">list: <span class="number">0.000225067138671875</span></span><br></pre></td></tr></table></figure>
+
+<p>通过运行结果显而易见，binsect的搜索效率远大于index的搜索效率</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Advices/" rel="tag">Advices</a>, <a class="has-link-grey -link" href="/tags/EffectivePython/" rel="tag">EffectivePython</a>, <a class="has-link-grey -link" href="/tags/Notes/" rel="tag">Notes</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Wechatpay.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/python/django-deploy/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Center OS Django部署</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/python/virtualenv/">
+                <span class="level-item">Virtualenv</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '8fb0efbb7d2496c108f3',
+        clientSecret: '376c8cd0ff2283ef21dcf9bd1f8348014402bd24',
+        id: 'c652e39f667e9389aa79dde4eb429db0',
+        repo: 'gittalk',
+        owner: 'smileorigin',
+        admin: "smileorigin",
+        createIssueManually: true,
+        distractionFreeMode: false
+    })
+    gitalk.render('comment-container')
+</script>
+
+
+    </div>
+</div>
+
+
+</div>
+                
+                
+                    <div class="column is-3-tablet is-3-desktop is-3-widescreen has-order-3 is-hidden-touch is-hidden-desktop-only column-right is-sticky">
+                        
+
+    <div class="widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#不要通过检测长度的方法来判断somelist是否为空">
+        <span class="has-mr-6">1</span>
+        <span>不要通过检测长度的方法来判断somelist是否为空</span>
+        </a></li><li>
+        <a class="is-flex" href="#编写Python程序的时候一定要把编码和解码放在界面最外围来做">
+        <span class="has-mr-6">2</span>
+        <span>编写Python程序的时候一定要把编码和解码放在界面最外围来做</span>
+        </a></li><li>
+        <a class="is-flex" href="#用zip函数同时遍历两个迭代器">
+        <span class="has-mr-6">3</span>
+        <span>用zip函数同时遍历两个迭代器</span>
+        </a></li><li>
+        <a class="is-flex" href="#try-except-else">
+        <span class="has-mr-6">4</span>
+        <span>try/except/else</span>
+        </a></li><li>
+        <a class="is-flex" href="#用生成器表达式来改写数据量较大的列表推导式">
+        <span class="has-mr-6">5</span>
+        <span>用生成器表达式来改写数据量较大的列表推导式</span>
+        </a></li><li>
+        <a class="is-flex" href="#考虑用生成器来改写直接返回列表的函数">
+        <span class="has-mr-6">6</span>
+        <span>考虑用生成器来改写直接返回列表的函数</span>
+        </a></li><li>
+        <a class="is-flex" href="#使用None和文档字符串来描述具有动态默认值的参数">
+        <span class="has-mr-6">7</span>
+        <span>使用None和文档字符串来描述具有动态默认值的参数</span>
+        </a></li><li>
+        <a class="is-flex" href="#用只能以关键字形式指定的参数来确保代码明晰">
+        <span class="has-mr-6">8</span>
+        <span>用只能以关键字形式指定的参数来确保代码明晰</span>
+        </a></li><li>
+        <a class="is-flex" href="#使用内置算法与数据结构">
+        <span class="has-mr-6">9</span>
+        <span>使用内置算法与数据结构</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#双向队列">
+        <span class="has-mr-6">9.1</span>
+        <span>双向队列</span>
+        </a></li><li>
+        <a class="is-flex" href="#有序字典">
+        <span class="has-mr-6">9.2</span>
+        <span>有序字典</span>
+        </a></li><li>
+        <a class="is-flex" href="#带有默认值的字典">
+        <span class="has-mr-6">9.3</span>
+        <span>带有默认值的字典</span>
+        </a></li><li>
+        <a class="is-flex" href="#堆队列">
+        <span class="has-mr-6">9.4</span>
+        <span>堆队列</span>
+        </a></li><li>
+        <a class="is-flex" href="#二分查找">
+        <span class="has-mr-6">9.5</span>
+        <span>二分查找</span>
+        </a></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img class="logo-img" src="/images/logo.svg" alt="EffectivePython Advices Record" height="28" />
+                    <img class="logo-img-dark" src="/images/logo-dark.svg" alt="EffectivePython Advices Record" height="28" />
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Thomas Woo&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://smileorigin.site',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

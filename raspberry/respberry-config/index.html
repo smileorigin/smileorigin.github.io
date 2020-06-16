@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <script type="text/javascript" src="/js/dark.js"></script>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+
+
+<meta name="keywords" content="Android,JavaScript,Java,Database">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Raspbian配置 - Thomas Woo</title>
+
+
+    <meta name="description" content="记录树莓派的一些配置设置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Raspbian配置">
+<meta property="og:url" content="http://smileorigin.site/raspberry/respberry-config/index.html">
+<meta property="og:site_name" content="Thomas Woo">
+<meta property="og:description" content="记录树莓派的一些配置设置">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://smileorigin.site/images/og_image.png">
+<meta property="article:published_time" content="2017-09-16T14:09:00.000Z">
+<meta property="article:modified_time" content="2020-06-13T11:57:00.184Z">
+<meta property="article:author" content="Thomas Woo">
+<meta property="article:tag" content="Respberry">
+<meta property="article:tag" content="Config">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://smileorigin.site/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110922455-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110922455-1');
+</script>
+
+    
+    <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?33cec7dfd968d9ffd9ff2a5da2be77d0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img class="logo-img" src="/images/logo.svg" alt="Raspbian配置" height="28" />
+                <img class="logo-img-dark" src="/images/logo-dark.svg" alt="Raspbian配置" height="28" />
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/album">Album</a>
+                
+                <a class="navbar-item"
+                href="/bbs">BBS</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                <a class="navbar-item" id="dark-switch" title="Dark Mode" href="javascript:;">
+                    <i class="fas fa-moon" id="dark-icon"></i>
+                </a>
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns columns-center">
+                <div class="column is-9-widescreen is-12 has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-09-16T14:09:00.000Z">2017-09-16</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Raspberry/">Raspberry</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 分钟 读完 (大约 855 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Raspbian配置
+            
+        </h1>
+        <div class="content">
+            <p>记录树莓派的一些配置设置</p>
+<a id="more"></a>
+
+<h2 id="ssh开启方式"><a href="#ssh开启方式" class="headerlink" title="ssh开启方式"></a>ssh开启方式</h2><p>在刷完系统后，进入刷系统的内存卡的<code>boot</code>分区，新建一个<code>ssh</code>的文件（无后缀）开机后树莓派即会自动开启<strong>ssh</strong>功能，用户名为：<code>pi</code>，密码为：<code>raspberry</code></p>
+<h2 id="连接Wifi"><a href="#连接Wifi" class="headerlink" title="连接Wifi"></a>连接Wifi</h2><h3 id="修改-boot-分区文件"><a href="#修改-boot-分区文件" class="headerlink" title="修改 /boot 分区文件"></a>修改 /boot 分区文件</h3><p>读卡器读取内存卡后，在 <code>/boot</code>分区下新建一个<code>wpa_supplicant.conf</code>文件，增加以下内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">country=GB</span><br><span class="line">ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev</span><br><span class="line">update_config=1</span><br><span class="line">network=&#123;</span><br><span class="line">    ssid=<span class="string">"bilibili"</span></span><br><span class="line">    psk=<span class="string">"smileorigin"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="命令行直接修改配置文件方式"><a href="#命令行直接修改配置文件方式" class="headerlink" title="命令行直接修改配置文件方式"></a>命令行直接修改配置文件方式</h3><ul>
+<li>查看能搜索到的wifi<br>  <code>iwlist scan</code></li>
+<li>编辑wifi文件达到实现wifi  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</span><br><span class="line"><span class="comment"># add in the end</span></span><br><span class="line">network=&#123;</span><br><span class="line">    ssid = <span class="string">"wifi name"</span></span><br><span class="line">    psk = <span class="string">"wifi password"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>修改/etc/network/interface 文件  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">auto lo</span><br><span class="line">iface lo inet loopback</span><br><span class="line">iface eth0 inet dhcp</span><br><span class="line">auto wlan0</span><br><span class="line">allow-hotplug wlan0</span><br><span class="line">iface wlan0 inet dhcp</span><br><span class="line">wpa-ssid   接入AP的名字</span><br><span class="line">wpa－psk   接入AP的密码 </span><br><span class="line"><span class="comment"># using this command to restart wifi</span></span><br><span class="line">sudo /etc/init.d/networking restart</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="设置中文"><a href="#设置中文" class="headerlink" title="设置中文"></a>设置中文</h2><ul>
+<li>安装中文字体<br><code>sudo apt-get install ttf-wqy-zenhei</code></li>
+<li>安装中文输入法<br><code>sudo apt-get install scim-pinyin</code></li>
+</ul>
+<h2 id="软件源"><a href="#软件源" class="headerlink" title="软件源"></a>软件源</h2><blockquote>
+<p>中国科学技术大学<br>Raspbian <a href="http://mirrors.ustc.edu.cn/raspbian/raspbian/">http://mirrors.ustc.edu.cn/raspbian/raspbian/</a><br>清华大学<br>Raspbian <a href="http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/">http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/</a><br>华中科技大学<br>Raspbian <a href="http://mirrors.hustunique.com/raspbian/raspbian/">http://mirrors.hustunique.com/raspbian/raspbian/</a><br>Arch Linux ARM <a href="http://mirrors.hustunique.com/archlinuxarm/">http://mirrors.hustunique.com/archlinuxarm/</a><br>大连东软信息学院源（北方用户）<br>Raspbian <a href="http://mirrors.neusoft.edu.cn/raspbian/raspbian/">http://mirrors.neusoft.edu.cn/raspbian/raspbian/</a><br>重庆大学源（中西部用户）<br>Raspbian <a href="http://mirrors.cqu.edu.cn/Raspbian/raspbian/">http://mirrors.cqu.edu.cn/Raspbian/raspbian/</a><br>新加坡国立大学<br>Raspbian <a href="http://mirror.nus.edu.sg/raspbian/raspbian">http://mirror.nus.edu.sg/raspbian/raspbian</a><br>牛津大学<br>Raspbian <a href="http://mirror.ox.ac.uk/sites/archive.raspbian.org/archive/raspbian/">http://mirror.ox.ac.uk/sites/archive.raspbian.org/archive/raspbian/</a><br>韩国KAIST大学<br>Raspbian <a href="http://ftp.kaist.ac.kr/raspbian/raspbian/">http://ftp.kaist.ac.kr/raspbian/raspbian/</a></p>
+</blockquote>
+<ul>
+<li>更换软件源操作<br><code>sudo nano /etc/apt/sources.list</code>打开文件后清空文件内容，粘贴以下镜像路径:<br><code>deb http://mirrors.ustc.edu.cn/raspbian/raspbian/  jessie main non-free contrib</code><br><code>deb-src  http://mirrors.ustc.edu.cn/raspbian/raspbian/ jessie main non-free contrib</code>  </li>
+<li>更新软件索引清单<br><code>sudo apt-get update</code></li>
+<li>比较索引清单更新依赖关系<br><code>sudo apt-get upgrade -y</code></li>
+</ul>
+<h2 id="配置VNV-Viewer"><a href="#配置VNV-Viewer" class="headerlink" title="配置VNV Viewer"></a>配置VNV Viewer</h2><p>由于最新版的Raspbian已经内置了VNC了所以只要进入设置将VNC打开然后重启Raspberry即可</p>
+<ol>
+<li>打开设置界面<br><code>sudo raspi-config</code><br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204004011.png" alt=""></li>
+<li>选择<code>Interfacing Options</code>,进入菜单后选择<code>VNC</code>，然后按提示开启VNC即可<br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204004100.png" alt=""></li>
+<li>重启，在ssh下输入<code>sudo reboot</code>重新启动即完成了开启VNC<br>开启后就默认是开机自启了，所以不用设置开机自启</li>
+</ol>
+<h2 id="超频"><a href="#超频" class="headerlink" title="超频"></a>超频</h2><h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><ul>
+<li>拔下内存卡，用读卡器连接至电脑</li>
+<li>打开根目录下的<code>config.txt</code>文件</li>
+<li>在里面添加以下内容<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#CPU超频至<span class="number">1.4</span>GHz   </span><br><span class="line">arm_freq=<span class="number">1400</span></span><br><span class="line">#内核电压提高至<span class="number">1.3</span>V；范围：<span class="number">0</span>~<span class="number">6</span>；初始电压<span class="number">1.2</span>V，每增加<span class="number">1</span>提高<span class="number">0.025</span>V</span><br><span class="line">over_voltage=<span class="number">4</span></span><br><span class="line">#GPU超频至<span class="number">450</span>MHz</span><br><span class="line">gpu_freq=<span class="number">450</span></span><br></pre></td></tr></table></figure></li>
+<li>保存后将内存卡插回Raspberry pi 3b+，启动系统</li>
+</ul>
+<h3 id="测试是否成功"><a href="#测试是否成功" class="headerlink" title="测试是否成功"></a>测试是否成功</h3><ul>
+<li>安装sysbeach，开源多核性能测试软件<br><code>sudo apt-get install sysbench</code></li>
+<li>运行程序进行满负载性能测试,开启另一个命令行程序输入以下命令<br><code>sysbench --num-threads=4 --test=cpu --cpu-max-prime=20000 run</code><br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204004122.png" alt=""></li>
+<li>查看满负载下CPU频率<br><code>sudo cat /sys/devices/system/cpu/cpu2/cpufreq/cpuinfo_cur_freq</code><br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204004146.png" alt=""></li>
+<li>如果返回<code>1400000</code>，则超频成功<br><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204004203.png" alt=""></li>
+</ul>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Config/" rel="tag">Config</a>, <a class="has-link-grey -link" href="/tags/Respberry/" rel="tag">Respberry</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Wechatpay.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/raspberry/temperature-controlled-cooling/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">温控散热</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/android/book/android-art/activity-life-cycle/">
+                <span class="level-item">Activity 的生命周期(读书笔记)</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '8fb0efbb7d2496c108f3',
+        clientSecret: '376c8cd0ff2283ef21dcf9bd1f8348014402bd24',
+        id: '00acdec87f9f8fd8ae76975419d8fbc0',
+        repo: 'gittalk',
+        owner: 'smileorigin',
+        admin: "smileorigin",
+        createIssueManually: true,
+        distractionFreeMode: false
+    })
+    gitalk.render('comment-container')
+</script>
+
+
+    </div>
+</div>
+
+
+</div>
+                
+                
+                    <div class="column is-3-tablet is-3-desktop is-3-widescreen has-order-3 is-hidden-touch is-hidden-desktop-only column-right is-sticky">
+                        
+
+    <div class="widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#ssh开启方式">
+        <span class="has-mr-6">1</span>
+        <span>ssh开启方式</span>
+        </a></li><li>
+        <a class="is-flex" href="#连接Wifi">
+        <span class="has-mr-6">2</span>
+        <span>连接Wifi</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#修改-boot-分区文件">
+        <span class="has-mr-6">2.1</span>
+        <span>修改 /boot 分区文件</span>
+        </a></li><li>
+        <a class="is-flex" href="#命令行直接修改配置文件方式">
+        <span class="has-mr-6">2.2</span>
+        <span>命令行直接修改配置文件方式</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#设置中文">
+        <span class="has-mr-6">3</span>
+        <span>设置中文</span>
+        </a></li><li>
+        <a class="is-flex" href="#软件源">
+        <span class="has-mr-6">4</span>
+        <span>软件源</span>
+        </a></li><li>
+        <a class="is-flex" href="#配置VNV-Viewer">
+        <span class="has-mr-6">5</span>
+        <span>配置VNV Viewer</span>
+        </a></li><li>
+        <a class="is-flex" href="#超频">
+        <span class="has-mr-6">6</span>
+        <span>超频</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#修改配置文件">
+        <span class="has-mr-6">6.1</span>
+        <span>修改配置文件</span>
+        </a></li><li>
+        <a class="is-flex" href="#测试是否成功">
+        <span class="has-mr-6">6.2</span>
+        <span>测试是否成功</span>
+        </a></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img class="logo-img" src="/images/logo.svg" alt="Raspbian配置" height="28" />
+                    <img class="logo-img-dark" src="/images/logo-dark.svg" alt="Raspbian配置" height="28" />
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Thomas Woo&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://smileorigin.site',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

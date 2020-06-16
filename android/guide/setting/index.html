@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <script type="text/javascript" src="/js/dark.js"></script>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+
+
+<meta name="keywords" content="Android,JavaScript,Java,Database">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Android Preference - Thomas Woo</title>
+
+
+    <meta name="description" content="应用通常包括允许用户修改应用特性和行为的设置例如，有些应用允许用户指定是否启用通知，或指定应用与云端同步数据的频率若要为应用提供设置，您应该使用 Android 的 Preference API 构建一个与其他 Android 应用中的用户体验一致的界面（包括系统设置）。本文旨在介绍如何使用 Preference API 构建应用设置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Preference">
+<meta property="og:url" content="http://smileorigin.site/android/guide/setting/index.html">
+<meta property="og:site_name" content="Thomas Woo">
+<meta property="og:description" content="应用通常包括允许用户修改应用特性和行为的设置例如，有些应用允许用户指定是否启用通知，或指定应用与云端同步数据的频率若要为应用提供设置，您应该使用 Android 的 Preference API 构建一个与其他 Android 应用中的用户体验一致的界面（包括系统设置）。本文旨在介绍如何使用 Preference API 构建应用设置">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://smileorigin.site/images/og_image.png">
+<meta property="article:published_time" content="2016-10-01T10:30:00.000Z">
+<meta property="article:modified_time" content="2020-06-13T11:57:00.179Z">
+<meta property="article:author" content="Thomas Woo">
+<meta property="article:tag" content="Guide">
+<meta property="article:tag" content="Preference">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://smileorigin.site/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110922455-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110922455-1');
+</script>
+
+    
+    <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?33cec7dfd968d9ffd9ff2a5da2be77d0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img class="logo-img" src="/images/logo.svg" alt="Android Preference" height="28" />
+                <img class="logo-img-dark" src="/images/logo-dark.svg" alt="Android Preference" height="28" />
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/album">Album</a>
+                
+                <a class="navbar-item"
+                href="/bbs">BBS</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                <a class="navbar-item" id="dark-switch" title="Dark Mode" href="javascript:;">
+                    <i class="fas fa-moon" id="dark-icon"></i>
+                </a>
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns columns-center">
+                <div class="column is-12 has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-10-01T10:30:00.000Z">2016-10-01</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    9 分钟 读完 (大约 1293 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Android Preference
+            
+        </h1>
+        <div class="content">
+            <p>应用通常包括允许用户修改应用特性和行为的设置<br>例如，有些应用允许用户指定是否启用通知，或指定应用与云端同步数据的频率<br>若要为应用提供设置，您应该使用 Android 的 Preference API 构建一个与其他 Android 应用中的用户体验一致的界面（包括系统设置）。本文旨在介绍如何使用 Preference API 构建应用设置</p>
+<a id="more"></a>
+
+<p><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204160910.png" alt="">  </p>
+<ul>
+<li>首先要在res文件夹下新建一个xml文件夹，然后新建一个xml文件，一般为preference</li>
+<li>每个xml文件的根节点必须为一个PreferenceScreen，在PreferenceScreen里面添加的每个Preference将视为一个单独的项，可使用PreferenceCategory进行分组</li>
+</ul>
+<blockquote>
+<p>android:key<br>对于要保留数据值的首选项，必须拥有此属性。它指定系统在将此设置的值保存在 SharedPreferences 中时所用的唯一键（字符串）。<br>不需要此属性的唯一情形是：首选项是 PreferenceCategory 或PreferenceScreen，或者首选项指定要调用的 Intent（使用 <intent> 元素）或要显示的 Fragment（使用 android:fragment 属性）。<br>android:title<br>此属性为设置提供用户可见的名称。<br>android:defaultValue<br>此属性指定系统应该在 SharedPreferences 文件中设置的初始值。您应该为所有设置提供默认值。</p>
+</blockquote>
+<ul>
+<li>将Preference放进Preference中后，每两个Preference之间将会由横线隔开</li>
+<li>每个设置界面要依托在一个Activity或者Fragment上，使用Activity的话要继承PreferenceActivity，使用Fragment的话要继承PreferenceFragment，两种情况下都不需要在加载视图，直接使用设置列表，在onCreate（）中添加需要的设置列表<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addPreferencesFromResource(R.xml.preferences);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>设置默认值<br>您创建的首选项可能会为应用定义一些重要行为，因此在用户首次打开应用时，您有必要使用每个 Preference 的默认值初始化相关的 SharedPreferences 文件。<br>首先，您必须使用 android:defaultValue 属性为 XML 文件中的每个 Preference 对象指定默认值。该值可以是适合相应 Preference 对象的任意数据类型。例如：<br>然后，通过应用的主 Activity（以及用户首次进入应用所藉由的任何其他 Activity）中的 onCreate() 方法调用 setDefaultValues()：<br>PreferenceManager.setDefaultValues(this, R.xml.advanced_preferences, false);<br>在 onCreate() 期间调用此方法可确保使用默认设置正确初始化应用，而应用可能需要读取这些设置以确定某些行为（例如，是否在蜂窝网络中下载数据）。<br>此方法采用三个参数：<br>应用 Context。</p>
+<p>要为其设置默认值的首选项 XML 文件的资源 ID。</p>
+<p>一个布尔值，用于指示是否应该多次设置默认值。<br>如果该值为 false，则仅当过去从未调用此方法时（或者默认值共享首选项文件中的 KEY_HAS_SET_DEFAULT_VALUES为 false 时），系统才会设置默认值。<br>只要将第三个参数设置为 false，您便可在每次启动 Activity 时安全地调用此方法，而不必通过重置为默认值来替代用户已保存的首选项。 但是，如果将它设置为 true，则需要使用默认值替代之前的所有值。</p>
+</blockquote>
+<p><strong><code>PreferenceManager.setDefaultValues(this, R.xml.advanced_preferences, false);</code></strong></p>
+<blockquote>
+<p>读取首选项<br>默认情况下，应用的所有首选项均保存到一个可通过调用静态方法 PreferenceManager.getDefaultSharedPreferences() 从应用内的任何位置访问的文件中。 这将返回 SharedPreferences 对象，其中包含与 PreferenceActivity 中所用 Preference 对象相关的所有键值对。</p>
+</blockquote>
+<blockquote>
+<p>例如，从应用中的任何其他 Activity 读取某个首选项值的方法如下：</p>
+</blockquote>
+<pre><code>SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);  
+String syncConnPref = sharedPref.getString(SettingsActivity.KEY_PREF_SYNC_CONN, "");
+</pre></code>
+
+<ul>
+<li>一般在Activity的onResume()和onPause()分别注册和注销SharedPreferences.OnSharedPreferenceChangeListener</li>
+</ul>
+<p>以下是详细代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> www.lollipopstudio.top.settingpreference;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.content.SharedPreferences;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.preference.EditTextPreference;</span><br><span class="line"><span class="keyword">import</span> android.preference.ListPreference;</span><br><span class="line"><span class="keyword">import</span> android.preference.MultiSelectListPreference;</span><br><span class="line"><span class="keyword">import</span> android.preference.PreferenceActivity;</span><br><span class="line"><span class="keyword">import</span> android.view.LayoutInflater;</span><br><span class="line"><span class="keyword">import</span> android.view.View;</span><br><span class="line"><span class="keyword">import</span> android.widget.LinearLayout;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> www.lollipopstudio.top.settingpreference.R.xml.preference;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">PreferenceActivity</span> <span class="keyword">implements</span> <span class="title">SharedPreferences</span>.<span class="title">OnSharedPreferenceChangeListener</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//加载toolbar</span></span><br><span class="line">        LinearLayout root = (LinearLayout)findViewById(android.R.id.list).getParent().getParent().getParent();</span><br><span class="line">        View bar = LayoutInflater.from(<span class="keyword">this</span>).inflate(R.layout.toolbar, root, <span class="keyword">false</span>);</span><br><span class="line">        root.addView(bar, <span class="number">0</span>);</span><br><span class="line">        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);</span><br><span class="line">        toolbar.setNavigationOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                finish();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        addPreferencesFromResource(preference);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSharedPreferenceChanged</span><span class="params">(SharedPreferences sharedPreferences, String key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (key) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"switch"</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"ringtone"</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"checkbox"</span>:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"multi"</span>:</span><br><span class="line">                setMultiListPreferenceSummary(key);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"single"</span>:</span><br><span class="line">                setListPreferenceSummary(key);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"editText"</span>:</span><br><span class="line">                setText(key);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onResume();</span><br><span class="line">        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(<span class="keyword">this</span>);</span><br><span class="line">        setListPreferenceSummary(<span class="string">"single"</span>);</span><br><span class="line">        setMultiListPreferenceSummary(<span class="string">"multi"</span>);</span><br><span class="line">        setText(<span class="string">"editText"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onPause();</span><br><span class="line">        getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setListPreferenceSummary</span><span class="params">(String preferenceKey)</span> </span>&#123;</span><br><span class="line">        ListPreference preference = (ListPreference)findPreference(preferenceKey);</span><br><span class="line">        preference.setSummary(preference.getEntry());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setMultiListPreferenceSummary</span><span class="params">(String preferenceKey)</span> </span>&#123;</span><br><span class="line">        MultiSelectListPreference preference = (MultiSelectListPreference)findPreference(preferenceKey);</span><br><span class="line">        preference.setSummary(preference.getValues().toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setText</span><span class="params">(String preferenceKey)</span> </span>&#123;</span><br><span class="line">        EditTextPreference preference = (EditTextPreference)findPreference(preferenceKey);</span><br><span class="line">        preference.setSummary(preference.getText());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">PreferenceScreen</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">PreferenceCategory</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:title</span>=<span class="string">"Something"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">CheckBoxPreference</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:defaultValue</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:key</span>=<span class="string">"checkBoxFirst"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:icon</span>=<span class="string">"@drawable/ic_build_black_24dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:title</span>=<span class="string">"CheckBox"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">SwitchPreference</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:icon</span>=<span class="string">"@drawable/ic_album_black_24dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:defaultValue</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:key</span>=<span class="string">"switch"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:title</span>=<span class="string">"Switch preference"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">PreferenceCategory</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">PreferenceCategory</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:title</span>=<span class="string">"Select"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ListPreference</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:defaultValue</span>=<span class="string">"A"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:entries</span>=<span class="string">"@array/singleSelect"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:entryValues</span>=<span class="string">"@array/singleSelectValues"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:key</span>=<span class="string">"single"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:title</span>=<span class="string">"Single select"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">MultiSelectListPreference</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:entries</span>=<span class="string">"@array/singleSelect"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:entryValues</span>=<span class="string">"@array/singleSelectValues"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:key</span>=<span class="string">"multi"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:title</span>=<span class="string">"Multi select list preference"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">PreferenceCategory</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">PreferenceCategory</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:title</span>=<span class="string">"OpenSettingInOtherScreen"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">PreferenceScreen</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:title</span>=<span class="string">"OtherScreen"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">Preference</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout</span>=<span class="string">"@layout/toolbar"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">CheckBoxPreference</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:defaultValue</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:key</span>=<span class="string">"checkbox"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:title</span>=<span class="string">"Checkbox"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">CheckBoxPreference</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;/<span class="name">PreferenceScreen</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">PreferenceCategory</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">PreferenceCategory</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:title</span>=<span class="string">"OpenOtherActivity"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Preference</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:title</span>=<span class="string">"OpenOtherActivity"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">intent</span> <span class="attr">android:action</span>=<span class="string">"android.intent.action.otherAcyivity"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Preference</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">PreferenceCategory</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">PreferenceCategory</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:title</span>=<span class="string">"Other"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">Preference</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:title</span>=<span class="string">"OpenWeb"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">intent</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:action</span>=<span class="string">"android.intent.action.VIEW"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:data</span>=<span class="string">"http://www.exale.com"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">Preference</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">RingtonePreference</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:defaultValue</span>=<span class="string">""</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:key</span>=<span class="string">"ringtone"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:title</span>=<span class="string">"Ringtone preference"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">EditTextPreference</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:defaultValue</span>=<span class="string">"describe"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:key</span>=<span class="string">"editText"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:title</span>=<span class="string">"EditText"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">PreferenceCategory</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">PreferenceScreen</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">string-array</span> <span class="attr">name</span>=<span class="string">"singleSelect"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"A"</span>&gt;</span>A<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"B"</span>&gt;</span>B<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"C"</span>&gt;</span>C<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">string-array</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">string-array</span> <span class="attr">name</span>=<span class="string">"singleSelectValues"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"A"</span>&gt;</span>A<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"B"</span>&gt;</span>B<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"C"</span>&gt;</span>C<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">string-array</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">android.support.design.widget.AppBarLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">"@+id/appbar"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:theme</span>=<span class="string">"@style/ThemeOverlay.AppCompat.Dark.ActionBar"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">android.support.v7.widget.Toolbar</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/toolbar"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:minHeight</span>=<span class="string">"?attr/actionBarSize"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">"?attr/colorPrimary"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:navigationIcon</span>=<span class="string">"?attr/homeAsUpIndicator"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:title</span>=<span class="string">"setting2"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">android.support.v7.widget.Toolbar</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">android.support.design.widget.AppBarLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Guide/" rel="tag">Guide</a>, <a class="has-link-grey -link" href="/tags/Preference/" rel="tag">Preference</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Wechatpay.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/another/windows-right-click-cmd/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Windows 右键打开 cmd</span>
+            </a>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '8fb0efbb7d2496c108f3',
+        clientSecret: '376c8cd0ff2283ef21dcf9bd1f8348014402bd24',
+        id: '7da2712903e68774b505fa4ba1c9a356',
+        repo: 'gittalk',
+        owner: 'smileorigin',
+        admin: "smileorigin",
+        createIssueManually: true,
+        distractionFreeMode: false
+    })
+    gitalk.render('comment-container')
+</script>
+
+
+    </div>
+</div>
+
+
+</div>
+                
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img class="logo-img" src="/images/logo.svg" alt="Android Preference" height="28" />
+                    <img class="logo-img-dark" src="/images/logo-dark.svg" alt="Android Preference" height="28" />
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Thomas Woo&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://smileorigin.site',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

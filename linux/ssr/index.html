@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <script type="text/javascript" src="/js/dark.js"></script>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+
+
+<meta name="keywords" content="Android,JavaScript,Java,Database">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Linux SSR - Thomas Woo</title>
+
+
+    <meta name="description" content="因为一个需求，所以研究了下——Linux终端下如何使用SSR优雅的出国访问优质(恩……)的国外网站，本笔记的实验环境是Center OS，其他Linux发行版本类似">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux SSR">
+<meta property="og:url" content="http://smileorigin.site/linux/ssr/index.html">
+<meta property="og:site_name" content="Thomas Woo">
+<meta property="og:description" content="因为一个需求，所以研究了下——Linux终端下如何使用SSR优雅的出国访问优质(恩……)的国外网站，本笔记的实验环境是Center OS，其他Linux发行版本类似">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://smileorigin.site/images/og_image.png">
+<meta property="article:published_time" content="2018-12-21T04:59:00.000Z">
+<meta property="article:modified_time" content="2020-06-13T11:57:00.182Z">
+<meta property="article:author" content="Thomas Woo">
+<meta property="article:tag" content="Debian">
+<meta property="article:tag" content="SSR">
+<meta property="article:tag" content="Privoxy">
+<meta property="article:tag" content="ProxyChains4">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://smileorigin.site/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110922455-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-110922455-1');
+</script>
+
+    
+    <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?33cec7dfd968d9ffd9ff2a5da2be77d0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img class="logo-img" src="/images/logo.svg" alt="Linux SSR" height="28" />
+                <img class="logo-img-dark" src="/images/logo-dark.svg" alt="Linux SSR" height="28" />
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/album">Album</a>
+                
+                <a class="navbar-item"
+                href="/bbs">BBS</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                <a class="navbar-item" id="dark-switch" title="Dark Mode" href="javascript:;">
+                    <i class="fas fa-moon" id="dark-icon"></i>
+                </a>
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns columns-center">
+                <div class="column is-9-widescreen is-12 has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-12-21T04:59:00.000Z">2018-12-21</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    12 分钟 读完 (大约 1794 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Linux SSR
+            
+        </h1>
+        <div class="content">
+            <p>因为一个需求，所以研究了下——<strong>Linux终端下如何使用SSR优雅的出国访问优质(恩……)的国外网站</strong>，本笔记的实验环境是<strong>Center OS</strong>，其他Linux发行版本类似</p>
+<a id="more"></a>
+<h2 id="SSR"><a href="#SSR" class="headerlink" title="SSR"></a>SSR</h2><h3 id="安装SSR"><a href="#安装SSR" class="headerlink" title="安装SSR"></a>安装SSR</h3><ol>
+<li><p>作为懒癌患者首选GitHub上的<a href="https://github.com/the0demiurge/CharlesScripts/blob/master/charles/bin/ssr">CharlesScripts</a>项目的安装脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/the0demiurge/CharlesScripts/raw/master/charles/bin/ssr</span><br></pre></td></tr></table></figure></li>
+<li><p>将该脚本移至<code>$PATH</code>环境变量包含的目录，如：<code>/usr/local/bin</code>；并修改文件权限为可执行权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv ssr /usr/<span class="built_in">local</span>/bin/ssr</span><br><span class="line">chmod +x /usr/<span class="built_in">local</span>/bin/ssr</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssr install</span><br></pre></td></tr></table></figure>
+<p>执行命令后会自动安装到：<code>$HOME/.local/share/shadowsocksr</code></p>
+</li>
+</ol>
+<h3 id="配置SSR"><a href="#配置SSR" class="headerlink" title="配置SSR"></a>配置SSR</h3><ol>
+<li><p>使用命令：<code>ssr config</code>打开配置文件，按照以下类似配置保存即可</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"server"</span>: <span class="string">"103.114.161.160"</span>, // 服务器ip</span><br><span class="line">    <span class="string">"server_ipv6"</span>: <span class="string">"::"</span>,</span><br><span class="line">    <span class="string">"server_port"</span>: 667,	// 服务器端口</span><br><span class="line">    <span class="string">"local_address"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">    <span class="string">"local_port"</span>: 1080, // 本地端口，记住这个，后续Privoxy将代理这个端口</span><br><span class="line"></span><br><span class="line">    <span class="string">"password"</span>: <span class="string">"ntdtv.com"</span>, // 服务器密码</span><br><span class="line">    <span class="string">"method"</span>: <span class="string">"AES-256-CFB"</span>, // 加密方式</span><br><span class="line">    <span class="string">"protocol"</span>: <span class="string">"origin"</span>, // 加密协议</span><br><span class="line">    <span class="string">"protocol_param"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="string">"obfs"</span>: <span class="string">"plain"</span>, // 混淆方式</span><br><span class="line">    <span class="string">"obfs_param"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="string">"speed_limit_per_con"</span>: 0,</span><br><span class="line">    <span class="string">"speed_limit_per_user"</span>: 0,</span><br><span class="line"></span><br><span class="line">    <span class="string">"additional_ports"</span> : &#123;&#125;, // only works under multi-user mode</span><br><span class="line">    <span class="string">"additional_ports_only"</span> : <span class="literal">false</span>, // only works under multi-user mode</span><br><span class="line">    <span class="string">"timeout"</span>: 120,</span><br><span class="line">    <span class="string">"udp_timeout"</span>: 60,</span><br><span class="line">    <span class="string">"dns_ipv6"</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="string">"connect_verbose_info"</span>: 0,</span><br><span class="line">    <span class="string">"redirect"</span>: <span class="string">""</span>,</span><br><span class="line">    <span class="string">"fast_open"</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 保存后，可看到自动提示的信息，输出如下类似内容就是配置成功了：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">[root@sssssssss home]<span class="comment"># ssr config</span></span><br><span class="line">IPv6 not support</span><br><span class="line">2018-12-21 01:09:09 ERROR    shell.py:50 [Errno 2] No such file or directory: <span class="string">'/var/run/shadowsocksr.pid'</span></span><br><span class="line">2018-12-21 01:09:09 ERROR    daemon.py:146 not running</span><br><span class="line">IPv6 not support</span><br><span class="line">2018-12-21 01:09:09 INFO     util.py:85 loading libcrypto from libcrypto.so.10</span><br><span class="line">started</span><br><span class="line">Testing Connection...</span><br><span class="line">local_port is 1080; <span class="keyword">if</span> any exceptions orrured, please install jq</span><br><span class="line">connection information:</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"ip"</span>: <span class="string">"103.114.161.160"</span>,</span><br><span class="line">  <span class="string">"city"</span>: <span class="string">"Suqian"</span>,</span><br><span class="line">  <span class="string">"region"</span>: <span class="string">"Jiangsu"</span>,</span><br><span class="line">  <span class="string">"country"</span>: <span class="string">"CN"</span>,</span><br><span class="line">  <span class="string">"loc"</span>: <span class="string">"33.9492,118.2960"</span>,</span><br><span class="line">  <span class="string">"postal"</span>: <span class="string">"223800"</span>,</span><br><span class="line">  <span class="string">"org"</span>: <span class="string">"AS40676 Psychz Networks"</span></span><br><span class="line">&#125;</span><br><span class="line">IP	: 103.114.161.160</span><br><span class="line">地址	: 美国  加利福尼亚州  洛杉矶</span><br><span class="line">运营商	: hosteons.com</span><br><span class="line"></span><br><span class="line">数据二	: 美国 | 新加坡HostEONS私人有限公司(美芝路5001号黄金坊04-01号)美国Psychz数据中心洛杉矶节点</span><br><span class="line"></span><br><span class="line">数据三	: 美国加利福尼亚洛杉矶</span><br><span class="line"></span><br><span class="line">URL	: http://www.cip.cc/103.114.161.160</span><br><span class="line">You may install proxychains4 and configure it properly to <span class="built_in">test</span> net delay</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>常用命令</p>
+<ul>
+<li><code>ssr help</code><br>查看帮助信息</li>
+<li><code>ssr start</code><br>启动ssr</li>
+<li><code>ssr stop</code><br>关闭ssr</li>
+<li><code>ssr restart</code><br>重启ssr</li>
+<li><code>ssr uninstall</code><br>卸载ssr</li>
+</ul>
+</li>
+</ol>
+<h2 id="安装proxychins4"><a href="#安装proxychins4" class="headerlink" title="安装proxychins4"></a>安装proxychins4</h2><p>根据上一节末的提示信息(<code>You may install proxychains4 and configure it properly to test net delay</code>)可知没有安装<strong>proxychins4</strong>所以无法进行延迟测试</p>
+<ol>
+<li>克隆proxychins-ng<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/rofl0r/proxychains-ng.git</span><br></pre></td></tr></table></figure></li>
+<li>安装<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> proxychains-ng</span><br><span class="line">./configure --prefix=/usr --sysconfdir=/etc</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br><span class="line">sudo make install-config</span><br></pre></td></tr></table></figure>
+输出信息<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">[root@izuf6f5j6kravfwcn9kgtqz home]<span class="comment"># git clone https://github.com/rofl0r/proxychains-ng.git</span></span><br><span class="line">正克隆到 <span class="string">'proxychains-ng'</span>...</span><br><span class="line">remote: Enumerating objects: 17, <span class="keyword">done</span>.</span><br><span class="line">remote: Counting objects: 100% (17/17), <span class="keyword">done</span>.</span><br><span class="line">remote: Compressing objects: 100% (17/17), <span class="keyword">done</span>.</span><br><span class="line">remote: Total 1211 (delta 6), reused 4 (delta 0), pack-reused 1194</span><br><span class="line">接收对象中: 100% (1211/1211), 626.98 KiB | 58.00 KiB/s, <span class="keyword">done</span>.</span><br><span class="line">处理 delta 中: 100% (788/788), <span class="keyword">done</span>.</span><br><span class="line">[root@izuf6f5j6kravfwcn9kgtqz home]<span class="comment"># cd proxychains-ng</span></span><br><span class="line">[root@izuf6f5j6kravfwcn9kgtqz proxychains-ng]<span class="comment"># ./configure --prefix=/usr --sysconfdir=/etc</span></span><br><span class="line">checking whether we have GNU-style getservbyname_r() ... yes</span><br><span class="line">checking whether <span class="variable">$CC</span> defines __APPLE__ ... no</span><br><span class="line">checking whether <span class="variable">$CC</span> defines __FreeBSD__ ... no</span><br><span class="line">checking whether <span class="variable">$CC</span> defines __OpenBSD__ ... no</span><br><span class="line">checking whether <span class="variable">$CC</span> defines __sun ... no</span><br><span class="line">checking whether we can use -Wl,--no-as-needed ... yes</span><br><span class="line">checking what<span class="string">'s the option to use in linker to set library name ... --soname</span></span><br><span class="line"><span class="string">Done, now run make &amp;&amp; make install</span></span><br><span class="line"><span class="string">[root@izuf6f5j6kravfwcn9kgtqz proxychains-ng]# make</span></span><br><span class="line"><span class="string">cc -DSUPER_SECURE -DHAVE_GNU_GETSERVBYNAME_R -Wall -O0 -g -std=c99 -D_GNU_SOURCE -pipe   -DLIB_DIR=\"/usr/lib\" -DSYSCONFDIR=\"/etc\" -DDLL_NAME=\"libproxychains4.so\"  -fPIC -c -o src/nameinfo.o src/nameinfo.c</span></span><br><span class="line"><span class="string">printf '</span><span class="comment">#define VERSION "%s"\n' "$(sh tools/version.sh)" &gt; src/version.h</span></span><br><span class="line">cc -DSUPER_SECURE -DHAVE_GNU_GETSERVBYNAME_R -Wall -O0 -g -std=c99 -D_GNU_SOURCE -pipe   -DLIB_DIR=\"/usr/lib\" -DSYSCONFDIR=\"/etc\" -DDLL_NAME=\"libproxychains4.so\"  -fPIC -c -o src/version.o src/version.c</span><br><span class="line">cc -DSUPER_SECURE -DHAVE_GNU_GETSERVBYNAME_R -Wall -O0 -g -std=c99 -D_GNU_SOURCE -pipe   -DLIB_DIR=\"/usr/lib\" -DSYSCONFDIR=\"/etc\" -DDLL_NAME=\"libproxychains4.so\"  -fPIC -c -o src/core.o src/core.c</span><br><span class="line">cc -DSUPER_SECURE -DHAVE_GNU_GETSERVBYNAME_R -Wall -O0 -g -std=c99 -D_GNU_SOURCE -pipe   -DLIB_DIR=\"/usr/lib\" -DSYSCONFDIR=\"/etc\" -DDLL_NAME=\"libproxychains4.so\"  -fPIC -c -o src/common.o src/common.c</span><br><span class="line">cc -DSUPER_SECURE -DHAVE_GNU_GETSERVBYNAME_R -Wall -O0 -g -std=c99 -D_GNU_SOURCE -pipe   -DLIB_DIR=\"/usr/lib\" -DSYSCONFDIR=\"/etc\" -DDLL_NAME=\"libproxychains4.so\"  -fPIC -c -o src/libproxychains.o src/libproxychains.c</span><br><span class="line">cc -DSUPER_SECURE -DHAVE_GNU_GETSERVBYNAME_R -Wall -O0 -g -std=c99 -D_GNU_SOURCE -pipe   -DLIB_DIR=\"/usr/lib\" -DSYSCONFDIR=\"/etc\" -DDLL_NAME=\"libproxychains4.so\"  -fPIC -c -o src/allocator_thread.o src/allocator_thread.c</span><br><span class="line">cc -DSUPER_SECURE -DHAVE_GNU_GETSERVBYNAME_R -Wall -O0 -g -std=c99 -D_GNU_SOURCE -pipe   -DLIB_DIR=\"/usr/lib\" -DSYSCONFDIR=\"/etc\" -DDLL_NAME=\"libproxychains4.so\"  -fPIC -c -o src/ip_type.o src/ip_type.c</span><br><span class="line">cc -DSUPER_SECURE -DHAVE_GNU_GETSERVBYNAME_R -Wall -O0 -g -std=c99 -D_GNU_SOURCE -pipe   -DLIB_DIR=\"/usr/lib\" -DSYSCONFDIR=\"/etc\" -DDLL_NAME=\"libproxychains4.so\"  -fPIC -c -o src/hostsreader.o src/hostsreader.c</span><br><span class="line">cc -DSUPER_SECURE -DHAVE_GNU_GETSERVBYNAME_R -Wall -O0 -g -std=c99 -D_GNU_SOURCE -pipe   -DLIB_DIR=\"/usr/lib\" -DSYSCONFDIR=\"/etc\" -DDLL_NAME=\"libproxychains4.so\"  -fPIC -c -o src/hash.o src/hash.c</span><br><span class="line">cc -DSUPER_SECURE -DHAVE_GNU_GETSERVBYNAME_R -Wall -O0 -g -std=c99 -D_GNU_SOURCE -pipe   -DLIB_DIR=\"/usr/lib\" -DSYSCONFDIR=\"/etc\" -DDLL_NAME=\"libproxychains4.so\"  -fPIC -c -o src/debug.o src/debug.c</span><br><span class="line">cc -fPIC -Wl,--no-as-needed -ldl -lpthread -Wl,--soname,libproxychains4.so  \</span><br><span class="line">-shared -o libproxychains4.so src/nameinfo.o src/version.o src/core.o src/common.o src/libproxychains.o src/allocator_thread.o src/ip_type.o src/hostsreader.o src/hash.o src/debug.o</span><br><span class="line">cc -DSUPER_SECURE -DHAVE_GNU_GETSERVBYNAME_R -Wall -O0 -g -std=c99 -D_GNU_SOURCE -pipe   -DLIB_DIR=\"/usr/lib\" -DSYSCONFDIR=\"/etc\" -DDLL_NAME=\"libproxychains4.so\"  -fPIC -c -o src/main.o src/main.c</span><br><span class="line">cc src/main.o src/common.o  -o proxychains4</span><br><span class="line">[root@izuf6f5j6kravfwcn9kgtqz proxychains-ng]<span class="comment"># sudo make install</span></span><br><span class="line">./tools/install.sh -D -m 644 libproxychains4.so /usr/lib/libproxychains4.so</span><br><span class="line">./tools/install.sh -D -m 755 proxychains4 /usr/bin/proxychains4</span><br><span class="line">[root@izuf6f5j6kravfwcn9kgtqz proxychains-ng]<span class="comment"># sudo make install-config</span></span><br><span class="line">./tools/install.sh -D -m 644 src/proxychains.conf /etc/proxychains.conf</span><br></pre></td></tr></table></figure></li>
+<li>修改配置文件<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/proxychains.conf</span><br></pre></td></tr></table></figure>
+<strong>proxychains</strong>默认使用的是<strong>9050</strong>端口，而我们SSR配置中使用的是<strong>1080</strong>端口，所以要将配置文件最底部的<code>socks4  127.0.0.1 9050</code>改为<code>socks4  127.0.0.1 1080</code><br>安装完成后再次运行<code>ssr test</code>即可看到延迟测试信息了</li>
+</ol>
+<h2 id="Privoxy"><a href="#Privoxy" class="headerlink" title="Privoxy"></a>Privoxy</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<li>Center OS  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y epel-release</span><br><span class="line">yum install -y privoxy</span><br></pre></td></tr></table></figure></li>
+<li>Debian  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install -y privoxy</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="PAC模式"><a href="#PAC模式" class="headerlink" title="PAC模式"></a>PAC模式</h3><p>进行全局代理会大大的影响我们访问国内地址，所以我们使用PAC模式来进行流量代理。根据GFWList(由AutoProxy官方维护)来判断哪些网站被我们的超级安全防御墙（超级ma fan的wall）挡在门外<br>这里我们使用<a href="https://www.zfl9.com/">@Otokaze</a> 的shell自动转换脚本来获取GFWList配置</p>
+<ol>
+<li>获取脚本<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/SAMZONG/gfwlist2privoxy/raw/master/gfwlist2privoxy</span><br></pre></td></tr></table></figure></li>
+<li>执行<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash gfwlist2privoxy</span><br></pre></td></tr></table></figure>
+这里会提示需要输入ip地址及端口，输入你ssr配置的本地地址及端口即可，测试内容如下：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@izuf6f5j6kravfwcn9kgtqz ~]<span class="comment"># bash gfwlist2privoxy</span></span><br><span class="line">proxy(socks5): 127.0.0.1:1080</span><br><span class="line">&#123;+forward-override&#123;forward-socks5 127.0.0.1：1080 .&#125;&#125;</span><br><span class="line"></span><br><span class="line">=================================================================</span><br><span class="line"></span><br><span class="line"><span class="string">"cp -af /root/gfw.action /etc/privoxy/"</span></span><br></pre></td></tr></table></figure></li>
+<li>后续操作<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp -af gfw.action /etc/privoxy/</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'actionsfile gfw.action'</span> &gt;&gt; /etc/privoxy/config</span><br></pre></td></tr></table></figure></li>
+<li>设置http、https监听的端口及不监听的端口，Privoxy 默认监听端口是是8118<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=http://127.0.0.1:8118</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://127.0.0.1:8118</span><br><span class="line"><span class="built_in">export</span> no_proxy=localhost</span><br></pre></td></tr></table></figure>
+只在本次连接会话有效，重新连接服务器后需要重新设置<br>永久有效配置方式：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile</span><br></pre></td></tr></table></figure>
+编辑<code>/etc/profile</code>（<strong>Debian</strong>则是修改<code>~/.bashrc</code>文件）文件，在文件末尾加上上面的3条export命令重新连接服务器即可</li>
+<li>启动服务<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start privoxy.service</span><br></pre></td></tr></table></figure></li>
+<li>测试<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl www.google.com</span><br></pre></td></tr></table></figure>
+能看到Google网页的源码就说明穿墙成功了</li>
+</ol>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ol>
+<li><a href="https://github.com/the0demiurge/CharlesScripts/blob/master/charles/bin/ssr">https://github.com/the0demiurge/CharlesScripts/blob/master/charles/bin/ssr</a></li>
+<li><a href="https://samzong.me/2017/11/17/howto-use-ssr-on-linux-terminal/">在Linux终端使用SSR服务实现科学上网</a></li>
+<li><a href="https://blog.csdn.net/mingjie1212/article/details/51814421">Ubuntu 16.04 ProxyChains4编译安装</a></li>
+</ol>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Debian/" rel="tag">Debian</a>, <a class="has-link-grey -link" href="/tags/Privoxy/" rel="tag">Privoxy</a>, <a class="has-link-grey -link" href="/tags/ProxyChains4/" rel="tag">ProxyChains4</a>, <a class="has-link-grey -link" href="/tags/SSR/" rel="tag">SSR</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="http://static.smileorigin.site/Wechatpay.png" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/raspberry/kodi/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Kodi</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/linux/vim/">
+                <span class="level-item">Vim</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script>
+    var gitalk = new Gitalk({
+        clientID: '8fb0efbb7d2496c108f3',
+        clientSecret: '376c8cd0ff2283ef21dcf9bd1f8348014402bd24',
+        id: 'e89ea2de247c143a9d9218780c5f62f4',
+        repo: 'gittalk',
+        owner: 'smileorigin',
+        admin: "smileorigin",
+        createIssueManually: true,
+        distractionFreeMode: false
+    })
+    gitalk.render('comment-container')
+</script>
+
+
+    </div>
+</div>
+
+
+</div>
+                
+                
+                    <div class="column is-3-tablet is-3-desktop is-3-widescreen has-order-3 is-hidden-touch is-hidden-desktop-only column-right is-sticky">
+                        
+
+    <div class="widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#SSR">
+        <span class="has-mr-6">1</span>
+        <span>SSR</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#安装SSR">
+        <span class="has-mr-6">1.1</span>
+        <span>安装SSR</span>
+        </a></li><li>
+        <a class="is-flex" href="#配置SSR">
+        <span class="has-mr-6">1.2</span>
+        <span>配置SSR</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#安装proxychins4">
+        <span class="has-mr-6">2</span>
+        <span>安装proxychins4</span>
+        </a></li><li>
+        <a class="is-flex" href="#Privoxy">
+        <span class="has-mr-6">3</span>
+        <span>Privoxy</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#安装">
+        <span class="has-mr-6">3.1</span>
+        <span>安装</span>
+        </a></li><li>
+        <a class="is-flex" href="#PAC模式">
+        <span class="has-mr-6">3.2</span>
+        <span>PAC模式</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#参考文章">
+        <span class="has-mr-6">4</span>
+        <span>参考文章</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img class="logo-img" src="/images/logo.svg" alt="Linux SSR" height="28" />
+                    <img class="logo-img-dark" src="/images/logo-dark.svg" alt="Linux SSR" height="28" />
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Thomas Woo&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://smileorigin.site',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
