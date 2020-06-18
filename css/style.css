@@ -555,7 +555,7 @@ figure.highlight .section {
  *        dark mode
  * --------------------------------- */
 body.dark {
-  background: #000;
+  background-color: #000;
 }
 .dark .navbar-logo .logo-img,
 .dark .footer-logo .logo-img {
