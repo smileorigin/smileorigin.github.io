@@ -616,7 +616,7 @@ body.dark {
   background-color: #000;
 }
 .dark .pagination {
-  background-color: #000;
+  background: #000;
 }
 .dark .pagination-link.is-current {
   color: #000;
