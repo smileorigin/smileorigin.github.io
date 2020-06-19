@@ -75,11 +75,11 @@
 
     function switchMode() {
         let iconClassList;
-
+        let c = document.body.classList 
         if (isDark) {
-            document.body.classList.add(DARK_CLASS);
+            c.add(DARK_CLASS);
         } else {
-            document.body.classList.remove(DARK_CLASS);
+            c.remove(DARK_CLASS);
         }
 
         if (darkSwitchIcon) {
