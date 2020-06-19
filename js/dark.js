@@ -75,20 +75,15 @@
 
     function switchMode() {
         let iconClassList;
-        if (true) {
-            // const darkClassList = document.body.classList;
 
-            if (isDark) {
-                document.body.classList.add(DARK_CLASS);
-            } else {
-                document.body.classList.remove(DARK_CLASS);
-            }
-
-            if (darkSwitchIcon) {
-                darkSwitchIcon.classList = getIconClass(isDark);
-            }
+        if (isDark) {
+            document.body.classList.add(DARK_CLASS);
         } else {
-            setTimeout(switchMode, 1)
+            document.body.classList.remove(DARK_CLASS);
+        }
+
+        if (darkSwitchIcon) {
+            darkSwitchIcon.classList = getIconClass(isDark);
         }
     }
 
