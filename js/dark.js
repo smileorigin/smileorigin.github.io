@@ -1,4 +1,11 @@
 (function() {
+    /**
+    * Icarus dark mode by smileorigin
+    * https://smileorigin.site/
+    * Thanks:
+    *   - https://github.com/imaegoo/hexo-theme-icarus
+    *   - https://github.com/removeif/hexo-theme-amazing
+    */ 
     const DARK_KEY = 'dark-mode';
     const DARK_CLASS = 'dark';
 
@@ -8,15 +15,14 @@
     let isDark = darkConf.isDark;
 
     function init() {
-        // 过期判断
-        // 1. 当天早上 8 点后 设置 黑暗模式 不重置
-        // 2. 当天晚上 10 点后设置 白天模式 不重置
+        // expiration time judgment
+        // 1. the dark mode is not reset after 8am that day
+        // 2. the day mode will not be reset after 10pm that day
         const modifyDate = new Date(darkConf.modifyDate);
 
         const nowDate = new Date();
         const hour = nowDate.getHours();
 
-        // 计算 3 个时间点的时间戳
         const nowDateString = nowDate.toString();
         const todayDate = nowDateString.substr(0, 16);
         const timeZone = nowDateString.substr(24);
@@ -33,7 +39,7 @@
                 switchMode();
             } else {
                 if (!(modifyDate >= todayEvening || (hour < 7 && modifyDate >= yesterdayEvening))) {
-                    // 无效设置时间 dark
+                    // invalid, dark
                     isDark = true;
                     switchMode();
                     saveConf();
@@ -42,10 +48,10 @@
         } else {
             // day
             if (isDark && modifyDate >= todayMorning) {
-                // 有效设置时间
+                // valid
                 switchMode();
             } else {
-                // 无效设置时间
+                // invalid
                 isDark = false;
                 saveConf();
             }
@@ -75,11 +81,11 @@
 
     function switchMode() {
         let iconClassList;
-        let c = document.body.classList 
+
         if (isDark) {
-            c.add(DARK_CLASS);
+            document.body.classList.add(DARK_CLASS);
         } else {
-            c.remove(DARK_CLASS);
+            document.body.classList.remove(DARK_CLASS);
         }
 
         if (darkSwitchIcon) {

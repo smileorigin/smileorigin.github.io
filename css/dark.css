@@ -1,0 +1,272 @@
+/* ---------------------------------
+ *            dark mode
+ * --------------------------------- */
+body.dark {
+  background-color: #000;
+}
+.dark .navbar-logo .logo-img,
+.dark .footer-logo .logo-img {
+  display: none;
+}
+.dark .navbar-logo .logo-img-dark,
+.dark .footer-logo .logo-img-dark {
+  display: inline-block;
+}
+.dark .card,
+.dark .footer,
+.dark .navbar,
+.dark .navbar-menu {
+  background: #121212;
+}
+.dark .pace-progress {
+  background-color: #bb86fc;
+}
+.dark p {
+  color: #fff;
+}
+.dark a {
+  color: #ababab;
+}
+.dark a:hover {
+  color: #bb86fc;
+}
+.dark .link-muted:hover {
+  color: #bb86fc !important;
+}
+.dark .title .link-muted {
+  color: #fff;
+}
+.dark a.navbar-item:focus,
+.dark .navbar-link:focus,
+.dark a.navbar-item:focus-within,
+.dark .navbar-link:focus-within,
+.dark a.navbar-item:hover,
+.dark .navbar-link:hover,
+.dark a.navbar-item.is-active,
+.dark .navbar-link.is-active {
+  color: #bb86fc;
+  background-color: inherit;
+}
+.dark .navbar-main .navbar-item.is-active {
+  color: #bb86fc;
+}
+.dark .has-link-black-ter {
+  color: #fff !important;
+}
+.dark .button {
+  color: #bb86fc;
+  background-color: #121212;
+}
+.dark .button:hover {
+  color: #000;
+  background-color: #ba94f5;
+}
+.dark .button.is-light,
+.dark article.article .article-more {
+  color: #fff;
+  background-color: rgba(0,0,0,0.18);
+}
+.dark .button.is-light,
+.dark article.article .article-more:hover {
+  background-color: #474748;
+}
+.dark .button:focus:not(:active),
+.dark .button.is-focused:not(:active) {
+  box-shadow: none;
+}
+.dark .menu-list a:hover {
+  background-color: rgba(0,0,0,0.18);
+}
+.dark #back-to-top {
+  color: #bb86fc;
+}
+.dark #back-to-top:hover {
+  color: #ba94f5;
+}
+.dark .post-navigation {
+  background-color: #000;
+}
+.dark .tag {
+  color: #fff;
+  background-color: #bb86fc;
+}
+.dark .tag:not(body).is-link {
+  color: #000;
+  background-color: #bb86fc;
+}
+.dark .tag:not(body).is-primary {
+  background-color: #bb86fc;
+}
+.dark .timeline .media:last-child:after {
+  background: none;
+}
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: #fff !important;
+}
+.dark .article .content ol>li,
+.dark .article .content ol>li>p,
+.dark .article .content ul>li,
+.dark .article .content p {
+  color: #ababab;
+}
+.dark .article .content p>strong {
+  color: #bb86fc;
+}
+.dark .article .content blockquote {
+  background-color: #000;
+}
+.dark .article .content blockquote p {
+  color: #fff;
+}
+.dark .article .content strong {
+  color: #946ec3 !important;
+}
+.dark .article .content table {
+  color: #ababab;
+}
+.dark .article .content table td,
+.dark .article .content table th {
+  border-color: rgba(54,54,54,0.361);
+}
+.dark .article .content table thead th {
+  color: #ababab;
+}
+.dark .article .highlight-body {
+  color: #fff;
+}
+.dark .article .highlight {
+  background-color: #000;
+}
+.dark .article .highlight .gutter {
+  color: #ababab;
+}
+.dark .article .highlight .highlight-body {
+  color: #fff;
+}
+.dark .icon-button {
+  color: #fff;
+}
+.dark .icon-button:hover {
+  color: #bb86fc;
+  background-color: rgba(0,0,0,0.18);
+}
+.dark .pagination {
+  background: #000;
+}
+.dark .pagination .pagination-link.is-current {
+  color: #000;
+  border-color: #bb86fc;
+  background-color: #bb86fc;
+}
+.dark .pagination .pagination-link:hover {
+  color: #fff !important;
+}
+.dark .pagination .pagination-link:not(.is-current):hover,
+.dark .pagination .pagination-previous a:hover,
+.dark .pagination .pagination-next a:hover {
+  color: #bb86fc !important;
+}
+.dark .pagination .pagination-link:not(.is-current),
+.dark .pagination .pagination-previous,
+.dark .pagination .pagination-next {
+  color: #ababab !important;
+  background: #121212;
+}
+.dark .pagination .pagination-previous a,
+.dark .pagination .pagination-next a {
+  color: #ababab !important;
+}
+.dark .searchbox .searchbox-container,
+.dark .searchbox .searchbox-input-wrapper .searchbox-input,
+.dark .searchbox .searchbox-header,
+.dark .searchbox .searchbox-result-item {
+  color: #fff;
+  background-color: #121212;
+  border-color: #ababab;
+}
+.dark .searchbox .searchbox-body .searchbox-result-section .searchbox-result-item:hover,
+.dark .searchbox .searchbox-body .searchbox-result-section .searchbox-result-item.active {
+  background-color: rgba(0,0,0,0.18);
+}
+.dark .searchbox .searchbox-container .searchbox-input-wrapper .searchbox-close:hover {
+  color: #fff;
+  background-color: #121212;
+}
+.dark .searchbox .searchbox-input {
+  background-color: #121212;
+}
+.dark .searchbox .searchbox-result-item em {
+  color: #fff;
+  background: #bb86fc;
+}
+.dark .searchbox .searchbox-close:hover {
+  background: inherit;
+}
+.dark .gt-container a {
+  color: #bb86fc;
+  border-bottom: none;
+}
+.dark .gt-container a:hover {
+  color: #ba94f5;
+  border-bottom: none;
+}
+.dark .gt-container .gt-btn {
+  border: none;
+  color: #000;
+  background-color: #bb86fc;
+  margin-top: 8px;
+}
+.dark .gt-container .gt-btn:hover {
+  background-color: #ba94f5;
+}
+.dark .gt-container .gt-counts {
+  color: #ababab;
+}
+.dark .gt-container .gt-user-name {
+  color: #ababab;
+}
+.dark .gt-container .gt-popup {
+  background-color: #000;
+}
+.dark .gt-container .gt-header-textarea {
+  border: none;
+  color: #fff;
+  background-color: #000;
+}
+.dark .gt-container .gt-header-textarea:hover {
+  background-color: #000;
+}
+.dark .gt-container .gt-header-preview {
+  background-color: #000;
+}
+.dark .gt-container .gt-comment-content,
+.dark .gt-container .gt-comment-admin .gt-comment-content {
+  background-color: #000;
+}
+.dark .gt-container .gt-comment-content:hover,
+.dark .gt-container .gt-comment-admin .gt-comment-content:hover {
+  webkit-box-shadow: 0 0.625em 3.75em 0 #000;
+  box-shadow: 0 0.625em 3.75em 0 #000;
+}
+.dark .gt-container .gt-svg svg {
+  fill: #bb86fc;
+}
+.dark .gt-container .markdown-body p {
+  color: #ababab;
+}
+.dark .gt-container .markdown-body ul {
+  color: #ababab;
+  list-style: disc;
+}
+.dark .gt-container .markdown-body ol {
+  color: #ababab;
+}
+.dark .gt-container .markdown-body pre {
+  color: #fff;
+  background-color: #121212;
+}
