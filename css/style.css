@@ -11501,6 +11501,9 @@ body.dark {
 .dark .timeline .media:last-child:after {
   background: none;
 }
+.dark .breadcrumb li.is-active a {
+  color: #ababab;
+}
 .dark h1,
 .dark h2,
 .dark h3,
