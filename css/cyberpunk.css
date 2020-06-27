@@ -11484,6 +11484,11 @@ body.dark {
 .dark .button.is-focused:not(:active) {
   box-shadow: none;
 }
+.dark .button.is-info:active,
+.dark .button.is-info.is-active {
+  color: #fff;
+  background-color: #bb86fc;
+}
 .dark .menu-list a:hover {
   background-color: rgba(0,0,0,0.18);
 }
