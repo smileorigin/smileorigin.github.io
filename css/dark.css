@@ -90,6 +90,11 @@ body.dark {
   color: #fff;
   background-color: #bb86fc;
 }
+.dark .tag:not(body).is-grey-lightest {
+  opacity: 0.9;
+  color: #fff;
+  background-color: #bb86fc;
+}
 .dark .tag:not(body).is-link {
   color: #000;
   background-color: #bb86fc;
@@ -102,6 +107,20 @@ body.dark {
 }
 .dark .breadcrumb li.is-active a {
   color: #ababab;
+}
+.dark .post-copyright {
+  color: #ababab;
+  border-left: 3px solid #ababab;
+  background-color: #000;
+}
+.dark .post-copyright a {
+  color: #bb86fc;
+}
+.dark .post-copyright a:hover {
+  color: #fff;
+}
+.dark .post-copyright strong {
+  color: #fff;
 }
 .dark h1,
 .dark h2,
