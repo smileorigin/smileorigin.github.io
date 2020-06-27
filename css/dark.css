@@ -151,7 +151,7 @@ body.dark {
   color: #fff;
 }
 .dark .article .content strong {
-  color: #946ec3 !important;
+  color: #bb86fc !important;
 }
 .dark .article .content table {
   color: #ababab;
@@ -162,6 +162,12 @@ body.dark {
 }
 .dark .article .content table thead th {
   color: #ababab;
+}
+.dark .article .content a {
+  color: #bb86fc;
+}
+.dark .article .content a:hover {
+  color: #fff;
 }
 .dark .article .highlight-body {
   color: #fff;
@@ -186,12 +192,12 @@ body.dark {
   background: #000;
 }
 .dark .pagination .pagination-link.is-current {
-  color: #000;
+  color: #fff;
   border-color: #bb86fc;
   background-color: #bb86fc;
 }
 .dark .pagination .pagination-link:hover {
-  color: #fff !important;
+  color: #000 !important;
 }
 .dark .pagination .pagination-link:not(.is-current):hover,
 .dark .pagination .pagination-previous a:hover,

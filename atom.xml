@@ -60,13 +60,13 @@
       <category term="Linux" scheme="http://smileorigin.site/categories/Linux/"/>
     
     
-      <category term="Debian" scheme="http://smileorigin.site/tags/Debian/"/>
-    
       <category term="SSR" scheme="http://smileorigin.site/tags/SSR/"/>
     
       <category term="Privoxy" scheme="http://smileorigin.site/tags/Privoxy/"/>
     
       <category term="ProxyChains4" scheme="http://smileorigin.site/tags/ProxyChains4/"/>
+    
+      <category term="Debian" scheme="http://smileorigin.site/tags/Debian/"/>
     
   </entry>
   
@@ -89,11 +89,11 @@
       <category term="Linux" scheme="http://smileorigin.site/categories/Linux/"/>
     
     
-      <category term="CommandLine" scheme="http://smileorigin.site/tags/CommandLine/"/>
-    
       <category term="Linux" scheme="http://smileorigin.site/tags/Linux/"/>
     
       <category term="Vim" scheme="http://smileorigin.site/tags/Vim/"/>
+    
+      <category term="CommandLine" scheme="http://smileorigin.site/tags/CommandLine/"/>
     
   </entry>
   
@@ -361,13 +361,13 @@
       <category term="Linux" scheme="http://smileorigin.site/categories/Linux/"/>
     
     
-      <category term="CommandLine" scheme="http://smileorigin.site/tags/CommandLine/"/>
-    
-      <category term="Center OS" scheme="http://smileorigin.site/tags/Center-OS/"/>
+      <category term="Experience" scheme="http://smileorigin.site/tags/Experience/"/>
     
       <category term="Debian" scheme="http://smileorigin.site/tags/Debian/"/>
     
-      <category term="Experience" scheme="http://smileorigin.site/tags/Experience/"/>
+      <category term="CommandLine" scheme="http://smileorigin.site/tags/CommandLine/"/>
+    
+      <category term="Center OS" scheme="http://smileorigin.site/tags/Center-OS/"/>
     
   </entry>
   
@@ -440,9 +440,9 @@
       <category term="Python" scheme="http://smileorigin.site/categories/Python/"/>
     
     
-      <category term="Framework" scheme="http://smileorigin.site/tags/Framework/"/>
-    
       <category term="Flask" scheme="http://smileorigin.site/tags/Flask/"/>
+    
+      <category term="Framework" scheme="http://smileorigin.site/tags/Framework/"/>
     
   </entry>
   
@@ -523,9 +523,9 @@
       <category term="Git" scheme="http://smileorigin.site/categories/Git/"/>
     
     
-      <category term="Experience" scheme="http://smileorigin.site/tags/Experience/"/>
-    
       <category term="Git" scheme="http://smileorigin.site/tags/Git/"/>
+    
+      <category term="Experience" scheme="http://smileorigin.site/tags/Experience/"/>
     
   </entry>
   
