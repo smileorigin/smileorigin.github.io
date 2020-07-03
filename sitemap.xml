@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://smileorigin.site/raspberry/respberry-config/</loc>
+    
+    <lastmod>2020-07-03T02:45:33.728Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://smileorigin.site/git/git/</loc>
     
     <lastmod>2020-07-03T02:30:19.396Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://smileorigin.site/raspberry/temperature-controlled-cooling/</loc>
     
     <lastmod>2020-06-20T07:41:27.968Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://smileorigin.site/raspberry/respberry-config/</loc>
-    
-    <lastmod>2020-06-20T07:41:24.787Z</lastmod>
     
   </url>
   
@@ -205,6 +205,13 @@
   </url>
   
   <url>
+    <loc>http://smileorigin.site/about/index.html</loc>
+    
+    <lastmod>2020-06-13T11:57:00.185Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://smileorigin.site/album/index.html</loc>
     
     <lastmod>2020-06-13T11:57:00.185Z</lastmod>
@@ -212,9 +219,9 @@
   </url>
   
   <url>
-    <loc>http://smileorigin.site/about/index.html</loc>
+    <loc>http://smileorigin.site/android/guide/setting/</loc>
     
-    <lastmod>2020-06-13T11:57:00.185Z</lastmod>
+    <lastmod>2020-06-13T11:57:00.179Z</lastmod>
     
   </url>
   
@@ -234,13 +241,6 @@
   
   <url>
     <loc>http://smileorigin.site/android/utils/vibrate/</loc>
-    
-    <lastmod>2020-06-13T11:57:00.179Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://smileorigin.site/android/guide/setting/</loc>
     
     <lastmod>2020-06-13T11:57:00.179Z</lastmod>
     

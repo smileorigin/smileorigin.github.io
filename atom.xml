@@ -147,11 +147,11 @@
       <category term="Python" scheme="http://smileorigin.site/categories/Python/"/>
     
     
+      <category term="Notes" scheme="http://smileorigin.site/tags/Notes/"/>
+    
       <category term="EffectivePython" scheme="http://smileorigin.site/tags/EffectivePython/"/>
     
       <category term="Advices" scheme="http://smileorigin.site/tags/Advices/"/>
-    
-      <category term="Notes" scheme="http://smileorigin.site/tags/Notes/"/>
     
   </entry>
   
@@ -255,9 +255,9 @@
       <category term="Database" scheme="http://smileorigin.site/categories/Database/"/>
     
     
-      <category term="Notes" scheme="http://smileorigin.site/tags/Notes/"/>
-    
       <category term="SQL" scheme="http://smileorigin.site/tags/SQL/"/>
+    
+      <category term="Notes" scheme="http://smileorigin.site/tags/Notes/"/>
     
       <category term="NonOriginal" scheme="http://smileorigin.site/tags/NonOriginal/"/>
     
