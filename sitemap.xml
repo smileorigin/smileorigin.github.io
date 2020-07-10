@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://smileorigin.site/linux/vim/</loc>
+    
+    <lastmod>2020-07-10T06:34:18.882Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://smileorigin.site/raspberry/respberry-config/</loc>
     
     <lastmod>2020-07-03T02:45:33.728Z</lastmod>
@@ -103,13 +110,6 @@
     <loc>http://smileorigin.site/project/dynamic-translate/</loc>
     
     <lastmod>2020-06-20T07:40:55.639Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://smileorigin.site/linux/vim/</loc>
-    
-    <lastmod>2020-06-20T07:40:49.690Z</lastmod>
     
   </url>
   
@@ -219,7 +219,7 @@
   </url>
   
   <url>
-    <loc>http://smileorigin.site/android/guide/setting/</loc>
+    <loc>http://smileorigin.site/android/utils/md5/</loc>
     
     <lastmod>2020-06-13T11:57:00.179Z</lastmod>
     
@@ -233,7 +233,7 @@
   </url>
   
   <url>
-    <loc>http://smileorigin.site/android/utils/md5/</loc>
+    <loc>http://smileorigin.site/android/guide/setting/</loc>
     
     <lastmod>2020-06-13T11:57:00.179Z</lastmod>
     
