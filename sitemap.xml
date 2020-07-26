@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://smileorigin.site/web/v8/</loc>
+    
+    <lastmod>2020-07-26T11:39:22.267Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/linux/command/</loc>
+    
+    <lastmod>2020-07-24T03:18:12.792Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://smileorigin.site/git/git/</loc>
     
     <lastmod>2020-07-13T07:29:31.418Z</lastmod>
@@ -121,13 +135,6 @@
   </url>
   
   <url>
-    <loc>http://smileorigin.site/linux/command/</loc>
-    
-    <lastmod>2020-06-20T07:40:43.389Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://smileorigin.site/database/paradigm/</loc>
     
     <lastmod>2020-06-20T07:40:36.000Z</lastmod>
@@ -205,14 +212,14 @@
   </url>
   
   <url>
-    <loc>http://smileorigin.site/about/index.html</loc>
+    <loc>http://smileorigin.site/album/index.html</loc>
     
     <lastmod>2020-06-13T11:57:00.185Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://smileorigin.site/album/index.html</loc>
+    <loc>http://smileorigin.site/about/index.html</loc>
     
     <lastmod>2020-06-13T11:57:00.185Z</lastmod>
     
@@ -233,14 +240,14 @@
   </url>
   
   <url>
-    <loc>http://smileorigin.site/android/utils/vibrate/</loc>
+    <loc>http://smileorigin.site/android/utils/md5/</loc>
     
     <lastmod>2020-06-13T11:57:00.179Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://smileorigin.site/android/utils/md5/</loc>
+    <loc>http://smileorigin.site/android/utils/vibrate/</loc>
     
     <lastmod>2020-06-13T11:57:00.179Z</lastmod>
     

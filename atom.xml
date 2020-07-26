@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://smileorigin.site/"/>
-  <updated>2020-06-20T07:41:19.183Z</updated>
+  <updated>2020-07-26T11:39:22.267Z</updated>
   <id>http://smileorigin.site/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>V8--building on macOS</title>
+    <link href="http://smileorigin.site/web/v8/"/>
+    <id>http://smileorigin.site/web/v8/</id>
+    <published>2020-07-26T10:00:00.000Z</published>
+    <updated>2020-07-26T11:39:22.267Z</updated>
+    
+    <content type="html"><![CDATA[<p>JavaScript Engine  </p><blockquote><p>V8 is Google’s open source JavaScript engine.<br>V8 implements ECMAScript as specified in ECMA-262.<br>V8 is written in C++ and is used in Google Chrome, the open source browser from Google.<br>V8 can run standalone, or can be embedded into any C++ application.<br>V8 Project page: <a href="https://v8.dev/docs">https://v8.dev/docs</a></p></blockquote><a id="more"></a><h2 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h2><p>replace <code>127.0.0.1:1087</code> with your http proxy host:port</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">'\nproxy=127.0.0.1:1087\nset_proxy() &#123;\n    export all_proxy=http://$proxy;\n&#125;\n\nunset_proxy() &#123;\n    unset all_proxy;\n&#125;\n\nset_git_proxy() &#123;\n    git config --global http.proxy $proxy\n    git config --global https.proxy $proxy\n&#125;\n\nunset_git_proxy() &#123;\n    git config --unset --global http.proxy\n    git config --unset --global https.proxy\n&#125;\nNO_AUTH_BOTO_CONFIG=~/.boto'</span> &gt;&gt; ~/.zshrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'[Boto]\nproxy = 127.0.0.1\nproxy_port = 1087'</span> &gt;&gt; ~/.boto</span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br><span class="line">set_proxy</span><br><span class="line">set_git_proxy</span><br></pre></td></tr></table></figure><h2 id="Depot-tools"><a href="#Depot-tools" class="headerlink" title="Depot tools"></a>Depot tools</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://chromium.googlesource.com/chromium/tools/depot_tools.git</span><br><span class="line"><span class="comment"># Add depot_tools to the front of your PATH (you will probably want to put this in your ~/.bashrc or ~/.zshrc). Assuming you cloned depot_tools to /path/to/depot_tools:</span></span><br><span class="line"><span class="built_in">export</span> PATH=/path/to/depot_tools:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure><h2 id="Get-v8-and-building"><a href="#Get-v8-and-building" class="headerlink" title="Get v8 and building"></a>Get v8 and building</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># https://v8.dev/docs/build</span></span><br><span class="line"><span class="comment"># https://chromium.googlesource.com/v8/v8.git or</span></span><br><span class="line">fetch v8</span><br><span class="line"><span class="built_in">cd</span> v8</span><br><span class="line">gclient sync</span><br><span class="line">tools/dev/gm.py x64.release</span><br><span class="line"></span><br><span class="line"><span class="comment"># output</span></span><br><span class="line">smileorigin@Galaxy-MacBook-Pro v8 % tools/dev/gm.py x64.release</span><br><span class="line"><span class="comment"># gn gen out/x64.release</span></span><br><span class="line">Done. Made 153 targets from 88 files <span class="keyword">in</span> 685ms</span><br><span class="line"><span class="comment"># autoninja -C out/x64.release d8</span></span><br><span class="line">ninja: Entering directory `out/x64.release`</span><br><span class="line">[1502/1502] LINK ./d8</span><br><span class="line">Done! - V8 compilation finished successfully.</span><br><span class="line"></span><br><span class="line"><span class="comment"># recommand adding these to your ~/.bashrc or ~/.zshrc</span></span><br><span class="line">V8_HOME=<span class="string">'/path/to/v8'</span></span><br><span class="line"><span class="built_in">alias</span>  d8=<span class="variable">$V8_HOME</span>/out/x64.release/d8</span><br><span class="line"><span class="built_in">alias</span>  tick-processor=<span class="variable">$V8_HOME</span>/tools/mac-tick-processor</span><br><span class="line"><span class="built_in">export</span> D8_PATH=<span class="variable">$V8_HOME</span>/repo/out/x64.release</span><br></pre></td></tr></table></figure><h2 id="Questions"><a href="#Questions" class="headerlink" title="Questions"></a>Questions</h2><h3 id="Failed-to-fetch-file-gs-chromium-gn"><a href="#Failed-to-fetch-file-gs-chromium-gn" class="headerlink" title="Failed to fetch file gs://chromium-gn/"></a>Failed to fetch file gs://chromium-gn/</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># log</span></span><br><span class="line">Failed to fetch file gs://chromium-gn/a68b194afb05d6a6357cf2e2464136ed7723c305 <span class="keyword">for</span> src/buildtools/mac/gn.</span><br><span class="line">...</span><br><span class="line">Error: Command <span class="string">'download_from_google_storage --no_resume --platform=darwin --no_auth --bucket chromium-gn -s src/buildtools/mac/gn.sha1'</span> returned non-zero <span class="built_in">exit</span> status ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># https://idom.me/articles/843.html</span></span><br><span class="line"><span class="comment"># wget --no-check-certificate https://storage.googleapis.com/chromium-gn/a68b194afb05d6a6357cf2e2464136ed7723c305 -O src/buildtools/mac/gn</span></span><br></pre></td></tr></table></figure><h3 id="failed-to-send-request-Post-https-chrome-infra-packages-appspot-co"><a href="#failed-to-send-request-Post-https-chrome-infra-packages-appspot-co" class="headerlink" title="failed to send request: Post https://chrome-infra-packages.appspot.co"></a>failed to send request: Post <a href="https://chrome-infra-packages.appspot.co">https://chrome-infra-packages.appspot.co</a></h3><p><a href="https://github.com/termux/termux-app/issues/698">https://github.com/termux/termux-app/issues/698</a></p><h3 id="SSL-CERTIFICATE-VERIFY-FAILED"><a href="#SSL-CERTIFICATE-VERIFY-FAILED" class="headerlink" title="SSL: CERTIFICATE_VERIFY_FAILED"></a>SSL: CERTIFICATE_VERIFY_FAILED</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># log</span></span><br><span class="line">urllib.error.URLError: &lt;urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get <span class="built_in">local</span> issuer certificate (_ssl.c:1123)&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 若是使用 python2.7 的版本，则会遇到该问题，在有该问题的 python 脚本代码开始前添加禁用 ssl 校验代码即可</span></span><br><span class="line"><span class="comment"># v8/tools/clang/scripts/update.py 下载 clang 的脚本则需要手动执行下 python v8/tools/clang/scripts/update.py</span></span><br><span class="line"><span class="comment"># 然后在继续 gclient sync</span></span><br><span class="line">import ssl</span><br><span class="line">ssl._create_default_https_context = ssl._create_unverified_context</span><br></pre></td></tr></table></figure><h3 id="xcodebuild"><a href="#xcodebuild" class="headerlink" title="xcodebuild"></a>xcodebuild</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># log</span></span><br><span class="line">xcode-select: error: tool <span class="string">'xcodebuild'</span> requires Xcode, but active developer directory <span class="string">'/Library/Developer/CommandLineTools'</span> is a <span class="built_in">command</span> line tools instance</span><br><span class="line"></span><br><span class="line">sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer</span><br></pre></td></tr></table></figure><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul><li><a href="https://gist.github.com/kevincennis/0cd2138c78a07412ef21">Installing V8 on a Mac</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;JavaScript Engine  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;V8 is Google’s open source JavaScript engine.&lt;br&gt;V8 implements ECMAScript as specified in ECMA-262.&lt;br&gt;V8 is written in C++ and is used in Google Chrome, the open source browser from Google.&lt;br&gt;V8 can run standalone, or can be embedded into any C++ application.&lt;br&gt;V8 Project page: &lt;a href=&quot;https://v8.dev/docs&quot;&gt;https://v8.dev/docs&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="web" scheme="http://smileorigin.site/categories/web/"/>
+    
+    
+      <category term="Google" scheme="http://smileorigin.site/tags/Google/"/>
+    
+      <category term="v8" scheme="http://smileorigin.site/tags/v8/"/>
+    
+      <category term="d8" scheme="http://smileorigin.site/tags/d8/"/>
+    
+      <category term="chromium" scheme="http://smileorigin.site/tags/chromium/"/>
+    
+  </entry>
   
   <entry>
     <title>Kodi</title>
@@ -35,9 +67,9 @@
       <category term="Raspberry" scheme="http://smileorigin.site/categories/Raspberry/"/>
     
     
-      <category term="Raspberry" scheme="http://smileorigin.site/tags/Raspberry/"/>
-    
       <category term="Kodi" scheme="http://smileorigin.site/tags/Kodi/"/>
+    
+      <category term="Raspberry" scheme="http://smileorigin.site/tags/Raspberry/"/>
     
   </entry>
   
@@ -89,11 +121,11 @@
       <category term="Linux" scheme="http://smileorigin.site/categories/Linux/"/>
     
     
+      <category term="CommandLine" scheme="http://smileorigin.site/tags/CommandLine/"/>
+    
       <category term="Linux" scheme="http://smileorigin.site/tags/Linux/"/>
     
       <category term="Vim" scheme="http://smileorigin.site/tags/Vim/"/>
-    
-      <category term="CommandLine" scheme="http://smileorigin.site/tags/CommandLine/"/>
     
   </entry>
   
@@ -347,7 +379,7 @@
     <link href="http://smileorigin.site/linux/command/"/>
     <id>http://smileorigin.site/linux/command/</id>
     <published>2018-07-12T05:51:00.000Z</published>
-    <updated>2020-06-20T07:40:43.389Z</updated>
+    <updated>2020-07-24T03:18:12.792Z</updated>
     
     <content type="html"><![CDATA[<p>记录一些常用的 Linux 命令</p><a id="more"></a><h2 id="Debian"><a href="#Debian" class="headerlink" title="Debian"></a>Debian</h2><ul><li><p>安装软件<br><code>apt-get install package_name</code>——packagename为要安装的软件的包名</p></li><li><p>升级列表中的软件包的地址<br><code>apt-get update</code></p></li><li><p>升级所有已安装的软件（要先执行<code>apt-get update</code>才能确保软件都更新到最新）<br><code>apt-get upgrade</code></p></li><li><p>确认依赖的软件仓库是不是正确<br><code>apt-get check</code></p></li><li><p>从下载的软件包中清理缓存<br><code>apt-get clean</code></p></li><li><p>卸载软件<br><code>sudo apt-get remove packageName</code></p></li><li><p>自动卸载残留依赖包<br><code>sudo apt-get autoremove</code></p></li><li><p>查看文件内容<br><code>cat file1</code></p></li><li><p>查看一个文件的前2行<br><code>head -2 file1</code></p></li><li><p>查看系统信息<br><code>cat /proc/version</code></p></li><li><p>查看CPU信息<br><code>cat /proc/cpuinfo</code>、<code>lscpu</code></p></li><li><p>重启<br><code>reboot</code></p></li><li><p>注销<br><code>logout</code></p></li><li><p>关机<br><code>shutdown -h now</code></p></li><li><p>返回上一级<br><code>cd ..</code></p></li><li><p>返回上两级<br><code>cd ../..</code></p></li><li><p>返回上次所在路径<br><code>cd -</code></p></li><li><p>显示工作路径<br><code>pwd</code></p></li><li><p>查看目录中的文件<br><code>ls</code></p></li><li><p>查看目录中的文件<br><code>ls -F</code></p></li><li><p>显示文件和目录的详细资料<br><code>ls -l</code></p></li><li><p>显示隐藏文件<br><code>ls -a</code></p></li><li><p>创建文件夹<br><code>mkdir name</code></p></li><li><p>创建目录树<br><code>mkdir -p /tmp/dir1/dir2</code></p></li><li><p>删除文件<br><code>rm -f file1</code></p></li><li><p>删除文件夹<br><code>rm -rf dir1</code></p></li><li><p>移动文件夹<br><code>mv dir1 new_dir</code></p></li><li><p>复制文件<br><code>cp file1 file2</code></p></li><li><p>重命名<br><code>mv old.file new.file</code></p></li><li><p>复制一个目录下的所有文件到当前工作目录<br><code>cp dir/* .</code></p></li><li><p>修改一个文件或者目录的时间戳<br><code>touch -t 0712250000 file1</code></p></li><li><p>搜索文件和目录<br><code>find / -name filename</code></p></li><li><p>显示已经挂载的分区列表<br><code>df -h</code></p></li><li><p>估算目录占用的空间<br><code>du -sh dirname</code></p></li><li><p>解压zip压缩包<br><code>unzip file1.zip</code></p></li><li><p>解压gz压缩包<br><code>gunzip file1.gz</code></p></li><li><p>解压rar压缩包<br><code>unrar x file.rar</code></p></li><li><p>解压tgz压缩包<br><code>tar -xzvf  *.tar.gz</code></p></li><li><p>删除export的变量<br><code>unset variable_name</code></p></li></ul><h2 id="Center-OS命令"><a href="#Center-OS命令" class="headerlink" title="Center OS命令"></a>Center OS命令</h2><ul><li><p>查看防火墙状态<br><code>service firewalld status</code></p></li><li><p>关闭防火墙（重启服务器无效）<br><code>systemctl stop firewalld.service</code></p></li><li><p>彻底关闭防火墙<br><code>systemctl disable firewalld.service</code></p></li><li><p>开启防火墙<br><code>systemctl start firewalld.service</code></p></li><li><p>查看激活的连接信息(仅服务进程)<br><code>netstat -tnl</code></p></li><li><p>查看激活的连接信息(仅服务进程，包含端口信息)<br><code>netstat -tnlp</code></p></li><li><p>查看历史命令<br><code>history</code></p></li></ul>]]></content>
     
@@ -361,13 +393,13 @@
       <category term="Linux" scheme="http://smileorigin.site/categories/Linux/"/>
     
     
-      <category term="Experience" scheme="http://smileorigin.site/tags/Experience/"/>
-    
       <category term="Debian" scheme="http://smileorigin.site/tags/Debian/"/>
     
       <category term="CommandLine" scheme="http://smileorigin.site/tags/CommandLine/"/>
     
       <category term="Center OS" scheme="http://smileorigin.site/tags/Center-OS/"/>
+    
+      <category term="Experience" scheme="http://smileorigin.site/tags/Experience/"/>
     
   </entry>
   
@@ -440,9 +472,9 @@
       <category term="Python" scheme="http://smileorigin.site/categories/Python/"/>
     
     
-      <category term="Framework" scheme="http://smileorigin.site/tags/Framework/"/>
-    
       <category term="Flask" scheme="http://smileorigin.site/tags/Flask/"/>
+    
+      <category term="Framework" scheme="http://smileorigin.site/tags/Framework/"/>
     
   </entry>
   
@@ -523,32 +555,9 @@
       <category term="Git" scheme="http://smileorigin.site/categories/Git/"/>
     
     
-      <category term="Git" scheme="http://smileorigin.site/tags/Git/"/>
-    
       <category term="Experience" scheme="http://smileorigin.site/tags/Experience/"/>
     
-  </entry>
-  
-  <entry>
-    <title>SSD1306连接Raspberry和驱动安装</title>
-    <link href="http://smileorigin.site/raspberry/oled/"/>
-    <id>http://smileorigin.site/raspberry/oled/</id>
-    <published>2017-09-21T13:38:00.000Z</published>
-    <updated>2020-06-20T07:41:21.775Z</updated>
-    
-    <content type="html"><![CDATA[<p>树莓派安装配置 SSD1306 OLED 显示屏</p><a id="more"></a><h2 id="连线"><a href="#连线" class="headerlink" title="连线"></a>连线</h2><p><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204004836.png" alt=""></p><h2 id="开启I2C功能"><a href="#开启I2C功能" class="headerlink" title="开启I2C功能"></a>开启I2C功能</h2><ul><li><p>命令行开启I2C功能<br>  在命令行下使用<code>sudo raspi-config</code>进入树莓派设置界面<br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204004851.png" alt=""><br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204004907.png" alt="">  </p></li><li><p>UI界面开启I2C功能<br>  在UI界面直接找到下图的红框项即可<br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204004926.png" alt=""><br>  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2020/20200204005008.png" alt="">  </p></li></ul><h2 id="检验是否成功开启I2C"><a href="#检验是否成功开启I2C" class="headerlink" title="检验是否成功开启I2C"></a>检验是否成功开启I2C</h2><ul><li>命令行输入<code>sudo i2cdetect -y 1</code><br>  如果又看到如下类似界面，即I2C开启成功，显示屏成功连接， 3c就是oled屏幕地址</li></ul><h2 id="安装驱动程序"><a href="#安装驱动程序" class="headerlink" title="安装驱动程序"></a>安装驱动程序</h2><ul><li>这里使用<code>Adafruit_Python_SSD1306</code>库,在命令行依次输入以下命令   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install build-essential python-dev python-pip</span><br><span class="line">sudo pip install RPi.GPIO</span><br><span class="line">sudo apt-get install python-imaging python-smbus</span><br><span class="line">sudo apt-get install git</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/adafruit/Adafruit_Python_SSD1306.git</span><br><span class="line"><span class="built_in">cd</span> Adafruit_Python_SSD1306</span><br><span class="line">sudo python setup.py install</span><br></pre></td></tr></table></figure></li><li>安装好库后进入<code>Adafruit_Python_SSD1306</code>目录下即可发现有一个<code>example</code>目录，里面就是程序的实例，该库使用的是<code>Python2.x</code></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;树莓派安装配置 SSD1306 OLED 显示屏&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Raspberry" scheme="http://smileorigin.site/categories/Raspberry/"/>
-    
-    
-      <category term="SSD1306" scheme="http://smileorigin.site/tags/SSD1306/"/>
+      <category term="Git" scheme="http://smileorigin.site/tags/Git/"/>
     
   </entry>
   
