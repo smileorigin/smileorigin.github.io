@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://smileorigin.site/web/v8/</loc>
-    <lastmod>2020-07-26</lastmod>
+    <lastmod>2020-07-27</lastmod>
   </url>  <url>
     <loc>http://smileorigin.site/linux/command/</loc>
     <lastmod>2020-07-24</lastmod>
@@ -88,7 +88,7 @@
     <loc>http://smileorigin.site/android/book/android-art/activity-launch-mode/</loc>
     <lastmod>2020-06-20</lastmod>
   </url>  <url>
-    <loc>http://smileorigin.site/android/guide/setting/</loc>
+    <loc>http://smileorigin.site/android/utils/vibrate/</loc>
     <lastmod>2020-06-13</lastmod>
   </url>  <url>
     <loc>http://smileorigin.site/android/utils/io/</loc>
@@ -97,7 +97,7 @@
     <loc>http://smileorigin.site/android/utils/md5/</loc>
     <lastmod>2020-06-13</lastmod>
   </url>  <url>
-    <loc>http://smileorigin.site/android/utils/vibrate/</loc>
+    <loc>http://smileorigin.site/android/guide/setting/</loc>
     <lastmod>2020-06-13</lastmod>
   </url>
 </urlset>

@@ -4,7 +4,7 @@
   <url>
     <loc>http://smileorigin.site/web/v8/</loc>
     
-    <lastmod>2020-07-26T11:39:22.267Z</lastmod>
+    <lastmod>2020-07-27T09:06:02.083Z</lastmod>
     
   </url>
   
@@ -212,13 +212,6 @@
   </url>
   
   <url>
-    <loc>http://smileorigin.site/album/index.html</loc>
-    
-    <lastmod>2020-06-13T11:57:00.185Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://smileorigin.site/about/index.html</loc>
     
     <lastmod>2020-06-13T11:57:00.185Z</lastmod>
@@ -226,7 +219,14 @@
   </url>
   
   <url>
-    <loc>http://smileorigin.site/android/guide/setting/</loc>
+    <loc>http://smileorigin.site/album/index.html</loc>
+    
+    <lastmod>2020-06-13T11:57:00.185Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/android/utils/vibrate/</loc>
     
     <lastmod>2020-06-13T11:57:00.179Z</lastmod>
     
@@ -247,7 +247,7 @@
   </url>
   
   <url>
-    <loc>http://smileorigin.site/android/utils/vibrate/</loc>
+    <loc>http://smileorigin.site/android/guide/setting/</loc>
     
     <lastmod>2020-06-13T11:57:00.179Z</lastmod>
     
