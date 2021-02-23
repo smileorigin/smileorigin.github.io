@@ -179,11 +179,11 @@
       <category term="Python" scheme="http://smileorigin.site/categories/Python/"/>
     
     
-      <category term="Notes" scheme="http://smileorigin.site/tags/Notes/"/>
-    
       <category term="EffectivePython" scheme="http://smileorigin.site/tags/EffectivePython/"/>
     
       <category term="Advices" scheme="http://smileorigin.site/tags/Advices/"/>
+    
+      <category term="Notes" scheme="http://smileorigin.site/tags/Notes/"/>
     
   </entry>
   
@@ -287,9 +287,9 @@
       <category term="Database" scheme="http://smileorigin.site/categories/Database/"/>
     
     
-      <category term="SQL" scheme="http://smileorigin.site/tags/SQL/"/>
-    
       <category term="Notes" scheme="http://smileorigin.site/tags/Notes/"/>
+    
+      <category term="SQL" scheme="http://smileorigin.site/tags/SQL/"/>
     
       <category term="NonOriginal" scheme="http://smileorigin.site/tags/NonOriginal/"/>
     
@@ -393,13 +393,13 @@
       <category term="Linux" scheme="http://smileorigin.site/categories/Linux/"/>
     
     
-      <category term="Experience" scheme="http://smileorigin.site/tags/Experience/"/>
-    
       <category term="CommandLine" scheme="http://smileorigin.site/tags/CommandLine/"/>
     
       <category term="Center OS" scheme="http://smileorigin.site/tags/Center-OS/"/>
     
       <category term="Debian" scheme="http://smileorigin.site/tags/Debian/"/>
+    
+      <category term="Experience" scheme="http://smileorigin.site/tags/Experience/"/>
     
   </entry>
   
@@ -472,9 +472,9 @@
       <category term="Python" scheme="http://smileorigin.site/categories/Python/"/>
     
     
-      <category term="Flask" scheme="http://smileorigin.site/tags/Flask/"/>
-    
       <category term="Framework" scheme="http://smileorigin.site/tags/Framework/"/>
+    
+      <category term="Flask" scheme="http://smileorigin.site/tags/Flask/"/>
     
   </entry>
   
@@ -555,9 +555,9 @@
       <category term="Git" scheme="http://smileorigin.site/categories/Git/"/>
     
     
-      <category term="Git" scheme="http://smileorigin.site/tags/Git/"/>
-    
       <category term="Experience" scheme="http://smileorigin.site/tags/Experience/"/>
+    
+      <category term="Git" scheme="http://smileorigin.site/tags/Git/"/>
     
   </entry>
   
