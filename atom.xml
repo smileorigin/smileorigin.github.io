@@ -472,9 +472,9 @@
       <category term="Python" scheme="http://smileorigin.site/categories/Python/"/>
     
     
-      <category term="Flask" scheme="http://smileorigin.site/tags/Flask/"/>
-    
       <category term="Framework" scheme="http://smileorigin.site/tags/Framework/"/>
+    
+      <category term="Flask" scheme="http://smileorigin.site/tags/Flask/"/>
     
   </entry>
   
