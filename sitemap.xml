@@ -2,262 +2,980 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://smileorigin.site/media/YUV/</loc>
+    <loc>http://smileorigin.site/media/H.264/</loc>
     
-    <lastmod>2022-08-19T06:41:58.786Z</lastmod>
+    <lastmod>2022-12-12</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://smileorigin.site/linux/command/</loc>
+    <loc>http://smileorigin.site/media/H.264%20%E6%A0%87%E5%87%86%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/</loc>
     
-    <lastmod>2022-08-19T04:43:49.705Z</lastmod>
+    <lastmod>2022-12-12</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://smileorigin.site/album/index.html</loc>
+    <loc>http://smileorigin.site/media/SAR&DAR/</loc>
     
-    <lastmod>2021-02-23T02:36:44.000Z</lastmod>
+    <lastmod>2022-12-12</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://smileorigin.site/bbs/index.html</loc>
+    <loc>http://smileorigin.site/media/FLAC/</loc>
     
-    <lastmod>2021-02-23T02:26:45.000Z</lastmod>
+    <lastmod>2022-12-12</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://smileorigin.site/about/index.html</loc>
+    <loc>http://smileorigin.site/media/MP3/</loc>
     
-    <lastmod>2021-02-23T02:25:48.000Z</lastmod>
+    <lastmod>2022-12-12</lastmod>
     
-  </url>
-  
-  <url>
-    <loc>http://smileorigin.site/git/git/</loc>
-    
-    <lastmod>2020-08-31T07:30:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://smileorigin.site/web/v8/</loc>
-    
-    <lastmod>2020-07-27T09:06:02.000Z</lastmod>
-    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/linux/vim/</loc>
     
-    <lastmod>2020-07-10T06:34:18.000Z</lastmod>
+    <lastmod>2022-10-18</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/media/YUV/</loc>
+    
+    <lastmod>2022-08-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/linux/command/</loc>
+    
+    <lastmod>2022-08-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/album/index.html</loc>
+    
+    <lastmod>2021-02-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/bbs/index.html</loc>
+    
+    <lastmod>2021-02-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/about/index.html</loc>
+    
+    <lastmod>2021-02-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/git/git/</loc>
+    
+    <lastmod>2020-08-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/web/v8/</loc>
+    
+    <lastmod>2020-07-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/raspberry/respberry-config/</loc>
     
-    <lastmod>2020-07-03T02:45:33.000Z</lastmod>
+    <lastmod>2020-07-03</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/tools/share/</loc>
     
-    <lastmod>2020-06-20T07:41:32.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/raspberry/temperature-controlled-cooling/</loc>
     
-    <lastmod>2020-06-20T07:41:27.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/raspberry/oled/</loc>
     
-    <lastmod>2020-06-20T07:41:21.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/raspberry/kodi/</loc>
     
-    <lastmod>2020-06-20T07:41:19.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/python/virtualenv/</loc>
     
-    <lastmod>2020-06-20T07:41:15.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/python/less-common-python-knowledge/</loc>
     
-    <lastmod>2020-06-20T07:41:13.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/python/django-deploy/</loc>
     
-    <lastmod>2020-06-20T07:41:10.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/python/advices/</loc>
     
-    <lastmod>2020-06-20T07:41:07.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/python/framework/flask/flask-coding-technique/</loc>
     
-    <lastmod>2020-06-20T07:41:05.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/project/tc/</loc>
     
-    <lastmod>2020-06-20T07:41:01.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/project/hexo-blog-utils/</loc>
     
-    <lastmod>2020-06-20T07:40:58.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/project/dynamic-translate/</loc>
     
-    <lastmod>2020-06-20T07:40:55.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/linux/ssr/</loc>
     
-    <lastmod>2020-06-20T07:40:46.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/database/paradigm/</loc>
     
-    <lastmod>2020-06-20T07:40:35.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/database/redis/redis/</loc>
     
-    <lastmod>2020-06-20T07:40:31.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/database/mysql/stored-procedure/</loc>
     
-    <lastmod>2020-06-20T07:40:27.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/database/mysql/pratices/</loc>
     
-    <lastmod>2020-06-20T07:40:24.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/database/mysql/mysql/</loc>
     
-    <lastmod>2020-06-20T07:40:21.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/database/mysql/multi-table-operation/</loc>
     
-    <lastmod>2020-06-20T07:40:18.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/arithmetic/pat/history/</loc>
     
-    <lastmod>2020-06-20T07:40:13.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/another/windows-right-click-cmd/</loc>
     
-    <lastmod>2020-06-20T07:40:10.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/android/framework/gson/gson/</loc>
     
-    <lastmod>2020-06-20T07:39:52.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/android/book/android-art/activity-life-cycle/</loc>
     
-    <lastmod>2020-06-20T07:39:43.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/android/book/android-art/activity-launch-mode/</loc>
     
-    <lastmod>2020-06-20T07:39:39.000Z</lastmod>
+    <lastmod>2020-06-20</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/android/guide/setting/</loc>
     
-    <lastmod>2020-06-13T11:57:00.000Z</lastmod>
+    <lastmod>2020-06-13</lastmod>
     
-  </url>
-  
-  <url>
-    <loc>http://smileorigin.site/android/utils/io/</loc>
-    
-    <lastmod>2020-06-13T11:57:00.000Z</lastmod>
-    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/android/utils/md5/</loc>
     
-    <lastmod>2020-06-13T11:57:00.000Z</lastmod>
+    <lastmod>2020-06-13</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://smileorigin.site/android/utils/vibrate/</loc>
     
-    <lastmod>2020-06-13T11:57:00.000Z</lastmod>
+    <lastmod>2020-06-13</lastmod>
     
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/android/utils/io/</loc>
+    
+    <lastmod>2020-06-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  <url>
+    <loc>http://smileorigin.site/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Git/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Experience/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/SQL/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Notes/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/NonOriginal/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Windows/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Command/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/SSR/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Privoxy/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/ProxyChains4/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Debian/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/CommandLine/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Center-OS/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Linux/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Vim/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/FLAC/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/MultiMedia/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/H-264/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/MP3/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/DAR/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/SAR/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/PAR/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/YUV/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Android/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Translate/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Design/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Bigbang/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Python/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Tools/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Original/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/HexoBlog/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/EffectivePython/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Advices/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Django/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Nginx/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/uWsgi/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Supervisor/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/JAVA/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Qiniu/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Image-Hosting-Service/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/A-byte-of-Python/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Virtualenv/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Share/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Resources/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Kodi/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Raspberry/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/SSD1306/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Config/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Google/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/v8/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/d8/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/chromium/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Single-Chip-Microcomputer/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Guide/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Preference/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Utils/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/MD5/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Vibrate/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/IO/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/PAT/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/BasicLevel/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/MySQL/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Multilist/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Pratices/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Procedure/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Redis/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Android-Art/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/ApplicationComponents/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Activity/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Flask/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Framework/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/tags/Gson/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>http://smileorigin.site/categories/Git/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/categories/Database/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/categories/Another/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/categories/Linux/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/categories/MultiMedia/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/categories/Project/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/categories/Python/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/categories/Raspberry/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/categories/web/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/categories/Android/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/categories/Arithmetic/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://smileorigin.site/categories/GSON/</loc>
+    <lastmod>2022-12-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
   </url>
   
 </urlset>

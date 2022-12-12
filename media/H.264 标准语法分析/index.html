@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="generator" content="Hexo 4.2.1"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>H.264 标准语法分析（未完） - Thomas Woo</title><meta description="本文基于标准文档 T-REC-H.264-202108 进行编写，主要根据标准文档解释说明 NAL 单元的组成结构及各个语法单元的作用"><meta property="og:type" content="blog"><meta property="og:title" content="H.264 标准语法分析（未完）"><meta property="og:url" content="http://smileorigin.site/media/H.264%20%E6%A0%87%E5%87%86%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/"><meta property="og:site_name" content="Thomas Woo"><meta property="og:description" content="本文基于标准文档 T-REC-H.264-202108 进行编写，主要根据标准文档解释说明 NAL 单元的组成结构及各个语法单元的作用"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20220101161536.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211229174550.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20220101161557.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230171853.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20220101161642.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230191504.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211229174411.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211229175045.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211229190731.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230114340.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230114450.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230145413.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230151052.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230151327.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230151636.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230151817.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230151924.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230152105.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230152515.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230152800.png"><meta property="article:published_time" content="2022-01-02T10:00:00.000Z"><meta property="article:modified_time" content="2022-12-12T07:57:51.860Z"><meta property="article:author" content="Thomas Woo"><meta property="article:tag" content="MultiMedia"><meta property="article:tag" content="H.264"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20220101161536.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://smileorigin.site/media/H.264%20%E6%A0%87%E5%87%86%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/"},"headline":"Thomas Woo","image":["https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20220101161536.png","https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211229174550.png","https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20220101161557.png","https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230171853.png","https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20220101161642.png","https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230191504.png","https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211229174411.png","https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211229175045.png","https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211229190731.png","https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230114340.png","https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230114450.png","https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230145413.png","https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230151052.png","https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230151327.png","https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230151636.png","https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230151817.png","https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230151924.png","https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230152105.png","https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230152515.png","https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230152800.png"],"datePublished":"2022-01-02T10:00:00.000Z","dateModified":"2022-12-12T07:57:51.860Z","author":{"@type":"Person","name":"Thomas Woo"},"description":"本文基于标准文档 T-REC-H.264-202108 进行编写，主要根据标准文档解释说明 NAL 单元的组成结构及各个语法单元的作用"}</script><link rel="canonical" href="http://smileorigin.site/media/H.264%20%E6%A0%87%E5%87%86%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/"><link rel="alternative" href="/atom.xml" title="Thomas Woo" type="application/atom+xml"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?33cec7dfd968d9ffd9ff2a5da2be77d0";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-110922455-1" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-110922455-1');</script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css"></head><body class="is-2-column"><script type="text/javascript" src="/js/dark.js"></script><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">SMILEORIGIN</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/album">Album</a><a class="navbar-item" href="/bbs">BBS</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" id="dark-switch" title="Dark Mode" href="javascript:;"><i class="fas fa-moon" id="dark-icon"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12-tablet is-9-desktop is-9-widescreen "><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><time class="level-item" dateTime="2022-01-02T10:00:00.000Z" title="2022-01-02T10:00:00.000Z">2022-01-02</time><span class="level-item"><a class="link-muted" href="/categories/MultiMedia/">MultiMedia</a></span><span class="level-item">16 分钟 读完 (大约 2392 个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">H.264 标准语法分析（未完）</h1><div class="content"><p>本文基于标准文档 <strong>T-REC-H.264-202108</strong> 进行编写，主要根据标准文档解释说明 NAL 单元的组成结构及各个语法单元的作用</p>
+<a id="more"></a>
+
+<h2 id="语法函数、描述符规定和表格说明"><a href="#语法函数、描述符规定和表格说明" class="headerlink" title="语法函数、描述符规定和表格说明"></a>语法函数、描述符规定和表格说明</h2><p>语法函数和描述符规定查看 <strong>H.264 语法函数和描述符规定</strong> 文章</p>
+<p>表格列说明：</p>
+<ul>
+<li><strong>C</strong> 列：表示该语法元素适用的 NAL 单元类型，对应 [NAL unit type 小节中 NAL 单元类型表格的第一列](#NAL unit type)， 例如：类别 2 表示编码片数据分区 A，类别 3 表示编码片数据分区 B，类别 4 表示编码片数据分区 C，ALL 表示适用所有类型的 NAL 单元</li>
+<li>Descriptor 列：描述符列，放置该语法元素对应的描述符</li>
+</ul>
+<h2 id="NAL-unit"><a href="#NAL-unit" class="headerlink" title="NAL unit"></a>NAL unit</h2><p>NAL 单元由 NAL unit Header 和 RBSP 组成，RBSP（Raw Byte Sequence Payload，原始字节序列载荷），下表中 <code>rbsp_byte</code> 即 RBSP 数据之前的部分都是属于 NAL unit Header</p>
+<img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20220101161536.png" style="margin-left: auto; margin-right: auto; display: block;" />
+
+<img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211229174550.png" style="width:66%; margin-left: auto; margin-right: auto; display: block;" />
+
+<p style="text-align:center;width=100;">T-REC-H.264-202108 <b>7.3.1 NAL unit syntax</b></p>
+
+<p><strong>语法元素说明</strong>：</p>
+<ul>
+<li><p>forbidden_zero_bit</p>
+<p>  长度 1 bit，值为 0。若解码器检测 NAL 单元中的 forbidden_zero_bit 为 1 则会丢弃所有字节流数据，直到检测到新的 NAL 单元</p>
+</li>
+<li><p>nal_ref_idc</p>
+<p>  长度 2 bit，用来指示当前 NAL 单元的优先级</p>
+<p>  nal_ref_idc 不等于 0 时，规定 NAL 单元的内容包含一个序列参数集（SPS），或一个序列参数集扩展（SPS extension），或一个子序列参数集（Subset SPS），或一个图像参数集（PPS），或一个参考图片的片，或在参考图片的片之前的带前缀的 NAL 单元（Prefix NAL unit）</p>
+<p>  一个参考图片的带前缀的 NAL 单元</p>
+<p>  na l_unit_type 等于 5（IDR） 的 NAL 单元的 nal_ref_idc 不应等于 0；</p>
+<p>  所有 nal_unit_type 等于 6、9、10、11 或 12 的 NAL 单元其 nal_ref_idc 应等于 0</p>
+</li>
+<li><p>nal_unit_type</p>
+<p>  长度 5 bit，表示该 NAL 单元的类型</p>
+</li>
+<li><p>svc_extension_flag</p>
+<p>  长度 1 bit，SVC（Scalable Video Coding，可适性视频编码）是传统 H.264&#x2F;MPEG-4 AVC 编码的延伸，可提升更大的编码弹性，并具有<strong>时间可适性</strong>（Temporal Scalability）、<strong>空间可适性</strong>（Spatial Scalability）及<strong>信噪比可适性</strong>（SNR Scalability）三大特性，使视频传输更能适应在异质的网络带宽</p>
+</li>
+<li><p>avc_3d_extension_flag</p>
+<p>  长度 1 bit，与 3D 编码相关</p>
+</li>
+<li><p>rbsp_byte</p>
+<p>  rbsp_byte[i] 表示 RBSP 数据的第 i 字节</p>
+</li>
+<li><p>emulation_prevention_three_byte</p>
+<p>  防竞争码（0x30），见上文描述</p>
+</li>
+</ul>
+<p>伪代码说明：</p>
+<p>NumBytesInNALunit 为该 NAL 单元的大小，单位 byte</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 遍历 NAL 单元的 RBSP 部分，主要的作用是去除防竞争码读取原数据</span></span><br><span class="line"><span class="keyword">for</span> (i = nalUnitHeaderBytes; i &lt; NumBytesInNALunit; i++) &#123;</span><br><span class="line">    <span class="comment">// 若剩余未读取部分 &gt;= 3 字节且该位置起 3 字节的数据为 0x000003</span></span><br><span class="line">    <span class="comment">// 则表示该数据是经过防竞争处理的，读取的时候需要去除该防竞争码</span></span><br><span class="line">	<span class="keyword">if</span>(i + <span class="number">2</span> &lt; NumBytesInNALunit &amp;&amp; next_bits( <span class="number">24</span> ) == <span class="number">0x000003</span>) &#123;</span><br><span class="line">        <span class="comment">// 防竞争处理过的数据，读取 2 字节数据（0x0000 部分），并跳过 1 字节数据（0x03）</span></span><br><span class="line">        rbsp_byte[NumBytesInRBSP++]</span><br><span class="line">        rbsp_byte[NumBytesInRBSP++]</span><br><span class="line">        i += <span class="number">2</span></span><br><span class="line">        <span class="comment">// 满足防竞争处理条件的数据必定是 0x00000* 格式，处理后的数据为 0x0000030*（* 为 0、1、2、3）</span></span><br><span class="line">        <span class="comment">// 直接去除 0x03 得到的 0x00000* 还是跟原数据一致，所以这边直接跳过 0x03，相当于还原原数据</span></span><br><span class="line">        emulation_prevention_three_byte <span class="comment">/* equal to 0x03 */</span></span><br><span class="line">    &#125; <span class="keyword">else</span></span><br><span class="line">        <span class="comment">// 非防竞争处理过的数据，读取当前字节数据并继续读取后续数据</span></span><br><span class="line">        rbsp_byte[NumBytesInRBSP++]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="NAL-unit-type"><a href="#NAL-unit-type" class="headerlink" title="NAL unit type"></a>NAL unit type</h3><table>
+<thead>
+<tr>
+<th>NAL unit TYPE</th>
+<th>说明及 RBSP 语法结构</th>
+<th>是否是 VCL（Annex A）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>未规定</td>
+<td>non-VCL</td>
+</tr>
+<tr>
+<td>1</td>
+<td>非 IDR 图像的编码片（Coded slice of a non-IDR picture）<br />slice_layer_without_partitioning_rbsp( )</td>
+<td>VCL</td>
+</tr>
+<tr>
+<td>2</td>
+<td>编码片数据分区 A（Coded slice data partition A）<br />slice_data_partition_a_layer_rbsp( )</td>
+<td>VCL</td>
+</tr>
+<tr>
+<td>3</td>
+<td>编码片数据分区 B（Coded slice data partition B）<br />slice_data_partition_b_layer_rbsp( )</td>
+<td>VCL</td>
+</tr>
+<tr>
+<td>4</td>
+<td>编码片数据分区 C（Coded slice data partition C）<br />slice_data_partition_c_layer_rbsp( )</td>
+<td>VCL</td>
+</tr>
+<tr>
+<td>5</td>
+<td>IDR 图像的编码片（Coded slice of an IDR picture）<br />slice_layer_without_partitioning_rbsp( )</td>
+<td>VCL</td>
+</tr>
+<tr>
+<td>6</td>
+<td>补充增强信息（SEI，Supplemental Enhancement Information），在解码、显示或其它过程中起辅助作用<br />sei_rbsp( )</td>
+<td>non-VCL</td>
+</tr>
+<tr>
+<td>7</td>
+<td>序列参数集（SPS，Sequence Parameter Set），包含解码配置，如：Profile Level、分辨率和帧率等<br />seq_parameter_set_rbsp( )</td>
+<td>non-VCL</td>
+</tr>
+<tr>
+<td>8</td>
+<td>图像参数集（PPS，Picture Parameter Set），包含有关熵编码模式、分片组、运动预测和去块滤波器等<br />pic_parameter_set_rbsp( )</td>
+<td>non-VCL</td>
+</tr>
+<tr>
+<td>9</td>
+<td>访问单元分隔符（AUD，Access Unit Delimiter）<br />access_unit_delimiter_rbsp( )</td>
+<td>non-VCL</td>
+</tr>
+<tr>
+<td>10</td>
+<td>序列结束符（End of Sequence）<br />end_of_seq_rbsp( )</td>
+<td>non-VCL</td>
+</tr>
+<tr>
+<td>11</td>
+<td>流结束符（End of Stream）<br />end_of_stream_rbsp( )</td>
+<td>non-VCL</td>
+</tr>
+<tr>
+<td>12</td>
+<td>填充数据（Filler）<br />filler_data_rbsp( )</td>
+<td>non-VCL</td>
+</tr>
+<tr>
+<td>13</td>
+<td>序列参数集扩展（Sequence parameter set extension）<br />seq_parameter_set_extension_rbsp( )</td>
+<td>non-VCL</td>
+</tr>
+<tr>
+<td>14</td>
+<td>带前缀的 NAL 单元（Prefix NAL unit）<br />prefix_nal_unit_rbsp( )</td>
+<td>non-VCL</td>
+</tr>
+<tr>
+<td>15</td>
+<td>子序列参数集（Subset sequence parameter set）<br />subset_seq_parameter_set_rbsp( )</td>
+<td>non-VCL</td>
+</tr>
+<tr>
+<td>16</td>
+<td>深度参数集（Depth parameter set）<br />depth_parameter_set_rbsp( )</td>
+<td>non-VCL</td>
+</tr>
+<tr>
+<td>17..18</td>
+<td>保留</td>
+<td>non-VCL</td>
+</tr>
+<tr>
+<td>19</td>
+<td>未分隔的辅助编码图像的编码片<br />(Coded slice of an auxiliary coded picture without partitioning)<br />slice_layer_without_partitioning_rbsp( )</td>
+<td>non-VCL</td>
+</tr>
+<tr>
+<td>20</td>
+<td>编码片扩展(Coded slice extension)<br />slice_layer_extension_rbsp( )</td>
+<td>non-VCL</td>
+</tr>
+<tr>
+<td>21</td>
+<td>深度视图组件或 3D-AVC 纹理视图组件的编码片扩展<br />(Coded slice extension for a depth view component or a 3D-AVC texture view component)<br />slice_layer_extension_rbsp( )</td>
+<td>non-VCL</td>
+</tr>
+<tr>
+<td>22..23</td>
+<td>保留</td>
+<td>non-VCL</td>
+</tr>
+<tr>
+<td>24..31</td>
+<td>未规定</td>
+<td>non-VCL</td>
+</tr>
+</tbody></table>
+<p style="text-align:center;width=100;">T-REC-H.264-202108 <b>Table 7-1 – NAL unit type codes, syntax element categories, and NAL unit type classes</b></p>
+
+<h2 id="RBSP"><a href="#RBSP" class="headerlink" title="RBSP"></a>RBSP</h2><p>RBSP（Raw Byte Sequence Payload）原始字节序列载荷，是由一串数据比特串（SODB，String Of Data Bits）加上末尾的 trailing bits（使得整个 NAL 单元字节长度是 8 的倍数 ）组成，一个 NAL 单元可以包含多个 SODB，如果 SODB 为空（0 bit）则 RBSP 也为空</p>
+<img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20220101161557.png" style="margin-left: auto; margin-right: auto; display: block;" />
+
+<h3 id="RBSP-trailing-bits"><a href="#RBSP-trailing-bits" class="headerlink" title="RBSP trailing bits"></a>RBSP trailing bits</h3><p>大部分的 NAL 单元都只采用下述的 RBSP trailing bits 语法</p>
+<img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230171853.png" style="width:66%; margin-left: auto; margin-right: auto; display: block;" />
+
+<p style="text-align:center;width=100;">T-REC-H.264-202108 <b>7.3.2.11 RBSP trailing bits syntax</b></p>
+
+<p><strong>语法元素说明</strong>：</p>
+<ul>
+<li><p>rbsp_stop_one_bit</p>
+<p>  长度 1bit，总是为 1</p>
+</li>
+<li><p>rbsp_alignment_zero_bit</p>
+<p>  长度为 1bit，总是为 0</p>
+</li>
+</ul>
+<p>若 RBSP 的字节的最后 1Byte 的数据为如下所示，前三位（绿色方块  <code>010</code>）为 SODB 尾部数据，SODB 部分数据只占了该字节的 3 bit，还剩下 5bit 没有使用，此时根据上述语法会在 SODB 数据后的第一位填充 1（stop one bit），在剩余位置填充 0，将该字节填满</p>
+<img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20220101161642.png" style="margin-left: auto; margin-right: auto; display: block;" />
+
+<p><strong>NAL unit type 为 1～5、19、20 的 NAL 单元的 trailing bits 语法有些不同</strong>，在包含上述的 <code>rbsp_trailing_bits()</code> 语法下，还有额外的逻辑：</p>
+<img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230191504.png" style="width:66%; margin-left: auto; margin-right: auto; display: block;" />
+
+<p style="text-align:center;width=100;">T-REC-H.264-202108 <b>7.3.2.10 RBSP slice trailing bits syntax</b></p>
+
+<p><strong>语法元素说明</strong>：</p>
+<ul>
+<li><p>cabac_zero_word</p>
+<p>  总是为 0x0000</p>
+</li>
+</ul>
+<p><strong>entropy_coding_mode_flag</strong> 存储在 PPS 中，可查看 [PPS 语法小节](#PPS RBSP)。当该 NAL 单元所使用的 PPS 中的 <strong>entropy_coding_mode_flag</strong> 为 1 时，循环判断当前位置是否为 RBSP 的结尾否则插入 <strong>cabac_zero_word(0x0000)</strong></p>
+<h3 id="SPS-RBSP"><a href="#SPS-RBSP" class="headerlink" title="SPS RBSP"></a>SPS RBSP</h3><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211229174411.png" style="width:66%; margin-left: auto; margin-right: auto; display: block;" />
+
+<p style="text-align:center;width=100;">T-REC-H.264-202108 <b>7.3.2.1 Sequence parameter set RBSP syntax</b></p>
+
+<p>SPS RBSP 分为两部分 <code>seq_parameter_set_data()</code> 和 <code>rbsp_trailing_bits()</code></p>
+<h4 id="SPS-data"><a href="#SPS-data" class="headerlink" title="SPS data"></a>SPS data</h4><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211229175045.png" style="width:66%; margin-left: auto; margin-right: auto; display: block;" />
+
+<p style="text-align:center;width=100;">T-REC-H.264-202108 <b>7.3.2.1.1 Sequence parameter set data syntax</b></p>
+
+<p><strong>语法元素说明</strong>：</p>
+<ul>
+<li><p>profile_idc</p>
+<p>  编码时使用的 profile，profile 有 Baseline、Main、Extended 等</p>
+</li>
+<li><p>constraint_set0_flag</p>
+<p>  强制使用 Baseline profile 进行编码</p>
+</li>
+<li><p>constraint_set1_flag</p>
+<p>  强制使用 Main profile 进行编码</p>
+</li>
+<li><p>constraint_set2_flag</p>
+<p>  强制使用 Extended profile 进行编码</p>
+</li>
+<li><p>constraint_set3_flag</p>
+</li>
+<li><p>constraint_set4_flag</p>
+</li>
+<li><p>constraint_set5_flag</p>
+</li>
+<li><p>reserved_zero_2bits</p>
+<p>  两个 0bit 的保留位</p>
+</li>
+<li><p>level_idc</p>
+<p>  编码时使用的 level，level 主要规定了每秒最多能处理多少个宏块、最大的帧大小、最大的解码缓存、最大比特率等性能相关的特性。如果是硬解。则比较容易出现由于视频 level 太高而不能解码的情况</p>
+</li>
+<li><p>seq_parameter_set_id</p>
+<p>  本 SPS 的 ID，这个 ID 主要是给 PPS 使用的</p>
+</li>
+<li><p>chroma_format_idc</p>
+<p>  色度取样，取值如下表，表示使用的 YUV 类型，chroma_format_idc 不存在时使用 YUV 4:2:0；monochrome: 单色</p>
+  <img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211229190731.png" style="width:66%; margin-left: auto; margin-right: auto; display: block;" />
+</li>
+<li><p>separate_colour_plane_flag</p>
+</li>
+<li><p>bit_depth_luma_minus8</p>
+</li>
+<li><p>bit_depth_chroma_minus8</p>
+</li>
+<li><p>qpprime_y_zero_transform_bypass_flag</p>
+</li>
+<li><p>seq_scaling_matrix_present_flag</p>
+</li>
+<li><p>seq_scaling_list_present_flag</p>
+</li>
+<li><p>log2_max_frame_num_minus4</p>
+</li>
+<li><p>pic_order_cnt_type</p>
+</li>
+<li><p>log2_max_pic_order_cnt_lsb_minus4</p>
+</li>
+<li><p>delta_pic_order_always_zero_flag</p>
+</li>
+<li><p>offset_for_non_ref_pic</p>
+</li>
+<li><p>offset_for_top_to_bottom_field</p>
+</li>
+<li><p>num_ref_frames_in_pic_order_cnt_cycle</p>
+</li>
+<li><p>offset_for_ref_frame</p>
+</li>
+<li><p>max_num_ref_frames</p>
+</li>
+<li><p>gaps_in_frame_num_value_allowed_flag</p>
+</li>
+<li><p>pic_width_in_mbs_minus1</p>
+</li>
+<li><p>pic_height_in_map_units_minus1</p>
+</li>
+<li><p>frame_mbs_only_flag</p>
+</li>
+<li><p>mb_adaptive_frame_field_flag</p>
+</li>
+<li><p>direct_8x8_inference_flag</p>
+</li>
+<li><p>frame_cropping_flag</p>
+</li>
+<li><p>frame_crop_left_offset</p>
+</li>
+<li><p>frame_crop_right_offset</p>
+</li>
+<li><p>frame_crop_top_offset</p>
+</li>
+<li><p>frame_crop_bottom_offset</p>
+</li>
+<li><p>vui_parameters_present_flag</p>
+</li>
+</ul>
+<h5 id="Scaling-list"><a href="#Scaling-list" class="headerlink" title="Scaling list"></a>Scaling list</h5><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230114340.png" style="width:66%; margin-left: auto; margin-right: auto; display: block;" />
+
+<p style="text-align:center;width=100;">T-REC-H.264-202108 <b>7.3.2.1.1.1 Scaling list syntax</b></p>
+
+<p><strong>语法元素说明</strong>：</p>
+<ul>
+<li>delta_scale</li>
+</ul>
+<h4 id="SPS-extension-RBSP"><a href="#SPS-extension-RBSP" class="headerlink" title="SPS extension RBSP"></a>SPS extension RBSP</h4><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230114450.png" style="width:66%; margin-left: auto; margin-right: auto; display: block;" />
+
+<p style="text-align:center;width=100;">T-REC-H.264-202108 <b>7.3.2.1.2 Sequence parameter set extension RBSP syntax</b></p>
+
+<h4 id="Subset-SPS-RBSP"><a href="#Subset-SPS-RBSP" class="headerlink" title="Subset SPS RBSP"></a>Subset SPS RBSP</h4><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230145413.png" style="width:66%; margin-left: auto; margin-right: auto; display: block;" />
+
+<p style="text-align:center;width=100;">T-REC-H.264-202108 <b>7.3.2.1.3 Subset sequence parameter set RBSP syntax</b></p>
+
+<h3 id="PPS-RBSP"><a href="#PPS-RBSP" class="headerlink" title="PPS RBSP"></a>PPS RBSP</h3><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230151052.png" style="width:66%; margin-left: auto; margin-right: auto; display: block;" />
+
+<p style="text-align:center;width=100;">T-REC-H.264-202108 <b>7.3.2.2 Picture parameter set RBSP syntax</b></p>
+
+<p><strong>语法元素说明</strong>：</p>
+<ul>
+<li><p>entropy_coding_mode_flag</p>
+<p>  长度 1 bit，用于表示熵解码的方式。若等于 0 表示使用 Exp-Golomb coded 或 CAVLC，若等于 1 则表示使用 CABAC</p>
+</li>
+</ul>
+<h3 id="SEI-RBSP"><a href="#SEI-RBSP" class="headerlink" title="SEI RBSP"></a>SEI RBSP</h3><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230151327.png" style="width:66%; margin-left: auto; margin-right: auto; display: block;" />
+
+<p style="text-align:center;width=100;">T-REC-H.264-202108 <b>7.3.2.3 Supplemental enhancement information RBSP syntax</b></p>
+
+
+
+<h4 id="SEI-message"><a href="#SEI-message" class="headerlink" title="SEI message"></a>SEI message</h4><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230151636.png" style="width:66%; margin-left: auto; margin-right: auto; display: block;" />
+
+<p style="text-align:center;width=100;">T-REC-H.264-202108 <b>7.3.2.3.1 Supplemental enhancement information message syntax</b></p>
+
+<h4 id="AUD-RBSP"><a href="#AUD-RBSP" class="headerlink" title="AUD RBSP"></a>AUD RBSP</h4><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230151817.png" style="width:66%; margin-left: auto; margin-right: auto; display: block;" />
+
+<p style="text-align:center;width=100;">T-REC-H.264-202108 <b>7.3.2.4 Access unit delimiter RBSP syntax</b></p>
+
+<h4 id="End-of-sequence-RBSP"><a href="#End-of-sequence-RBSP" class="headerlink" title="End of sequence RBSP"></a>End of sequence RBSP</h4><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230151924.png" style="width:66%; margin-left: auto; margin-right: auto; display: block;" />
+
+<p style="text-align:center;width=100;">T-REC-H.264-202108 <b>7.3.2.5 End of sequence RBSP syntax</b></p>
+
+<h4 id="End-of-stream-RBSP"><a href="#End-of-stream-RBSP" class="headerlink" title="End of stream RBSP"></a>End of stream RBSP</h4><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230152105.png" style="width:66%; margin-left: auto; margin-right: auto; display: block;" />
+
+<p style="text-align:center;width=100;">T-REC-H.264-202108 <b>7.3.2.6 End of stream RBSP syntax</b></p>
+
+<h4 id="Filler-data-RBSP"><a href="#Filler-data-RBSP" class="headerlink" title="Filler data RBSP"></a>Filler data RBSP</h4><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230152515.png" style="width:66%; margin-left: auto; margin-right: auto; display: block;" />
+
+<p style="text-align:center;width=100;">T-REC-H.264-202108 <b>7.3.2.7 Filler data RBSP syntax</b></p>
+
+<h4 id="Slice-layer-without-partitioning-RBSP"><a href="#Slice-layer-without-partitioning-RBSP" class="headerlink" title="Slice layer without partitioning RBSP"></a>Slice layer without partitioning RBSP</h4><img src="https://cdn.jsdelivr.net/gh/smileorigin/images/2021/20211230152800.png" style="width:66%; margin-left: auto; margin-right: auto; display: block;" />
+
+<p style="text-align:center;width=100;">T-REC-H.264-202108 <b>7.3.2.8 Slice layer without partitioning RBSP syntax</b></p>
+
+
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://www.itu.int/rec/T-REC-H.264/e">https://www.itu.int/rec/T-REC-H.264/e</a></li>
+<li><a href="https://www.cnblogs.com/TaigaCon/p/5215448.html">https://www.cnblogs.com/TaigaCon/p/5215448.html</a></li>
+<li><a href="https://www.jianshu.com/p/2e6347ff3520">https://www.jianshu.com/p/2e6347ff3520</a></li>
+</ul>
+</div><div class="article-tags size-small mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/MultiMedia/">MultiMedia</a><a class="link-muted mr-2" rel="tag" href="/tags/H-264/">H.264</a></div><ul class="post-copyright"><li><strong>本文标题：</strong><a href="http://smileorigin.site/media/H.264%20%E6%A0%87%E5%87%86%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/">H.264 标准语法分析（未完）</a></li><li><strong>本文作者：</strong><a href="http://smileorigin.site">Thomas Woo</a></li><li><strong>发布时间：</strong>2022-01-02 18:00</li><li><strong>最后更新：</strong>2022-12-12 15:57</li><li><strong>本文链接：</strong><a href="http://smileorigin.site/media/H.264%20%E6%A0%87%E5%87%86%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/">http://smileorigin.site/media/H.264%20%E6%A0%87%E5%87%86%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/</a></li><li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY 4.0</a> 许可协议。转载请注明出处！</li></ul><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button is-info donate"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="http://static.smileorigin.site/Alipay.jpg" alt="支付宝"></span></a><a class="button is-success donate"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="http://static.smileorigin.site/Wechatpay.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/media/YUV/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">YUV</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/media/H.264/"><span class="level-item">H.264</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: '35af8fb9afdbda1247f44590d1bd32b1',
+            repo: 'gittalk',
+            owner: 'smileorigin',
+            clientID: '8fb0efbb7d2496c108f3',
+            clientSecret: '376c8cd0ff2283ef21dcf9bd1f8348014402bd24',
+            admin: ["smileorigin"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: 'last',
+            
+            
+            enableHotKey: true
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-right is-hidden-tablet-only is-3-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" id="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="is-flex" href="#语法函数、描述符规定和表格说明"><span class="mr-2">1</span><span>语法函数、描述符规定和表格说明</span></a></li><li><a class="is-flex" href="#NAL-unit"><span class="mr-2">2</span><span>NAL unit</span></a><ul class="menu-list"><li><a class="is-flex" href="#NAL-unit-type"><span class="mr-2">2.1</span><span>NAL unit type</span></a></li></ul></li><li><a class="is-flex" href="#RBSP"><span class="mr-2">3</span><span>RBSP</span></a><ul class="menu-list"><li><a class="is-flex" href="#RBSP-trailing-bits"><span class="mr-2">3.1</span><span>RBSP trailing bits</span></a></li><li><a class="is-flex" href="#SPS-RBSP"><span class="mr-2">3.2</span><span>SPS RBSP</span></a><ul class="menu-list"><li><a class="is-flex" href="#Scaling-list"><span class="mr-2">3.2.1</span><span>Scaling list</span></a></li><li><a class="is-flex" href="#SPS-extension-RBSP"><span class="mr-2">3.2.2</span><span>SPS extension RBSP</span></a></li><li><a class="is-flex" href="#Subset-SPS-RBSP"><span class="mr-2">3.2.3</span><span>Subset SPS RBSP</span></a></li></ul></li><li><a class="is-flex" href="#PPS-RBSP"><span class="mr-2">3.3</span><span>PPS RBSP</span></a></li><li><a class="is-flex" href="#SEI-RBSP"><span class="mr-2">3.4</span><span>SEI RBSP</span></a><ul class="menu-list"><li><a class="is-flex" href="#SEI-message"><span class="mr-2">3.4.1</span><span>SEI message</span></a></li><li><a class="is-flex" href="#AUD-RBSP"><span class="mr-2">3.4.2</span><span>AUD RBSP</span></a></li><li><a class="is-flex" href="#End-of-sequence-RBSP"><span class="mr-2">3.4.3</span><span>End of sequence RBSP</span></a></li><li><a class="is-flex" href="#End-of-stream-RBSP"><span class="mr-2">3.4.4</span><span>End of stream RBSP</span></a></li><li><a class="is-flex" href="#Filler-data-RBSP"><span class="mr-2">3.4.5</span><span>Filler data RBSP</span></a></li><li><a class="is-flex" href="#Slice-layer-without-partitioning-RBSP"><span class="mr-2">3.4.6</span><span>Slice layer without partitioning RBSP</span></a></li></ul></li></ul></li><li><a class="is-flex" href="#Reference"><span class="mr-2">4</span><span>Reference</span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">SMILEORIGIN</a><p class="size-small"><span>&copy; 2022 Thomas Woo</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a> <a class="has-link-black-ter" href="https://beian.miit.gov.cn/" target="_blank">闽ICP备18024126号-2</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large icon-button" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large icon-button" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large icon-button" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/smileorigin/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            site: {
+                url: 'http://smileorigin.site',
+                external_link: {"enable":true,"exclude":[]}
+            },
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

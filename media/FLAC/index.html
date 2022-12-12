@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="generator" content="Hexo 4.2.1"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>FLAC - Thomas Woo</title><meta description="FLAC（Free Lossless Audio Codec，自由无损音频压缩编码）"><meta property="og:type" content="blog"><meta property="og:title" content="FLAC"><meta property="og:url" content="http://smileorigin.site/media/FLAC/"><meta property="og:site_name" content="Thomas Woo"><meta property="og:description" content="FLAC（Free Lossless Audio Codec，自由无损音频压缩编码）"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://smileorigin.site/img/og_image.png"><meta property="article:published_time" content="2021-09-16T14:00:00.000Z"><meta property="article:modified_time" content="2022-12-12T07:29:28.073Z"><meta property="article:author" content="Thomas Woo"><meta property="article:tag" content="FLAC"><meta property="article:tag" content="MultiMedia"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://smileorigin.site/media/FLAC/"},"headline":"Thomas Woo","image":["http://smileorigin.site/img/og_image.png"],"datePublished":"2021-09-16T14:00:00.000Z","dateModified":"2022-12-12T07:29:28.073Z","author":{"@type":"Person","name":"Thomas Woo"},"description":"FLAC（Free Lossless Audio Codec，自由无损音频压缩编码）"}</script><link rel="canonical" href="http://smileorigin.site/media/FLAC/"><link rel="alternative" href="/atom.xml" title="Thomas Woo" type="application/atom+xml"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?33cec7dfd968d9ffd9ff2a5da2be77d0";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-110922455-1" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-110922455-1');</script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css"></head><body class="is-2-column"><script type="text/javascript" src="/js/dark.js"></script><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">SMILEORIGIN</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/album">Album</a><a class="navbar-item" href="/bbs">BBS</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" id="dark-switch" title="Dark Mode" href="javascript:;"><i class="fas fa-moon" id="dark-icon"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-12-tablet is-9-desktop is-9-widescreen "><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><time class="level-item" dateTime="2021-09-16T14:00:00.000Z" title="2021-09-16T14:00:00.000Z">2021-09-16</time><span class="level-item"><a class="link-muted" href="/categories/MultiMedia/">MultiMedia</a></span><span class="level-item">30 分钟 读完 (大约 4443 个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">FLAC</h1><div class="content"><p>FLAC（Free Lossless Audio Codec，自由无损音频压缩编码）</p>
+<a id="more"></a>
+
+<p>特点</p>
+<ul>
+<li><p>无损压缩：被编码的音频（PCM）数据没有任何信息损失，解码输出的音频与编码器的输入的每一个字节都是一样的</p>
+<p>  每个数据帧都有一个当前帧的 16-bit CRC 校验码，用于监测数据传输错误。对整段音频数据，在文件头中还保存有一个针对原始未压缩音频数据的 MD5 标记，用于在解码和测试时对数据进行校验</p>
+</li>
+<li><p>灵活的压缩策略：与 libflac 使用是“质量”的参数，该参数变化从 0（最快）至 8（最小）</p>
+<p>  虽然在压缩过程（压缩文件总是完美的“无损”表示的原始数据）。涉及速度和容量之间的折衷，解码过程中始终是相当快的，而不是非常依赖于压缩</p>
+</li>
+<li><p>快速：FLAC 更看重解码的速度</p>
+<p>  解码只需要整数运算，并且相对于大多数编码方式而言，对计算速度要求很低。在很普通的硬件上就可以轻松实现实时解码</p>
+</li>
+<li><p>硬件支持：由于 FLAC 提供了免费的解码范例，而且解码的复杂程度低，所以 FLAC 是目前少数获得硬件支持的无损压缩编码之一。（APE 格式也有少数硬件支持）</p>
+</li>
+<li><p>可以流化：FLAC 的每个数据帧都包含了解码所需的全部信息</p>
+<p>  解码当前帧无需参照它前面或后面的数据帧。FLAC 使用了同步代码和 CRC（类似于 MPEG 等编码格式），这样解码器在数据流中跳跃定位时可以有最小的时间延迟</p>
+</li>
+<li><p>可以定位：FLAC 支持快速采样精确定位</p>
+<p>  这不仅对于播放有益，更使得 FLAC 文件便于编辑</p>
+</li>
+<li><p>富于弹性的 metadata：可以定义和实现新类型的 metadata 数据块，而不会影响旧的数据流和解码器的使用</p>
+<p>  目前已有的 metadata 类型包括 tag，<a href="https://zh.wikipedia.org/wiki/CUE%E8%84%9A%E6%9C%AC">cue 表</a>，和定位表。已经注册的应用程序可以定义自己专用的 metadata 类型（这一点与 MIDI 标准相似）</p>
+</li>
+<li><p>非常适合于存档应用：FLAC 是一个开放的编码格式，并且没有任何数据的损失，你可以将它转换为你需要的任何其他格式</p>
+<p>  除了每个数据帧的 CRC 和 MD5 标记对数据完整性的保障，flac（FLAC 项目提供的命令行方式编码工具）还提供了一个 verify（校验）选项，当使用该选项进行编码的时候，编码的同时就会立即对已编码数据进行解码并与原始输入数据进行比较，一旦发现不同就会退出并且报警提示</p>
+</li>
+<li><p>便于对 CD 进行备份：FLAC 有一个 cue 表，表内的 metadata 数据块用于保存 CD 的内容列表和所有音轨的索引点</p>
+<p>  你可以将一张 CD 保存到一个单一文件，并导入 CD 的 cue 表格，这样一个 FLAC 文件就可以完整地记录整张 CD 的全部信息。当你的原来的 CD 损坏的时候，你就可以用这个文件恢复出与原来一模一样的CD副本</p>
+</li>
+<li><p>抗损伤：由于 FLAC 的帧结构，当数据流损坏时，数据损失会被限制在受损的数据帧之内</p>
+<p>  一般只会丢失很短的一个片段。而很多其他无损音频压缩格式在遇到损坏时，一个损坏就会造成后面所有数据丢失</p>
+</li>
+</ul>
+<h2 id="Struct"><a href="#Struct" class="headerlink" title="Struct"></a>Struct</h2><h3 id="Flag"><a href="#Flag" class="headerlink" title="Flag"></a>Flag</h3><p>FLAC 比特流由流开头的 “fLaC” 标记组成，后跟强制性元数据块（STREAMINFO）、任意数量的其他元数据块，然后是音频帧</p>
+<h3 id="Metadata"><a href="#Metadata" class="headerlink" title="Metadata"></a>Metadata</h3><p>FLAC 最多可以支持到 128 种 metadata，已定义的如下：</p>
+<ol>
+<li><p>STREAMINFO</p>
+<p> 此块包含有关整个流的信息，例如：采样率、声道数、样本总数等。它必须作为流中的第一个元数据块出现。 其他元数据块可能紧随其后，而解码器不理解的元数据块将被跳过</p>
+<p> 此块包含有关整个流的信息，例如：采样率、声道数、样本总数等。它必须作为流中的第一个元数据块出现。 其他元数据块可能紧随其后，而解码器不理解的元数据块将被跳过。</p>
+<p> 比较有价值的信息是那 36bits 表示的 Total samples in stream 即流的总采样数，有了这个关键信息，再结合采样率就能用公式：duration &#x3D; totalsample &#x2F; samplerate 就能得到总播放时间，<br> 然后再根据公式 bitrate &#x3D; (filelength - data_start) * 8 &#x2F; duration 就可以得出比特率。公式中的量比较好理解，filelength 是文件总大小，data_start 是首帧起始位置</p>
+<p> 有了比特率就可以用公式：pos &#x3D; seektime * bitrate &#x2F; 8 + data_start 得到 seek 时间点对应的码流偏移量 pos，再从这个偏移位置开始读数据找下一帧的同步头，找到下一帧就可以开始解码播放完成一次 seek 操作</p>
+</li>
+<li><p>APPLICATION</p>
+<p> 此块供第三方应用程序使用。 唯一的必填字段是 32 位标识符。 这个 ID 需要进行<a href="https://xiph.org/flac/id.html">申请</a>， 块的其余部分由注册的应用程序定义</p>
+</li>
+<li><p>PADDING</p>
+<p> 预留空间，主要预留给后期需要编辑元数据的情况使用的，可以直接将要添加的元数据添加在这个区域而不用修改整个文件</p>
+</li>
+<li><p>SEEKTABLE</p>
+<p> 用于存储搜索点的可选块，每个搜索点占用 18字节，一个流中只能有一个 SEEKTABLE，但该表可以有任意数量的搜索点。还有一个特殊的“占位符”搜索点，它会被解码器忽略，但是可用于为将来的搜索点插入保留空间</p>
+</li>
+<li><p>VORBIS_COMMENT</p>
+<p> 用于存储键值对列表。值使用 UTF-8 编码。这是 FLAC 中唯一官方支持的标记机制。一个流中只能有一个 VORBIS_COMMENT 块</p>
+</li>
+<li><p>CUESHEET</p>
+<p> 提示表：此块用于存储可在提示表中使用的各种信息。它支持曲目和索引点，与 Red BOOK CD 数字音频光盘邮寄其他的 CD-DA 元数据兼容。CUESHEET 对于备份 CD-DA 光盘特别有用，但它可以用作播放的通用提示机制</p>
+</li>
+<li><p>PICTURE</p>
+<p> 保存相关图片，图片格式类似于 <a href="http://www.id3.org/id3v2.4.0-frames">ID3v2 中的 APIC 帧</a>，支持 URL（但是不推荐）。FLAC PICTURE 块还包括分辨率、颜色深度和调色板大小，以便客户无需全部扫描即可搜索合适的图片</p>
+</li>
+</ol>
+<h3 id="Audio-Data"><a href="#Audio-Data" class="headerlink" title="Audio Data"></a>Audio Data</h3><p>音频数据由一个或多个音频帧组成，每个帧包含一个帧头，其中包含一个 sync code、有关帧的信息，如：块大小、采样率、声道数等，以及一个 8位的 CRC。帧头还包含帧中第一个样本的样本编号（对于可变块大小的流），或者帧号（对于固定块大小的流），用于精确定位。在帧头之后的是编码的子帧，每个通道一个。最后，是一些由 0 填充的边界。每个子帧都有自己的帧头，用于指定子帧的编码方式</p>
+<p>为了实现在流中的任意帧开始解码，每个帧头都必须包含一些关于流的基本信息，因为解码器可能还没拿到 STREAMINFO 元数据块。</p>
+<h3 id="Struct-Info"><a href="#Struct-Info" class="headerlink" title="Struct Info"></a>Struct Info</h3><h4 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>长度（bit）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FLAC 文件标识</td>
+<td>32</td>
+<td>“fLaC”，<strong>0x4C 0x61 0x43</strong></td>
+</tr>
+<tr>
+<td>METADATA_BLOCK</td>
+<td>304</td>
+<td>必须包含 STREAMINFO</td>
+</tr>
+<tr>
+<td>METADATA_BLOCK*</td>
+<td>-</td>
+<td>可以有任意数量的 METADATA BLOCK</td>
+</tr>
+<tr>
+<td>FRAME+</td>
+<td>-</td>
+<td>至少包含一个音频帧</td>
+</tr>
+</tbody></table>
+<h4 id="METADATA-BLOCK"><a href="#METADATA-BLOCK" class="headerlink" title="METADATA_BLOCK"></a>METADATA_BLOCK</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>METADATA_BLOCK_HEADER</td>
+<td>指定元素块数据类型和大小的头</td>
+</tr>
+<tr>
+<td>METADATA_BLOCK_DATA</td>
+<td></td>
+</tr>
+</tbody></table>
+<h5 id="METADATA-BLOCK-HEADER"><a href="#METADATA-BLOCK-HEADER" class="headerlink" title="METADATA_BLOCK_HEADER"></a>METADATA_BLOCK_HEADER</h5><table>
+<thead>
+<tr>
+<th></th>
+<th>长度（bit）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>is_last</td>
+<td>1</td>
+<td>最后元数据块标志：如果此块是音频块之前的最后一个元数据块，则为 “1”，否则为 “0”</td>
+</tr>
+<tr>
+<td>block_type</td>
+<td>7</td>
+<td>块类型<br />0: STREAMINFO<br />1: PADDING<br />2: APPLICATION<br />3: SEEKTABLE<br />4: VORBID_COMMENT<br />5: CUESHEET<br />6: PICTURE<br />7-126: reserved<br />127: 无效，避免与帧同步码混淆</td>
+</tr>
+<tr>
+<td>data_length</td>
+<td>24</td>
+<td>METADATA_BLOCK_DATA 数据长度（byte）</td>
+</tr>
+</tbody></table>
+<h5 id="METADATA-BLOCK-DATA"><a href="#METADATA-BLOCK-DATA" class="headerlink" title="METADATA_BLOCK_DATA"></a>METADATA_BLOCK_DATA</h5><p>查看对应类型块数据的定义</p>
+<ol start="0">
+<li><p>METADATA_BLOCK_STREAMINFO</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>长度（bit）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>minimum_block_size</td>
+<td>16</td>
+<td>流中使用的最小块大小（以样本为单位）</td>
+</tr>
+<tr>
+<td>maximum_block_size</td>
+<td>16</td>
+<td>流中使用的最大块大小（以样本为单位）。固定块大小的 <strong>最小块大小 &#x3D;&#x3D; 最大块大小</strong></td>
+</tr>
+<tr>
+<td>minimum_frame size</td>
+<td>24</td>
+<td>流中使用的最小帧大小（以字节为单位）。可能为 0 标识该值未知</td>
+</tr>
+<tr>
+<td>maximum_frame_size</td>
+<td>24</td>
+<td>流中使用的最大帧大小（以字节为单位）。可能为 0 标识该值未知</td>
+</tr>
+<tr>
+<td>sample_rate</td>
+<td>20</td>
+<td>采样率，单位：Hz。尽管有 20 位可用，但最大采样率受帧头结构的限制，为 655350Hz。此外，值 0 无效</td>
+</tr>
+<tr>
+<td>channels</td>
+<td>3</td>
+<td>声道数 - 1。FLAC 支持 1～8 声道</td>
+</tr>
+<tr>
+<td>bits_per_sample</td>
+<td>5</td>
+<td>采样位数 - 1。FLAC 支持每个样本 4 ～ 32 bit。目前，参考编码器和解码器最多支持到每个样本 24 bit</td>
+</tr>
+<tr>
+<td>total_samples</td>
+<td>36</td>
+<td>流中样本总数。若值为 0，则表示样本总数未知</td>
+</tr>
+<tr>
+<td>md5_signature</td>
+<td>128</td>
+<td>音频数据编码前的 MD5 签名。这允许解码器确定音频数据中是否存在错误，即使该错误不会导致无效的比特流</td>
+</tr>
+</tbody></table>
+<p> FLAC 规定最小块大小为 16，最大块大小为 65535，这意味着最大块大小和最小块大小为 0～15 时是无效的</p>
+</li>
+<li><p>METADATA_BLOCK_PADDING</p>
+<table>
+<thead>
+<tr>
+<th>长度（bit）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>n</td>
+<td>n ‘0’ 位（n 必须是 8 的倍数）</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>METADATA_BLOCK_APPLICATION</p>
+<table>
+<thead>
+<tr>
+<th>长度（bit）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>32</td>
+<td>已注册的应用程序 ID</td>
+</tr>
+<tr>
+<td>n</td>
+<td>应用程序数据（n 必须是 8 的倍数）</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>METADATA_BLOCK_SEEKTABLE</p>
+<table>
+<thead>
+<tr>
+<th>长度（bit）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SEEKPOINT+</td>
+<td>一个或多个搜索点</td>
+</tr>
+</tbody></table>
+<p> 搜索点的个数可以通过源信息头中的源信息数据大小来计算，搜索点个数 &#x3D; 源信息数据大小 &#x2F; 18</p>
+<p> SEEKPOINT</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>长度（bit）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sample_number</td>
+<td>64</td>
+<td>目标帧中第一个采样点的序号，或 0xFFFFFFFFFFFFFFFF 用于占位符点</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>64</td>
+<td>从第一个帧头的第一字节到目标帧头的第一字节的偏移量（单位：字节）</td>
+</tr>
+<tr>
+<td>samples</td>
+<td>16</td>
+<td>目标帧中的样本数</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>对于占位符点，第二个和第三个字段值未定义</p>
+</li>
+<li><p>表中的搜索点必须按照样本编号升序排列</p>
+</li>
+<li><p>除了占位符点之外，表格中的搜索点必须按照样本编号唯一</p>
+</li>
+<li><p>可以有任意数量的占位符点，但是都必须在搜索表的末尾</p>
+</li>
+</ul>
+</li>
+<li><p>METADATA_BLOCK_VORBIS_COMMENT</p>
+<p> 文档：<a href="https://xiph.org/vorbis/doc/v-comment.html%EF%BC%8C%E4%B8%8D%E5%8C%85%E5%90%AB">https://xiph.org/vorbis/doc/v-comment.html，不包含</a> framing bit</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>长度（bit）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vendor_length</td>
+<td>32</td>
+<td>vendor_string 长度，小端模式</td>
+</tr>
+<tr>
+<td>vendor_string</td>
+<td>n</td>
+<td></td>
+</tr>
+<tr>
+<td>user_comment_list_length</td>
+<td>32</td>
+<td>comment 个数，小端模式</td>
+</tr>
+<tr>
+<td>comment+</td>
+<td>n</td>
+<td>n 个 comment</td>
+</tr>
+</tbody></table>
+<p> comment</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>长度（bit）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>length</td>
+<td>32</td>
+<td>comment 长度，小端模式</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>n</td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+<li><p>METADATA_BLOCK_CUESHEET</p>
+<table>
+<thead>
+<tr>
+<th>长度（bit）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>128 * 8</td>
+<td>媒体目录编号，ASCII 码可打印字符 0x20-0x7e。通常，媒体目录号的长度可能位 0 到 128 个字节。任何未使用的字符都应该用 NUL 字符右填充。对于 CD-DA，这是一个 13 位的数字，后跟 115 个 NUL 字节</td>
+</tr>
+<tr>
+<td>64</td>
+<td>导入样本的数量。 该字段仅对 CD-DA 提示表有意义； 对于其他用途，它应该是 0。对于 CD-DA，导入是存放目录的 TRACK 00 区域； 更准确地说，它是从媒体的第一个样本到第一个轨道的第一个索引点的第一个样本的样本数。 根据红皮书，导入必须是静音，CD 抓取软件通常不会存储它； 此外，导入时间必须至少为 2 秒，但也可以更长。 由于这些原因，导入长度存储在这里，以便可以计算第一条轨道的绝对位置。 注意，这里存储的导入是到第一个轨道的第一个索引点为止的样本数，不一定是第一个轨道的 INDEX 01； 甚至第一首曲目也可能有 INDEX 00 数据</td>
+</tr>
+<tr>
+<td>1</td>
+<td>如果 CUESHEET 对应于光盘则为 1，否则为 0</td>
+</tr>
+<tr>
+<td>7 + 258 * 8</td>
+<td>保留。所有位都必须设置为零</td>
+</tr>
+<tr>
+<td>8</td>
+<td>曲目数量。至少为 1。对于 CD-DA，此数量不得超过 100（99 条常规曲目和 1 条引出曲目）</td>
+</tr>
+<tr>
+<td>CUESHEET TRACK+</td>
+<td>一首或多首曲目。CUESHEET 块需要有一个引出轨道。它始终是 CUESHEET 中的最后一首曲目。对于 CD-DA，引出曲目编号必须是红皮书规定的 170，否则必须是 255</td>
+</tr>
+</tbody></table>
+<p> CUESHEET_TRACK</p>
+<table>
+<thead>
+<tr>
+<th>长度（bit）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>64</td>
+<td>轨道偏移量（单位是采样数）</td>
+</tr>
+<tr>
+<td>8</td>
+<td>轨道编号</td>
+</tr>
+<tr>
+<td>12 * 8</td>
+<td>轨道 ISRC</td>
+</tr>
+<tr>
+<td>1</td>
+<td>轨道类型：0 音乐 1 非音乐</td>
+</tr>
+<tr>
+<td>1</td>
+<td>pre-emphasis 标记：0 no pre-emphasis, 1 pre-emphasis.。 这对应于 CD-DA Q 通道控制位 5</td>
+</tr>
+<tr>
+<td>6 + 13 * 8</td>
+<td>保留。所有位都必须设置为零</td>
+</tr>
+<tr>
+<td>8</td>
+<td>轨道的索引数目。 CUESHEET 中的每个轨道必须至少有一个索引，但引出轨道除外，它必须为零。 对于 CD-DA，这个数字可能不超过 100</td>
+</tr>
+<tr>
+<td>CUESHEET_TRACK_INDEX+</td>
+<td>引出轨道之外的所有轨道都有一个或多个轨道索引点</td>
+</tr>
+</tbody></table>
+<p> CUESHEET_TRACK_INDEX+</p>
+<table>
+<thead>
+<tr>
+<th>长度（bit）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>64</td>
+<td>索引点相对于轨道偏移的样本偏移。对于 CD-DA，偏移量必须能被 588 个样本整除（588 个样本 &#x3D; 44100 个样本&#x2F;秒 * 1&#x2F;75 秒），偏移量是从轨道开始的，而不是从音频数据开始</td>
+</tr>
+<tr>
+<td>8</td>
+<td>索引点编号。对于 CD-DA，所以号 0 对应于轨道 pre-gap。轨道中的第一个索引的编号必须为 0 或 1。随后，索引点编号必须增加 1。索引编号在轨道内必须是唯一的</td>
+</tr>
+<tr>
+<td>3 * 8</td>
+<td>保留。所有位都必须设置为零</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>METADATA_BLOCK_PICTURE</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>长度（bit）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>picture_type</td>
+<td>32</td>
+<td>图片类型按 ID3v2 APIC 帧：<br />0 - Other<br/>1 - 32x32 pixels ‘file icon’ (PNG only)<br/>2 - Other file icon<br/>3 - Cover (front)<br/>4 - Cover (back)<br/>5 - Leaflet page<br/>6 - Media (e.g. label side of CD)<br/>7 - Lead artist&#x2F;lead performer&#x2F;soloist<br/>8 - Artist&#x2F;performer<br/>9 - Conductor<br/>10 - Band&#x2F;Orchestra<br/>11 - Composer<br/>12 - Lyricist&#x2F;text writer<br/>13 - Recording Location<br/>14 - During recording<br/>15 - During performance<br/>16 - Movie&#x2F;video screen capture<br/>17 - A bright coloured fish<br/>18 - Illustration<br/>19 - Band&#x2F;artist logotype<br/>20 - Publisher&#x2F;Studio logotype<br />其他是保留的，不应使用。一个文件中的图片类型 1 和图片类型 2 只能有一个</td>
+</tr>
+<tr>
+<td>mime_type_length</td>
+<td>32</td>
+<td>MIME 类型字符串的长度（单位字节）</td>
+</tr>
+<tr>
+<td>mime_type</td>
+<td>n * 8</td>
+<td>MIME 类型字符串，ASCII 字符。MIME 类型也可能是 –&gt; 表示数据部分是图片的 URL，而不是图片数据本身</td>
+</tr>
+<tr>
+<td>description_length</td>
+<td>32</td>
+<td>图片描述字符串长度（单位字节）</td>
+</tr>
+<tr>
+<td>description</td>
+<td>n * 8</td>
+<td>图片描述，UTF-8 格式</td>
+</tr>
+<tr>
+<td>width</td>
+<td>32</td>
+<td>图片宽度</td>
+</tr>
+<tr>
+<td>height</td>
+<td>32</td>
+<td>图片高度</td>
+</tr>
+<tr>
+<td>color_depth</td>
+<td>32</td>
+<td>图片颜色深度</td>
+</tr>
+<tr>
+<td>colors</td>
+<td>32</td>
+<td>用于索引图片（例如：GIF），所使用的颜色数量。对于非索引图片为 0</td>
+</tr>
+<tr>
+<td>data_length</td>
+<td>32</td>
+<td>图片数据长度（单位字节）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>n * 8</td>
+<td>二进制图像数据</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h4 id="Frame"><a href="#Frame" class="headerlink" title="Frame"></a>Frame</h4><table>
+<thead>
+<tr>
+<th>长度（bit）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FRAME_HEADER</td>
+<td></td>
+</tr>
+<tr>
+<td>SUBFRAME+</td>
+<td>每个声道一个 SUBFRAME</td>
+</tr>
+<tr>
+<td>？</td>
+<td>填充 0 用于对齐</td>
+</tr>
+<tr>
+<td>FRAME_FOOTER</td>
+<td>CRC-16</td>
+</tr>
+</tbody></table>
+<h5 id="FRAME-HEADER"><a href="#FRAME-HEADER" class="headerlink" title="FRAME_HEADER"></a>FRAME_HEADER</h5><table>
+<thead>
+<tr>
+<th></th>
+<th>长度（bit）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sync_code</td>
+<td>14</td>
+<td>同步码 ‘11111111111110’</td>
+</tr>
+<tr>
+<td>reserved</td>
+<td>1</td>
+<td>保留<br />0：必选<br />1：保留将来使用</td>
+</tr>
+<tr>
+<td>blocking_strategy</td>
+<td>1</td>
+<td>分块策略：<br />0：固定块大小，帧头包含帧的序号<br />1：可变块大小，帧头包含采样点序号</td>
+</tr>
+<tr>
+<td>block_size</td>
+<td>4</td>
+<td>块内采样数：<br />0000 : 保留<br/>0001 : 192 samples<br/>0010-0101 : 576 * (2^(n-2))  samples, i.e. 576&#x2F;1152&#x2F;2304&#x2F;4608<br/>0110 : get 8 bit (blocksize-1)  from end of header<br/>0111 : get 16 bit (blocksize-1)  from end of header<br/>1000-1111 : 256 * (2^(n-8)) samples, i.e. 256&#x2F;512&#x2F;1024&#x2F;2048&#x2F;4096&#x2F;8192&#x2F;16384&#x2F;32768</td>
+</tr>
+<tr>
+<td>sample_rate</td>
+<td>4</td>
+<td>采样率：<br />0000 : get from STREAMINFO metadata block<br/>0001 : 88.2kHz<br/>0010 : 176.4kHz<br/>0011 : 192kHz<br/>0100 : 8kHz<br/>0101 : 16kHz<br/>0110 : 22.05kHz<br/>0111 : 24kHz<br/>1000 : 32kHz<br/>1001 : 44.1kHz<br/>1010 : 48kHz<br/>1011 : 96kHz<br/>1100 : get 8 bit sample rate (in kHz) from end of header<br/>1101 : get 16 bit sample rate (in Hz) from end of header<br/>1110 : get 16 bit sample rate (in tens of Hz) from end of header<br/>1111 : invalid, to prevent sync-fooling string of 1s</td>
+</tr>
+<tr>
+<td>channel_assignment</td>
+<td>4</td>
+<td>声道分配：<br />0000-0111 : 独立声道-1。定义如下：<br/>    1 channel: mono<br/>    2 channels: left, right<br/>    3 channels: left, right, center<br/>    4 channels: front left, front right, back left, back right<br/>    5 channels: front left, front right, front center, back&#x2F;surround left, back&#x2F;surround right<br/>    6 channels: front left, front right, front center, LFE, back&#x2F;surround left, back&#x2F;surround right<br/>    7 channels: front left, front right, front center, LFE, back center, side left, side right<br/>    8 channels: front left, front right, front center, LFE, back left, back right, side left, side right<br/>    1000 : left&#x2F;side stereo: channel 0 is the left channel, channel 1 is the side(difference) channel<br/>    1001 : right&#x2F;side stereo: channel 0 is the side(difference) channel, channel 1 is the right channel<br/>    1010 : mid&#x2F;side stereo: channel 0 is the mid(average) channel, channel 1 is the side(difference) channel<br/>    1011-1111 : reserved</td>
+</tr>
+<tr>
+<td>bits_per_sample</td>
+<td>3</td>
+<td>采样位数：<br />000 : get from STREAMINFO metadata block<br/>001 : 8 bits per sample<br/>010 : 12 bits per sample<br/>011 : reserved<br/>100 : 16 bits per sample<br/>101 : 20 bits per sample<br/>110 : 24 bits per sample<br/>111 : reserved</td>
+</tr>
+<tr>
+<td>reserved</td>
+<td>1</td>
+<td>保留<br />0：必选<br />1：保留将来使用</td>
+</tr>
+<tr>
+<td>coded_sample_number or coded_frame_number</td>
+<td>？</td>
+<td>if(variable blocksize)<br/>   &lt;8-56&gt;:”UTF-8” coded sample number (decoded number is 36 bits)<br/>else<br/>   &lt;8-48&gt;:”UTF-8” coded frame number (decoded number is 31 bits)</td>
+</tr>
+<tr>
+<td></td>
+<td>？</td>
+<td>if (blocksize bits &#x3D;&#x3D; 011x)<br/>   8&#x2F;16 bit (blocksize-1)</td>
+</tr>
+<tr>
+<td></td>
+<td>？</td>
+<td>if (sample rate bits &#x3D;&#x3D; 11xx)<br/>  8&#x2F;16 bit sample rate</td>
+</tr>
+<tr>
+<td>crc</td>
+<td>8</td>
+<td>CRC-8 (polynomial &#x3D; x^8 + x^2 + x^1 + x^0, initialized with 0) of everything before the crc, including the sync code</td>
+</tr>
+</tbody></table>
+<h5 id="FRAM-FOOTER"><a href="#FRAM-FOOTER" class="headerlink" title="FRAM_FOOTER"></a>FRAM_FOOTER</h5><table>
+<thead>
+<tr>
+<th>长度（bit）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>16</td>
+<td>CRC-16 (polynomial &#x3D; x^16 + x^15 + x^2 + x^0, initialized with 0) of everything before the crc, back to and including the frame header sync code</td>
+</tr>
+</tbody></table>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://xiph.org/flac/format.html">https://xiph.org/flac/format.html</a></li>
+<li><a href="https://blog.csdn.net/ffgamelife/article/details/7893747">https://blog.csdn.net/ffgamelife/article/details/7893747</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/FLAC">https://zh.wikipedia.org/wiki/FLAC</a></li>
+<li><a href="https://www.the-roberts-family.net/metadata/flac.html">https://www.the-roberts-family.net/metadata/flac.html</a></li>
+<li><a href="https://blog.csdn.net/yu_yuan_1314/article/details/9491763">https://blog.csdn.net/yu_yuan_1314/article/details/9491763</a></li>
+</ul>
+</div><div class="article-tags size-small mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/FLAC/">FLAC</a><a class="link-muted mr-2" rel="tag" href="/tags/MultiMedia/">MultiMedia</a></div><ul class="post-copyright"><li><strong>本文标题：</strong><a href="http://smileorigin.site/media/FLAC/">FLAC</a></li><li><strong>本文作者：</strong><a href="http://smileorigin.site">Thomas Woo</a></li><li><strong>发布时间：</strong>2021-09-16 22:00</li><li><strong>最后更新：</strong>2022-12-12 15:29</li><li><strong>本文链接：</strong><a href="http://smileorigin.site/media/FLAC/">http://smileorigin.site/media/FLAC/</a></li><li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY 4.0</a> 许可协议。转载请注明出处！</li></ul><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button is-info donate"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="http://static.smileorigin.site/Alipay.jpg" alt="支付宝"></span></a><a class="button is-success donate"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="http://static.smileorigin.site/Wechatpay.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/media/H.264/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">H.264</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/media/MP3/"><span class="level-item">MP3</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: '164a738572995f332a50ccb9111b05f9',
+            repo: 'gittalk',
+            owner: 'smileorigin',
+            clientID: '8fb0efbb7d2496c108f3',
+            clientSecret: '376c8cd0ff2283ef21dcf9bd1f8348014402bd24',
+            admin: ["smileorigin"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: 'last',
+            
+            
+            enableHotKey: true
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-right is-hidden-tablet-only is-3-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" id="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="is-flex" href="#Struct"><span class="mr-2">1</span><span>Struct</span></a><ul class="menu-list"><li><a class="is-flex" href="#Flag"><span class="mr-2">1.1</span><span>Flag</span></a></li><li><a class="is-flex" href="#Metadata"><span class="mr-2">1.2</span><span>Metadata</span></a></li><li><a class="is-flex" href="#Audio-Data"><span class="mr-2">1.3</span><span>Audio Data</span></a></li><li><a class="is-flex" href="#Struct-Info"><span class="mr-2">1.4</span><span>Struct Info</span></a><ul class="menu-list"><li><a class="is-flex" href="#Stream"><span class="mr-2">1.4.1</span><span>Stream</span></a></li><li><a class="is-flex" href="#METADATA-BLOCK-DATA"><span class="mr-2">1.4.2</span><span>METADATA_BLOCK_DATA</span></a></li><li><a class="is-flex" href="#FRAM-FOOTER"><span class="mr-2">1.4.3</span><span>FRAM_FOOTER</span></a></li></ul></li></ul></li><li><a class="is-flex" href="#Reference"><span class="mr-2">2</span><span>Reference</span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">SMILEORIGIN</a><p class="size-small"><span>&copy; 2022 Thomas Woo</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a> <a class="has-link-black-ter" href="https://beian.miit.gov.cn/" target="_blank">闽ICP备18024126号-2</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large icon-button" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large icon-button" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large icon-button" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/smileorigin/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            site: {
+                url: 'http://smileorigin.site',
+                external_link: {"enable":true,"exclude":[]}
+            },
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="generator" content="Hexo 4.2.0"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Vim - Thomas Woo</title><meta description="记录一些常用的 vim 命令"><meta property="og:type" content="blog"><meta property="og:title" content="Vim"><meta property="og:url" content="http://smileorigin.site/linux/vim/"><meta property="og:site_name" content="Thomas Woo"><meta property="og:description" content="记录一些常用的 vim 命令"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://smileorigin.site/img/og_image.png"><meta property="article:published_time" content="2018-11-24T15:00:00.000Z"><meta property="article:modified_time" content="2020-07-10T06:34:18.000Z"><meta property="article:author" content="Thomas Woo"><meta property="article:tag" content="CommandLine"><meta property="article:tag" content="Linux"><meta property="article:tag" content="Vim"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://smileorigin.site/linux/vim/"},"headline":"Thomas Woo","image":["http://smileorigin.site/img/og_image.png"],"datePublished":"2018-11-24T15:00:00.000Z","dateModified":"2020-07-10T06:34:18.000Z","author":{"@type":"Person","name":"Thomas Woo"},"description":"记录一些常用的 vim 命令"}</script><link rel="canonical" href="http://smileorigin.site/linux/vim/"><link rel="alternative" href="/atom.xml" title="Thomas Woo" type="application/atom+xml"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+<html lang="zh"><head><meta charset="utf-8"><meta name="generator" content="Hexo 4.2.1"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Vim - Thomas Woo</title><meta description="记录一些常用的 vim 命令"><meta property="og:type" content="blog"><meta property="og:title" content="Vim"><meta property="og:url" content="http://smileorigin.site/linux/vim/"><meta property="og:site_name" content="Thomas Woo"><meta property="og:description" content="记录一些常用的 vim 命令"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://smileorigin.site/img/og_image.png"><meta property="article:published_time" content="2018-11-24T15:00:00.000Z"><meta property="article:modified_time" content="2022-10-18T07:08:52.170Z"><meta property="article:author" content="Thomas Woo"><meta property="article:tag" content="CommandLine"><meta property="article:tag" content="Linux"><meta property="article:tag" content="Vim"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://smileorigin.site/linux/vim/"},"headline":"Thomas Woo","image":["http://smileorigin.site/img/og_image.png"],"datePublished":"2018-11-24T15:00:00.000Z","dateModified":"2022-10-18T07:08:52.170Z","author":{"@type":"Person","name":"Thomas Woo"},"description":"记录一些常用的 vim 命令"}</script><link rel="canonical" href="http://smileorigin.site/linux/vim/"><link rel="alternative" href="/atom.xml" title="Thomas Woo" type="application/atom+xml"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
         (function() {
             var hm = document.createElement("script");
             hm.src = "//hm.baidu.com/hm.js?33cec7dfd968d9ffd9ff2a5da2be77d0";
@@ -19,7 +19,7 @@
 <h2 id="过渡阶段"><a href="#过渡阶段" class="headerlink" title="过渡阶段"></a>过渡阶段</h2><ul>
 <li><code>:set mouse=a</code><br>设置鼠标可区域选择，跟普通的编辑器一样可以进行拖选</li>
 </ul>
-<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="打开-切换文件"><a href="#打开-切换文件" class="headerlink" title="打开/切换文件"></a>打开/切换文件</h3><table>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="打开-x2F-切换文件"><a href="#打开-x2F-切换文件" class="headerlink" title="打开&#x2F;切换文件"></a>打开&#x2F;切换文件</h3><table>
 <thead>
 <tr>
 <th>命令</th>
@@ -63,7 +63,7 @@
 <td>添加文件到缓冲区</td>
 </tr>
 <tr>
-<td><code>&lt;Ctrl&gt; + z</code></td>
+<td><code>&lt;Ctrl&gt; + z </code></td>
 <td>回到shell（最小化vim）</td>
 </tr>
 <tr>
@@ -79,7 +79,7 @@
 <td>跳转到上一个文件</td>
 </tr>
 </tbody></table>
-<h3 id="退出-保存"><a href="#退出-保存" class="headerlink" title="退出/保存"></a>退出/保存</h3><table>
+<h3 id="退出-x2F-保存"><a href="#退出-x2F-保存" class="headerlink" title="退出&#x2F;保存"></a>退出&#x2F;保存</h3><table>
 <thead>
 <tr>
 <th>命令</th>
@@ -127,7 +127,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><code>i</code>/<code>I</code></td>
+<td><code>i</code>&#x2F;<code>I</code></td>
 <td>编辑</td>
 </tr>
 <tr>
@@ -139,7 +139,7 @@
 <td>撤销操作</td>
 </tr>
 <tr>
-<td><code>&lt;Ctrl&gt; + r</code></td>
+<td><code>&lt;Ctrl&gt; + r </code></td>
 <td>重做（恢复被撤销的动作）</td>
 </tr>
 <tr>
@@ -239,7 +239,7 @@
 <td>删除当前行</td>
 </tr>
 <tr>
-<td><code>D</code> /<code>n$</code></td>
+<td><code>D</code> &#x2F;<code>n$</code></td>
 <td>删除当前字符至行尾</td>
 </tr>
 <tr>
@@ -267,19 +267,19 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><code>&lt;Ctrl&gt; + p</code></td>
+<td><code>&lt;Ctrl&gt; + p </code></td>
 <td>往前搜索补全</td>
 </tr>
 <tr>
-<td><code>&lt;Ctrl&gt; + n</code></td>
+<td><code>&lt;Ctrl&gt; + n </code></td>
 <td>往后搜索补全</td>
 </tr>
 <tr>
-<td><code>&lt;Ctrl&gt; + e</code></td>
+<td><code>&lt;Ctrl&gt; + e </code></td>
 <td>取消补全</td>
 </tr>
 <tr>
-<td><code>&lt;Ctrl&gt; + y</code></td>
+<td><code>&lt;Ctrl&gt; + y </code></td>
 <td>确定补全</td>
 </tr>
 </tbody></table>
@@ -343,11 +343,11 @@
 <td>跳转到文件内容的底部</td>
 </tr>
 <tr>
-<td><code>&lt;Ctrl&gt; + f</code></td>
+<td><code>&lt;Ctrl&gt; + f </code></td>
 <td>下一页</td>
 </tr>
 <tr>
-<td><code>&lt;Ctrl&gt; + b</code></td>
+<td><code>&lt;Ctrl&gt; + b </code></td>
 <td>上一页</td>
 </tr>
 <tr>
@@ -367,7 +367,7 @@
 <td>移动到选中元素结尾</td>
 </tr>
 </tbody></table>
-<h3 id="复制-粘贴"><a href="#复制-粘贴" class="headerlink" title="复制/粘贴"></a>复制/粘贴</h3><table>
+<h3 id="复制-x2F-粘贴"><a href="#复制-x2F-粘贴" class="headerlink" title="复制&#x2F;粘贴"></a>复制&#x2F;粘贴</h3><table>
 <thead>
 <tr>
 <th>命令</th>
@@ -443,7 +443,7 @@
 <td>关闭折叠</td>
 </tr>
 <tr>
-<td><code>:mkview</code> / <code>:loadview</code></td>
+<td><code>:mkview</code> &#x2F; <code>:loadview</code></td>
 <td>保存，载入折叠</td>
 </tr>
 </tbody></table>
@@ -546,12 +546,12 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><code>f</code>  / <code>F</code></td>
-<td>当前行搜索，til，正向 / 反向</td>
+<td><code>f</code>  &#x2F; <code>F</code></td>
+<td>当前行搜索，til，正向 &#x2F; 反向</td>
 </tr>
 <tr>
-<td><code>t</code> / <code>T</code></td>
-<td>当前行搜索，until，正向 / 反向</td>
+<td><code>t</code> &#x2F; <code>T</code></td>
+<td>当前行搜索，until，正向 &#x2F; 反向</td>
 </tr>
 <tr>
 <td><code>;</code>、<code>,</code></td>
@@ -559,10 +559,10 @@
 </tr>
 <tr>
 <td><code>/</code>、<code>?</code></td>
-<td>当前文件搜索，向上搜索 / 向下搜索</td>
+<td>当前文件搜索，向上搜索 &#x2F; 向下搜索</td>
 </tr>
 <tr>
-<td><code>:grep -r</code> / <code>:!grep -r</code></td>
+<td><code>:grep -r</code> &#x2F; <code>:!grep -r</code></td>
 <td>跨文件搜索</td>
 </tr>
 <tr>
@@ -587,7 +587,7 @@
 <li><code>: s/a/b/g</code>，将当前行所有的<code>a</code>替换为<code>b</code></li>
 </ul>
 </li>
-<li><p><code>:n，$s/target/replace[/g]</code></p>
+<li><p><code>:n，$s/target/replace[/g] </code></p>
 <ul>
 <li><code>n</code>为数字表示从第n行开始到最后一行，当<code>n</code>为<code>.</code>时表示从当前行开始</li>
 <li><code>target</code>：要被替换的内容</li>
@@ -611,7 +611,7 @@
 </thead>
 <tbody><tr>
 <td><code>o</code></td>
-<td>打开/关闭文件或目录</td>
+<td>打开&#x2F;关闭文件或目录</td>
 </tr>
 <tr>
 <td><code>t</code></td>
@@ -716,7 +716,7 @@
 <li><a href="https://www.cnblogs.com/wangkongming/p/4050833.html">vim 树形目录插件NERDTree安装及简单用法</a></li>
 <li><a href="https://github.com/jaywcjlove/vim-web">https://github.com/jaywcjlove/vim-web</a></li>
 </ol>
-</div><div class="article-tags size-small mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/CommandLine/">CommandLine</a><a class="link-muted mr-2" rel="tag" href="/tags/Linux/">Linux</a><a class="link-muted mr-2" rel="tag" href="/tags/Vim/">Vim</a></div><ul class="post-copyright"><li><strong>本文标题：</strong><a href="http://smileorigin.site/linux/vim/">Vim</a></li><li><strong>本文作者：</strong><a href="http://smileorigin.site">Thomas Woo</a></li><li><strong>发布时间：</strong>2018-11-24 23:00</li><li><strong>最后更新：</strong>2020-07-10 14:34</li><li><strong>本文链接：</strong><a href="http://smileorigin.site/linux/vim/">http://smileorigin.site/linux/vim/</a></li><li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY 4.0</a> 许可协议。转载请注明出处！</li></ul><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button is-info donate"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="http://static.smileorigin.site/Alipay.jpg" alt="支付宝"></span></a><a class="button is-success donate"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="http://static.smileorigin.site/Wechatpay.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/linux/ssr/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Linux SSR</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/python/django-deploy/"><span class="level-item">Center OS Django部署</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+</div><div class="article-tags size-small mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/CommandLine/">CommandLine</a><a class="link-muted mr-2" rel="tag" href="/tags/Linux/">Linux</a><a class="link-muted mr-2" rel="tag" href="/tags/Vim/">Vim</a></div><ul class="post-copyright"><li><strong>本文标题：</strong><a href="http://smileorigin.site/linux/vim/">Vim</a></li><li><strong>本文作者：</strong><a href="http://smileorigin.site">Thomas Woo</a></li><li><strong>发布时间：</strong>2018-11-24 23:00</li><li><strong>最后更新：</strong>2022-10-18 15:08</li><li><strong>本文链接：</strong><a href="http://smileorigin.site/linux/vim/">http://smileorigin.site/linux/vim/</a></li><li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY 4.0</a> 许可协议。转载请注明出处！</li></ul><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button is-info donate"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="http://static.smileorigin.site/Alipay.jpg" alt="支付宝"></span></a><a class="button is-success donate"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="http://static.smileorigin.site/Wechatpay.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/linux/ssr/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Linux SSR</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/python/django-deploy/"><span class="level-item">Center OS Django部署</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
             id: 'ea89ea6bc39c8b6b249e734883f7b42f',
             repo: 'gittalk',
             owner: 'smileorigin',
@@ -731,7 +731,7 @@
             
             enableHotKey: true
         })
-        gitalk.render('comment-container')</script></div></div></div><div class="column column-right is-hidden-tablet-only is-3-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" id="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="is-flex" href="#帮助文档"><span class="mr-2">1</span><span>帮助文档</span></a></li><li><a class="is-flex" href="#过渡阶段"><span class="mr-2">2</span><span>过渡阶段</span></a></li><li><a class="is-flex" href="#基本操作"><span class="mr-2">3</span><span>基本操作</span></a><ul class="menu-list"><li><a class="is-flex" href="#打开-切换文件"><span class="mr-2">3.1</span><span>打开/切换文件</span></a></li><li><a class="is-flex" href="#退出-保存"><span class="mr-2">3.2</span><span>退出/保存</span></a></li><li><a class="is-flex" href="#编辑"><span class="mr-2">3.3</span><span>编辑</span></a></li></ul></li><li><a class="is-flex" href="#排版"><span class="mr-2">4</span><span>排版</span></a><ul class="menu-list"><li><a class="is-flex" href="#删除"><span class="mr-2">4.1</span><span>删除</span></a></li><li><a class="is-flex" href="#代码补全"><span class="mr-2">4.2</span><span>代码补全</span></a></li><li><a class="is-flex" href="#移动"><span class="mr-2">4.3</span><span>移动</span></a></li><li><a class="is-flex" href="#复制-粘贴"><span class="mr-2">4.4</span><span>复制/粘贴</span></a></li></ul></li><li><a class="is-flex" href="#高端点的操作"><span class="mr-2">5</span><span>高端点的操作</span></a><ul class="menu-list"><li><a class="is-flex" href="#骚操作"><span class="mr-2">5.1</span><span>骚操作</span></a></li><li><a class="is-flex" href="#拖动功能"><span class="mr-2">5.2</span><span>拖动功能</span></a></li><li><a class="is-flex" href="#代码折叠"><span class="mr-2">5.3</span><span>代码折叠</span></a></li><li><a class="is-flex" href="#窗口管理"><span class="mr-2">5.4</span><span>窗口管理</span></a></li><li><a class="is-flex" href="#Tab操作"><span class="mr-2">5.5</span><span>Tab操作</span></a></li><li><a class="is-flex" href="#转换文件编码和格式"><span class="mr-2">5.6</span><span>转换文件编码和格式</span></a></li><li><a class="is-flex" href="#搜索"><span class="mr-2">5.7</span><span>搜索</span></a></li><li><a class="is-flex" href="#替换指定字符"><span class="mr-2">5.8</span><span>替换指定字符</span></a></li></ul></li><li><a class="is-flex" href="#插件使用（在安装的前提下）"><span class="mr-2">6</span><span>插件使用（在安装的前提下）</span></a><ul class="menu-list"><li><a class="is-flex" href="#NERDTree"><span class="mr-2">6.1</span><span>NERDTree</span></a></li><li><a class="is-flex" href="#vim-commentary"><span class="mr-2">6.2</span><span>vim-commentary</span></a></li></ul></li><li><a class="is-flex" href="#One-more-thing"><span class="mr-2">7</span><span>One more thing</span></a></li><li><a class="is-flex" href="#参考文章"><span class="mr-2">8</span><span>参考文章</span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">SMILEORIGIN</a><p class="size-small"><span>&copy; 2022 Thomas Woo</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a> <a class="has-link-black-ter" href="https://beian.miit.gov.cn/" target="_blank">闽ICP备18024126号-2</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large icon-button" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large icon-button" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large icon-button" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/smileorigin/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-right is-hidden-tablet-only is-3-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" id="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="is-flex" href="#帮助文档"><span class="mr-2">1</span><span>帮助文档</span></a></li><li><a class="is-flex" href="#过渡阶段"><span class="mr-2">2</span><span>过渡阶段</span></a></li><li><a class="is-flex" href="#基本操作"><span class="mr-2">3</span><span>基本操作</span></a><ul class="menu-list"><li><a class="is-flex" href="#打开-x2F-切换文件"><span class="mr-2">3.1</span><span>打开/切换文件</span></a></li><li><a class="is-flex" href="#退出-x2F-保存"><span class="mr-2">3.2</span><span>退出/保存</span></a></li><li><a class="is-flex" href="#编辑"><span class="mr-2">3.3</span><span>编辑</span></a></li></ul></li><li><a class="is-flex" href="#排版"><span class="mr-2">4</span><span>排版</span></a><ul class="menu-list"><li><a class="is-flex" href="#删除"><span class="mr-2">4.1</span><span>删除</span></a></li><li><a class="is-flex" href="#代码补全"><span class="mr-2">4.2</span><span>代码补全</span></a></li><li><a class="is-flex" href="#移动"><span class="mr-2">4.3</span><span>移动</span></a></li><li><a class="is-flex" href="#复制-x2F-粘贴"><span class="mr-2">4.4</span><span>复制/粘贴</span></a></li></ul></li><li><a class="is-flex" href="#高端点的操作"><span class="mr-2">5</span><span>高端点的操作</span></a><ul class="menu-list"><li><a class="is-flex" href="#骚操作"><span class="mr-2">5.1</span><span>骚操作</span></a></li><li><a class="is-flex" href="#拖动功能"><span class="mr-2">5.2</span><span>拖动功能</span></a></li><li><a class="is-flex" href="#代码折叠"><span class="mr-2">5.3</span><span>代码折叠</span></a></li><li><a class="is-flex" href="#窗口管理"><span class="mr-2">5.4</span><span>窗口管理</span></a></li><li><a class="is-flex" href="#Tab操作"><span class="mr-2">5.5</span><span>Tab操作</span></a></li><li><a class="is-flex" href="#转换文件编码和格式"><span class="mr-2">5.6</span><span>转换文件编码和格式</span></a></li><li><a class="is-flex" href="#搜索"><span class="mr-2">5.7</span><span>搜索</span></a></li><li><a class="is-flex" href="#替换指定字符"><span class="mr-2">5.8</span><span>替换指定字符</span></a></li></ul></li><li><a class="is-flex" href="#插件使用（在安装的前提下）"><span class="mr-2">6</span><span>插件使用（在安装的前提下）</span></a><ul class="menu-list"><li><a class="is-flex" href="#NERDTree"><span class="mr-2">6.1</span><span>NERDTree</span></a></li><li><a class="is-flex" href="#vim-commentary"><span class="mr-2">6.2</span><span>vim-commentary</span></a></li></ul></li><li><a class="is-flex" href="#One-more-thing"><span class="mr-2">7</span><span>One more thing</span></a></li><li><a class="is-flex" href="#参考文章"><span class="mr-2">8</span><span>参考文章</span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">SMILEORIGIN</a><p class="size-small"><span>&copy; 2022 Thomas Woo</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a> <a class="has-link-black-ter" href="https://beian.miit.gov.cn/" target="_blank">闽ICP备18024126号-2</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large icon-button" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large icon-button" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large icon-button" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/smileorigin/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
             site: {
                 url: 'http://smileorigin.site',
                 external_link: {"enable":true,"exclude":[]}
